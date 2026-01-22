@@ -25,4 +25,6 @@ const prodFallback = "https://pinnacle-server-u941.onrender.com";
 (window as any).API_BASE =
   (window as any).API_BASE ||
   viteBase ||
-  ((import.meta as any).env?.MODE === "development" ? devDefault : prodFallback);
+  ((import.meta as any).env?.MODE === "development"
+    ? devDefault
+    : prodFallback);

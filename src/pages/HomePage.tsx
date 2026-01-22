@@ -290,9 +290,8 @@ export default function HomePage() {
                   Instant Payment
                 </h4>
                 <p className="text-neutral-500 mb-0">
-                  Once weighed and ID checked, we process your payment
-                  instantly via secure bank transfer. No waiting, no hidden
-                  fees.
+                  Once weighed and ID checked, we process your payment instantly
+                  via secure bank transfer. No waiting, no hidden fees.
                 </p>
               </div>
             </div>
@@ -456,102 +455,95 @@ export default function HomePage() {
         </div>
       </section>
 
-      
-                  <h3 className="fw-bold mb-0 mt-32 text-neutral-700 transition-2">
-                    Aluminum
-                  </h3>
-                  <span className="d-block border border-neutral-30 my-24 border-dashed"></span>
-                  <ul className="d-flex flex-column gap-16 text-start">
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Alloy Wheels
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Best Price
-                      </span>
-                    </li>
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Cast Aluminum
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Market Price
-                      </span>
-                    </li>
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Painted / Clean
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Call Today
-                      </span>
-                    </li>
-                  </ul>
-                  <div className="mt-40 pt-20">
-                    <a
-                      href="#quote"
-                      className="btn btn-main rounded-pill flex-center gap-8 w-100"
-                    >
-                      Get Best Quote
-                      <i className="ph-bold ph-arrow-right d-flex text-lg"></i>
-                    </a>
-                  </div>
-                {/* </div>
+      <h3 className="fw-bold mb-0 mt-32 text-neutral-700 transition-2">
+        Aluminum
+      </h3>
+      <span className="d-block border border-neutral-30 my-24 border-dashed"></span>
+      <ul className="d-flex flex-column gap-16 text-start">
+        <li className="flex-align gap-12">
+          <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+            Alloy Wheels
+          </span>
+          <span className="fw-bold text-main-600 font-bold">Best Price</span>
+        </li>
+        <li className="flex-align gap-12">
+          <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+            Cast Aluminum
+          </span>
+          <span className="fw-bold text-main-600 font-bold">Market Price</span>
+        </li>
+        <li className="flex-align gap-12">
+          <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+            Painted / Clean
+          </span>
+          <span className="fw-bold text-main-600 font-bold">Call Today</span>
+        </li>
+      </ul>
+      <div className="mt-40 pt-20">
+        <a
+          href="#quote"
+          className="btn btn-main rounded-pill flex-center gap-8 w-100"
+        >
+          Get Best Quote
+          <i className="ph-bold ph-arrow-right d-flex text-lg"></i>
+        </a>
+      </div>
+      {/* </div>
               </div>
             </div> */}
 
-            <div className="col-xl-4 col-md-6">
-              <div className="bg-white border border-neutral-30 animation-item rounded-16 p-12">
-                <div className="bg-main-25 p-32 rounded-16 transition-2 border border-neutral-30 overflow-hidden position-relative text-center h-100">
-                  <span className="positioned-rotation text-main-600 fw-bold text-lg bg-white d-block text-center p-6 shadow-sm">
-                    Bulk Iron
-                  </span>
-                  <div className="w-84 h-84 bg-white p-16 box-shadow-md rounded-circle mx-auto d-inline-flex align-items-center justify-content-center position-relative text-main-three-600 text-44 border border-neutral-30">
-                    <i className="ph-bold ph-crown"></i>
-                  </div>
-                  <h3 className="fw-bold mb-0 mt-32 text-neutral-700 transition-2">
-                    Steel / Iron
-                  </h3>
-                  <span className="d-block border border-neutral-30 my-24 border-dashed"></span>
-                  <ul className="d-flex flex-column gap-16 text-start">
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Steel HMS 1 & 2
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Per Tonne
-                      </span>
-                    </li>
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Light Iron
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Per Tonne
-                      </span>
-                    </li>
-                    <li className="flex-align gap-12">
-                      <span className="text-neutral-500 text-md fw-medium flex-grow-1">
-                        Mixed Scrap
-                      </span>
-                      <span className="fw-bold text-main-600 font-bold">
-                        Best Price
-                      </span>
-                    </li>
-                  </ul>
-                  <div className="mt-40 pt-20">
-                    <a
-                      href="#quote"
-                      className="btn btn-main rounded-pill flex-center gap-8 w-100"
-                    >
-                      Call for Bulk Price
-                      <i className="ph-bold ph-arrow-right d-flex text-lg"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+      <div className="col-xl-4 col-md-6">
+        <div className="bg-white border border-neutral-30 animation-item rounded-16 p-12">
+          <div className="bg-main-25 p-32 rounded-16 transition-2 border border-neutral-30 overflow-hidden position-relative text-center h-100">
+            <span className="positioned-rotation text-main-600 fw-bold text-lg bg-white d-block text-center p-6 shadow-sm">
+              Bulk Iron
+            </span>
+            <div className="w-84 h-84 bg-white p-16 box-shadow-md rounded-circle mx-auto d-inline-flex align-items-center justify-content-center position-relative text-main-three-600 text-44 border border-neutral-30">
+              <i className="ph-bold ph-crown"></i>
             </div>
-          {/* </div>
+            <h3 className="fw-bold mb-0 mt-32 text-neutral-700 transition-2">
+              Steel / Iron
+            </h3>
+            <span className="d-block border border-neutral-30 my-24 border-dashed"></span>
+            <ul className="d-flex flex-column gap-16 text-start">
+              <li className="flex-align gap-12">
+                <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+                  Steel HMS 1 & 2
+                </span>
+                <span className="fw-bold text-main-600 font-bold">
+                  Per Tonne
+                </span>
+              </li>
+              <li className="flex-align gap-12">
+                <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+                  Light Iron
+                </span>
+                <span className="fw-bold text-main-600 font-bold">
+                  Per Tonne
+                </span>
+              </li>
+              <li className="flex-align gap-12">
+                <span className="text-neutral-500 text-md fw-medium flex-grow-1">
+                  Mixed Scrap
+                </span>
+                <span className="fw-bold text-main-600 font-bold">
+                  Best Price
+                </span>
+              </li>
+            </ul>
+            <div className="mt-40 pt-20">
+              <a
+                href="#quote"
+                className="btn btn-main rounded-pill flex-center gap-8 w-100"
+              >
+                Call for Bulk Price
+                <i className="ph-bold ph-arrow-right d-flex text-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* </div>
         </div>
       </section> */}
 
