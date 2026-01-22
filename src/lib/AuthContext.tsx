@@ -33,17 +33,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const refresh = async () => {
-    const data = await apiFetch<{ user: User | null }>(
-      `/api/auth/me?t=${Date.now()}`,
-    );
-    setUser(data.user);
+    try {
+      const data = await apiFetch<{ user: User | null }>(
+        `/api/auth/me?t=${Date.now()}`,
+      );
+      console.log("Auth Refresh Result:", data);
+      setUser(data.user);
+    } catch (err) {
+      console.error("Auth Refresh Failed:", err);
+      setUser(null);
+    }
   };
 
   const login = async (email: string, password: string) => {
+    console.log("Attempting login...");
     await apiFetch("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
+    console.log("Login successful, refreshing...");
     await refresh();
   };
 
