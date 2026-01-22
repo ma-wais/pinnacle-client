@@ -33,7 +33,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const refresh = async () => {
-    const data = await apiFetch<{ user: User | null }>("/api/auth/me");
+    const data = await apiFetch<{ user: User | null }>(
+      `/api/auth/me?t=${Date.now()}`,
+    );
     setUser(data.user);
   };
 
