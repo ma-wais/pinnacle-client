@@ -7,14 +7,19 @@ export async function apiFetch<T>(
       ? (window as any).API_BASE
       : import.meta.env.VITE_API_URL || "";
   const baseUrl = runtimeBase.replace(/\/+$/, "");
+  
+  const token = localStorage.getItem("token");
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(init?.headers ?? {}),
+  };
+
   const res = await fetch(
     `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`,
     {
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        ...(init?.headers ?? {}),
-      },
+      headers,
       ...init,
     },
   );
@@ -49,9 +54,14 @@ export async function apiFetchForm<T>(
       : import.meta.env.VITE_API_URL || "";
   const baseUrl = runtimeBase.replace(/\/+$/, "");
   const url = `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
+  
+  const token = localStorage.getItem("token");
+  const headers: HeadersInit = token ? { Authorization: `Bearer ${token}` } : {};
+
   const res = await fetch(url, {
     method: "POST",
     credentials: "include",
+    headers,
     body: form,
   });
 

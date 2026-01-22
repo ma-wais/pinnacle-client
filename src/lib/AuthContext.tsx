@@ -47,23 +47,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     console.log("Attempting login...");
-    await apiFetch("/api/auth/login", {
+    const res = await apiFetch<{ token: string }>("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
+    if (res.token) {
+      localStorage.setItem("token", res.token);
+    }
     console.log("Login successful, refreshing...");
     await refresh();
   };
 
   const register: AuthState["register"] = async (input) => {
-    await apiFetch("/api/auth/register", {
+    const res = await apiFetch<{ token: string }>("/api/auth/register", {
       method: "POST",
       body: JSON.stringify(input),
     });
+    if (res.token) {
+      localStorage.setItem("token", res.token);
+    }
     await refresh();
   };
 
   const logout = async () => {
+    localStorage.removeItem("token");
     await apiFetch("/api/auth/logout", { method: "POST" });
     setUser(null);
   };
