@@ -7,7 +7,7 @@ export async function apiFetch<T>(
       ? (window as any).API_BASE
       : import.meta.env.VITE_API_URL || "";
   const baseUrl = runtimeBase.replace(/\/+$/, "");
-  
+
   const token = localStorage.getItem("token");
   const headers: HeadersInit = {
     "Content-Type": "application/json",
@@ -54,9 +54,11 @@ export async function apiFetchForm<T>(
       : import.meta.env.VITE_API_URL || "";
   const baseUrl = runtimeBase.replace(/\/+$/, "");
   const url = `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
-  
+
   const token = localStorage.getItem("token");
-  const headers: HeadersInit = token ? { Authorization: `Bearer ${token}` } : {};
+  const headers: HeadersInit = token
+    ? { Authorization: `Bearer ${token}` }
+    : {};
 
   const res = await fetch(url, {
     method: "POST",
