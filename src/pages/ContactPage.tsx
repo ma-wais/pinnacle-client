@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ContactPage() {
   return (
     <main className="contact-page bg-neutral-10">
@@ -146,9 +144,7 @@ export default function ContactPage() {
                       <option>Billing / Invoicing Question</option>
                     </select>
                   </div>
-                    <label className="mt-12">
-                      Your Message
-                    </label>
+                  <label className="mt-12">Your Message</label>
                   <div className="col-12">
                     <textarea
                       className=" rounded-24 h-160-px p-24 border-neutral-40 bg-neutral-5 my-12"

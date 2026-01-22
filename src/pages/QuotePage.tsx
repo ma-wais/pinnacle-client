@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function QuotePage() {
   const [metalType, setMetalType] = useState("");
@@ -11,7 +11,7 @@ export default function QuotePage() {
         style={{
           backgroundImage: "url('/eduall/assets/images/shapes/shape9.png')",
           backgroundSize: "cover",
-        //   backgroundBlendMode: "multiply",
+          //   backgroundBlendMode: "multiply",
         }}
       >
         <div className="container">
@@ -263,6 +263,4 @@ export default function QuotePage() {
       </section>
     </main>
   );
-
-           
 }

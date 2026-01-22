@@ -1,8 +1,9 @@
 export async function apiFetch<T>(
   path: string,
-  init?: RequestInit
+  init?: RequestInit,
 ): Promise<T> {
-  const res = await fetch(path, {
+  const baseUrl = import.meta.env.VITE_API_URL || "";
+  const res = await fetch(`${baseUrl}${path}`, {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
@@ -33,7 +34,7 @@ export async function apiFetch<T>(
 
 export async function apiFetchForm<T>(
   path: string,
-  form: FormData
+  form: FormData,
 ): Promise<T> {
   const res = await fetch(path, {
     method: "POST",

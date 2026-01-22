@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { apiFetch, apiFetchForm } from "../lib/api";
 import type { Document, DocumentType, Profile, User } from "../lib/types";
 import DashboardShell from "../ui/DashboardShell";
@@ -312,7 +312,7 @@ export default function DashboardPage() {
                             {d.originalName}
                           </div>
                           <span className="text-12 text-neutral-400">
-                            {new Date(d.createdAt).toLocaleDateString()}
+                            {new Date(d.uploadedAt).toLocaleDateString()}
                           </span>
                         </td>
                         <td className="py-16">
@@ -322,7 +322,7 @@ export default function DashboardPage() {
                         </td>
                         <td className="py-16">
                           <span
-                            className={`badge ${d.status === "approved" ? "text-bg-success" : "text-bg-warning"} px-12 rounded-pill text-12`}
+                            className={`badge ${d.status === "accepted" ? "text-bg-success" : "text-bg-warning"} px-12 rounded-pill text-12`}
                           >
                             {d.status}
                           </span>

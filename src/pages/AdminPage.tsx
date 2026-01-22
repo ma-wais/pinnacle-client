@@ -352,7 +352,7 @@ export default function AdminPage() {
                             <div className="flex-align gap-8">
                               <span
                                 className={`text-10 text-uppercase fw-bold px-8 py-4 rounded-4 ${
-                                  d.status === "approved"
+                                  d.status === "accepted"
                                     ? "bg-success-50 text-success-600"
                                     : d.status === "rejected"
                                       ? "bg-danger-50 text-danger-600"
@@ -374,8 +374,8 @@ export default function AdminPage() {
                           </div>
                           <div className="d-flex gap-8 mt-12 pt-12 border-top border-neutral-30">
                             <button
-                              onClick={() => updateDocStatus(d._id, "approved")}
-                              disabled={d.status === "approved"}
+                              onClick={() => updateDocStatus(d._id, "accepted")}
+                              disabled={d.status === "accepted"}
                               className="btn btn-sm btn-outline-success flex-grow-1 rounded-pill py-4 text-xs"
                             >
                               Approve
