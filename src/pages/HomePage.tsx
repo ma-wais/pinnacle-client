@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../lib/api";
 
 export default function HomePage() {
   const [priceData, setPriceData] = useState<{
@@ -7,10 +8,16 @@ export default function HomePage() {
   } | null>(null);
 
   useEffect(() => {
-    fetch("/api/prices/copper")
-      .then((res) => res.json())
-      .then((data) => setPriceData(data))
-      .catch(() => {});
+    (async () => {
+      try {
+        const data = await apiFetch<{ price: number; timestamp: string }>(
+          "/api/prices/copper",
+        );
+        setPriceData(data);
+      } catch (err) {
+        // ignore
+      }
+    })();
   }, []);
 
   return (
