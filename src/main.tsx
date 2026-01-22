@@ -14,3 +14,8 @@ createRoot(document.getElementById("root")!).render(
     </BrowserRouter>
   </StrictMode>,
 );
+
+// Runtime API base: preferred source for API calls at runtime.
+// If you later want to override, you can set `window.API_BASE` before the app mounts.
+(window as any).API_BASE =
+  (window as any).API_BASE || "https://pinnacle-server-u941.onrender.com";

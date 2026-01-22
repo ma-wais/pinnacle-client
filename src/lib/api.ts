@@ -2,15 +2,22 @@ export async function apiFetch<T>(
   path: string,
   init?: RequestInit,
 ): Promise<T> {
-  const baseUrl = import.meta.env.VITE_API_URL || "";
-  const res = await fetch(`${baseUrl}${path}`, {
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(init?.headers ?? {}),
+  const runtimeBase =
+    typeof window !== "undefined" && (window as any).API_BASE
+      ? (window as any).API_BASE
+      : import.meta.env.VITE_API_URL || "";
+  const baseUrl = runtimeBase.replace(/\/+$/, "");
+  const res = await fetch(
+    `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`,
+    {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        ...(init?.headers ?? {}),
+      },
+      ...init,
     },
-    ...init,
-  });
+  );
 
   const contentType = res.headers.get("content-type") || "";
   const isJson = contentType.includes("application/json");
@@ -36,7 +43,13 @@ export async function apiFetchForm<T>(
   path: string,
   form: FormData,
 ): Promise<T> {
-  const res = await fetch(path, {
+  const runtimeBase =
+    typeof window !== "undefined" && (window as any).API_BASE
+      ? (window as any).API_BASE
+      : import.meta.env.VITE_API_URL || "";
+  const baseUrl = runtimeBase.replace(/\/+$/, "");
+  const url = `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
+  const res = await fetch(url, {
     method: "POST",
     credentials: "include",
     body: form,
