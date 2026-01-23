@@ -74,12 +74,12 @@ export default function DashboardShell({
             zIndex: 999,
           }}
         >
-          <div className="flex-between mb-40 ps-24 pe-16">
+          <div className="flex-between ps-24 pe-16">
             <Link to="/" className="d-block">
               <img
                 src="/eduall/assets/images/logo/logo.png"
                 alt="Pinnacle Metals"
-                style={{ maxHeight: "40px" }}
+                style={{ maxHeight: "100px" }}
               />
             </Link>
             <button
@@ -101,11 +101,18 @@ export default function DashboardShell({
                 icon="ph ph-squares-four"
               />
               {user?.role === "admin" && (
-                <SideLink
-                  to="/admin"
-                  label="User Management"
-                  icon="ph ph-users"
-                />
+                <>
+                  <SideLink
+                    to="/admin"
+                    label="Admin Dashboard"
+                    icon="ph ph-chart-bar"
+                  />
+                  <SideLink
+                    to="/admin/users"
+                    label="User Management"
+                    icon="ph ph-users"
+                  />
+                </>
               )}
             </ul>
 

@@ -85,7 +85,7 @@ export default function DashboardPage() {
       )}
 
       <div className="row gy-24 mb-32">
-        <div className="col-xl-3 col-sm-6">
+        <div className="col-xl-3 col-sm-6 mt-10">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-25 text-main-600 text-24 rounded-circle border border-main-100 shadow-sm">
@@ -105,7 +105,7 @@ export default function DashboardPage() {
             </h4>
           </div>
         </div>
-        <div className="col-xl-3 col-sm-6">
+        <div className="col-xl-3 col-sm-6 mt-10">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-two-25 text-main-two-600 text-24 rounded-circle border border-main-two-100 shadow-sm">
@@ -119,7 +119,7 @@ export default function DashboardPage() {
             <h4 className="mb-0 text-18">{documents.length} Uploaded</h4>
           </div>
         </div>
-        <div className="col-xl-3 col-sm-6">
+        <div className="col-xl-3 col-sm-6 mt-10">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-three-25 text-main-three-600 text-24 rounded-circle border border-main-three-100 shadow-sm">
@@ -133,7 +133,7 @@ export default function DashboardPage() {
             </h4>
           </div>
         </div>
-        <div className="col-xl-3 col-sm-6">
+        <div className="col-xl-3 col-sm-6 mt-10">
           <div className="bg-main-600 rounded-20 p-24 shadow-sm item-hover h-100 animation-scalation text-white border-0">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-white bg-opacity-20 text-white text-24 rounded-circle border border-white border-opacity-25 shadow-sm">
@@ -322,7 +322,7 @@ export default function DashboardPage() {
                         </td>
                         <td className="py-16">
                           <span
-                            className={`badge ${d.status === "accepted" ? "text-bg-success" : "text-bg-warning"} px-12 rounded-pill text-12`}
+                            className={`badge ${d.status === "approved" ? "text-bg-success" : d.status === "rejected" ? "text-bg-danger" : "text-bg-warning"} px-12 rounded-pill text-12`}
                           >
                             {d.status}
                           </span>
@@ -330,7 +330,9 @@ export default function DashboardPage() {
                         <td className="pe-24 py-16 text-end">
                           <a
                             className="btn btn-main rounded-circle w-32 h-32 flex-center p-0 d-inline-flex border-neutral-30 hover-bg-main-600 hover-text-white"
-                            href={`/api/documents/${d._id}/download`}
+                            href={`${((window as any).API_BASE || "").replace(/\/+$/, "")}/api/documents/${d._id}/download?token=${localStorage.getItem("token")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
                             <i className="ph ph-download-simple"></i>
                           </a>

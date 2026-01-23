@@ -19,7 +19,7 @@ export type Profile = {
 };
 
 export type DocumentType = "id" | "proof_of_address" | "business_doc" | "other";
-export type DocumentStatus = "pending" | "accepted" | "rejected";
+export type DocumentStatus = "pending" | "approved" | "rejected";
 
 export type Document = {
   _id: string;

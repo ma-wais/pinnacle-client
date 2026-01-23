@@ -223,6 +223,7 @@ export default function ApplyPage() {
       </div>
     </div>
   );
+}
   //                       {error}
   //                     </div>
   //                   </div>
@@ -241,26 +242,187 @@ export default function ApplyPage() {
   //                       )}
   //                     </button>
   //                   </div>
-  //                 </div>
+        // <main>
+        //     <div className="common-hero">
+        //         <div className="container">
+        //             <div className="row align-items-center text-center">
+        //                 <div className="col-lg-6 m-auto">
+        //                     <div className="main-heading">
+        //                         <h1>Register</h1>
+        //                         <div className="space16"></div>
+        //                         <span className="span">
+        //                             <img src="/assets/img/icons/span1.png" alt="" />
+        //                             Open a Pinnacle Metals trade account
+        //                         </span>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
 
-  //                 <div className="col-sm-12 text-center mt-24">
-  //                   <p className="text-neutral-500">
-  //                     Already have an account?{" "}
-  //                     <button
-  //                       type="button"
-  //                       onClick={() => navigate("/login")}
-  //                       className="fw-semibold text-main-600 hover-text-decoration-underline bg-transparent border-0"
-  //                     >
-  //                       Sign In
-  //                     </button>
-  //                   </p>
-  //                 </div>
-  //               </div>
-  //             </form>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-}
+        //     <div className="space100"></div>
+        //     <div className="contact-page">
+        //         <div className="container">
+        //             <div className="row align-items-start">
+        //                 <div className="col-lg-5">
+        //                     <div className="contact-boxs">
+        //                         <div className="heading1">
+        //                             <h2>Trade Account Registration</h2>
+        //                             <div className="space16"></div>
+        //                             <p>
+        //                                 We operate in a regulated industry. Complete this form to
+        //                                 start your digital verification. Once approved, you will
+        //                                 gain secure portal access.
+        //                             </p>
+        //                         </div>
+        //                         <div className="contact-box">
+        //                             <div className="icon">
+        //                                 <img src="/assets/img/icons/contact-page-icon1.png" alt="" />
+        //                             </div>
+        //                             <div className="heading">
+        //                                 <h5>Need help?</h5>
+        //                                 <a href="tel:07398071934" className="text">
+        //                                     07398 071934
+        //                                 </a>
+        //                             </div>
+        //                         </div>
+        //                         <div className="contact-box">
+        //                             <div className="icon">
+        //                                 <img src="/assets/img/icons/contact-page-icon2.png" alt="" />
+        //                             </div>
+        //                             <div className="heading">
+        //                                 <h5>Email support</h5>
+        //                                 <a href="mailto:info@pinnaclemetals.co.uk" className="text">
+        //                                     info@pinnaclemetals.co.uk
+        //                                 </a>
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+
+        //                 <div className="col-lg-7">
+        //                     <div className="contact-form-details">
+        //                         <form onSubmit={onSubmit}>
+        //                             <div className="row">
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={fullName}
+        //                                             onChange={(e) => setFullName(e.target.value)}
+        //                                             type="text"
+        //                                             placeholder="Full Legal Name"
+        //                                             required
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={phone}
+        //                                             onChange={(e) => setPhone(e.target.value)}
+        //                                             type="tel"
+        //                                             placeholder="Phone"
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={email}
+        //                                             onChange={(e) => setEmail(e.target.value)}
+        //                                             type="email"
+        //                                             placeholder="Email"
+        //                                             required
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={password}
+        //                                             onChange={(e) => setPassword(e.target.value)}
+        //                                             type="password"
+        //                                             placeholder="Password (min 8 characters)"
+        //                                             required
+        //                                             minLength={8}
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+
+        //                                 <div className="col-lg-12">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={businessName}
+        //                                             onChange={(e) => setBusinessName(e.target.value)}
+        //                                             type="text"
+        //                                             placeholder="Business / Trading Name"
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+
+        //                                 <div className="col-lg-12">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={addressLine1}
+        //                                             onChange={(e) => setAddressLine1(e.target.value)}
+        //                                             type="text"
+        //                                             placeholder="Trading Address"
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={city}
+        //                                             onChange={(e) => setCity(e.target.value)}
+        //                                             type="text"
+        //                                             placeholder="City"
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+        //                                 <div className="col-lg-6">
+        //                                     <div className="single-input">
+        //                                         <input
+        //                                             value={postcode}
+        //                                             onChange={(e) => setPostcode(e.target.value)}
+        //                                             type="text"
+        //                                             placeholder="Postcode"
+        //                                         />
+        //                                     </div>
+        //                                 </div>
+
+        //                                 {error && (
+        //                                     <div className="col-lg-12">
+        //                                         <div className="alert alert-danger mt-20" role="alert">
+        //                                             {error}
+        //                                         </div>
+        //                                     </div>
+        //                                 )}
+
+        //                                 <div className="col-lg-12">
+        //                                     <button className="theme-btn1" type="submit" disabled={busy}>
+        //                                         {busy ? "Submitting..." : "Submit Application"} <span><i className="bi bi-arrow-right"></i></span>
+        //                                     </button>
+        //                                 </div>
+        //                                 <div className="col-lg-12">
+        //                                     <p className="text-center mt-16">
+        //                                         Already have an account?{" "}
+        //                                         <button
+        //                                             type="button"
+        //                                             onClick={() => navigate("/login")}
+        //                                             className="btn btn-link"
+        //                                         >
+        //                                             Login here
+        //                                         </button>
+        //                                     </p>
+        //                                 </div>
+        //                             </div>
+        //                         </form>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </main>

@@ -3,9 +3,11 @@ import HomePage from "./pages/HomePage";
 import ApplyPage from "./pages/ApplyPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import AdminPage from "./pages/AdminPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AdminUserManagement from "./pages/AdminUserManagement";
 import ContactPage from "./pages/ContactPage";
 import QuotePage from "./pages/QuotePage";
+import TermsPage from "./pages/TermsPage";
 import Layout from "./ui/Layout";
 import RequireAuth from "./ui/RequireAuth";
 import RequireAdmin from "./ui/RequireAdmin";
@@ -19,6 +21,8 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/quote" element={<QuotePage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/register" element={<ApplyPage />} />
 
         <Route
           path="/dashboard"
@@ -33,7 +37,16 @@ export default function App() {
           path="/admin"
           element={
             <RequireAdmin>
-              <AdminPage />
+              <AdminDashboardPage />
+            </RequireAdmin>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <RequireAdmin>
+              <AdminUserManagement />
             </RequireAdmin>
           }
         />
