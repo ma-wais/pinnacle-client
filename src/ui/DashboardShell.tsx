@@ -6,10 +6,12 @@ function SideLink({
   to,
   label,
   icon,
+  collapsed,
 }: {
   to: string;
   label: string;
   icon: string;
+  collapsed: boolean;
 }) {
   return (
     <li className="mb-8">
@@ -17,17 +19,18 @@ function SideLink({
         to={to}
         className={({ isActive }) =>
           [
-            "fw-medium d-flex align-items-center text-14 gap-12 px-24 py-12 rounded-12 item-hover",
+            `fw-medium d-flex align-items-center text-14 gap-12 ${collapsed ? "px-16 justify-content-center" : "px-24"} py-12 rounded-12 item-hover`,
             isActive
               ? "bg-main-600 text-white"
               : "text-neutral-500 hover-bg-main-600 hover-text-white transition-1",
           ].join(" ")
         }
+        title={collapsed ? label : undefined}
       >
         <span className="d-flex text-xl">
           <i className={icon}></i>
         </span>
-        {label}
+        {!collapsed && label}
       </NavLink>
     </li>
   );
@@ -42,8 +45,12 @@ export default function DashboardShell({
 }) {
   const { user, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebarCollapsed = () =>
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  const sidebarWidth = isSidebarCollapsed ? 88 : 288;
 
   return (
     <div
@@ -68,98 +75,119 @@ export default function DashboardShell({
         <aside
           className={`dashboard-sidebar px-20 py-32 bg-white border-end border-neutral-40 h-100 z-10 transition-1 ${isSidebarOpen ? "active" : ""}`}
           style={{
-            width: "288px",
+            width: `${sidebarWidth}px`,
             position: "fixed",
             left: isSidebarOpen ? "0" : "var(--sidebar-shift, 0)",
             zIndex: 999,
           }}
         >
-          <div className="flex-between ps-24 pe-16">
+          <div
+            className={`flex-between ${isSidebarCollapsed ? "ps-0 pe-0" : "ps-24 pe-16"}`}
+          >
             <Link to="/" className="d-block">
               <img
                 src="/eduall/assets/images/logo/logo.png"
                 alt="Pinnacle Metals"
-                style={{ maxHeight: "100px" }}
+                style={{ maxHeight: isSidebarCollapsed ? "48px" : "100px" }}
               />
             </Link>
-            <button
-              onClick={toggleSidebar}
-              className="d-lg-none border-0 bg-transparent text-neutral-400"
-            >
-              <i className="ph ph-x text-2xl"></i>
-            </button>
+            <div className="d-flex align-items-center gap-8">
+              <button
+                onClick={toggleSidebar}
+                className="d-lg-none border bg-transparent text-neutral-400"
+              >
+                <i className="ph ph-x text-2xl"></i>
+              </button>
+            </div>
           </div>
 
-          <div className="sidebar-menu">
-            <span className="text-neutral-400 text-12 text-uppercase fw-bold mb-16 d-block ps-24 tracking-wider">
-              Main Menu
-            </span>
-            <ul className="p-0 m-0" style={{ listStyle: "none" }}>
-              <SideLink
-                to="/dashboard"
-                label="Dashboard"
-                icon="ph ph-squares-four"
-              />
+          <div className="sidebar-menu mt-12">
+            {!isSidebarCollapsed && (
+              <span className="text-neutral-400 text-12 text-uppercase fw-bold d-block ps-24 tracking-wider">
+                Main Menu
+              </span>
+            )}
+            <ul className="p-0 mt-16" style={{ listStyle: "none" }}>
+              {user?.role !== "admin" && (
+                <SideLink
+                  to="/dashboard"
+                  label="Dashboard"
+                  icon="ph ph-squares-four"
+                  collapsed={isSidebarCollapsed}
+                />
+              )}
               {user?.role === "admin" && (
                 <>
                   <SideLink
                     to="/admin"
                     label="Admin Dashboard"
                     icon="ph ph-chart-bar"
+                    collapsed={isSidebarCollapsed}
                   />
                   <SideLink
                     to="/admin/users"
                     label="User Management"
                     icon="ph ph-users"
+                    collapsed={isSidebarCollapsed}
                   />
                 </>
               )}
             </ul>
 
-            <span className="text-neutral-400 text-12 text-uppercase fw-bold mb-16 mt-32 d-block ps-24 tracking-wider">
-              System
-            </span>
+            {!isSidebarCollapsed && (
+              <span className="text-neutral-400 text-12 text-uppercase fw-bold mb-16 mt-32 d-block ps-24 tracking-wider">
+                System
+              </span>
+            )}
             <ul className="p-0 m-0" style={{ listStyle: "none" }}>
               <li>
                 <Link
                   to="/"
-                  className="fw-medium d-flex align-items-center text-14 gap-12 px-24 py-12 text-neutral-500 hover-bg-main-600 hover-text-white rounded-12 transition-1"
+                  className={`fw-medium d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-main-600 hover-text-white rounded-12 transition-1`}
+                  title={isSidebarCollapsed ? "Back to Website" : undefined}
                 >
                   <span className="d-flex text-xl">
                     <i className="ph ph-house"></i>
                   </span>
-                  Back to Website
+                  {!isSidebarCollapsed && "Back to Website"}
                 </Link>
               </li>
               <li className="mt-8">
                 <button
                   type="button"
                   onClick={logout}
-                  className="fw-medium d-flex align-items-center text-14 gap-12 px-24 py-12 text-neutral-500 hover-bg-danger-600 hover-text-white rounded-12 transition-1 bg-transparent border-0 w-100 text-start"
+                  className={`fw-medium d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-danger-600 hover-text-white rounded-12 transition-1 bg-transparent border-0 w-100 text-start`}
+                  title={isSidebarCollapsed ? "Logout" : undefined}
                 >
                   <span className="d-flex text-xl">
                     <i className="ph ph-sign-out"></i>
                   </span>
-                  Logout
+                  {!isSidebarCollapsed && "Logout"}
                 </button>
               </li>
             </ul>
           </div>
 
-          <div className="position-absolute bottom-0 start-0 w-100 p-24">
-            <div className="bg-main-25 rounded-16 p-16 border border-neutral-30">
-              <div className="d-flex align-items-center gap-12">
+          <div
+            className={`position-absolute bottom-0 start-0 w-100 ${isSidebarCollapsed ? "p-12" : "p-24"}`}
+          >
+            <div className="bg-main-25 rounded-16 p-8 border border-neutral-30">
+              <div
+                className={`d-flex align-items-center gap-12 ${isSidebarCollapsed ? "justify-content-center" : ""}`}
+              >
                 <div className="w-40 h-40 bg-main-600 text-white rounded-circle flex-center text-lg font-bold">
                   {user?.email?.[0].toUpperCase()}
                 </div>
-                <div className="overflow-hidden">
-                  <div className="text-14 fw-bold text-neutral-700 truncate">
-                    {user?.email?.split("@")[0]}
+                {!isSidebarCollapsed && (
+                  <div className="overflow-hidden">
+                    <div className="text-14 fw-bold text-neutral-700 truncate">
+                      {user?.email?.split("@")[0]}
+                    </div>
+                    <div className="text-12 text-neutral-400 truncate">
+                      {user?.role}
+                    </div>
                   </div>
-                  <div className="text-12 text-neutral-400 truncate">
-                    {user?.role}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -176,8 +204,8 @@ export default function DashboardShell({
           <style>{`
             @media (min-width: 992px) {
               .dashbord-main {
-                margin-left: 288px !important;
-                width: calc(100% - 288px) !important;
+                margin-left: ${sidebarWidth}px !important;
+                width: calc(100% - ${sidebarWidth}px) !important;
               }
             }
           `}</style>
@@ -185,8 +213,19 @@ export default function DashboardShell({
             <div className="d-flex align-items-center justify-content-between gap-24">
               <div className="flex-align gap-12">
                 <button
+                  onClick={toggleSidebarCollapsed}
+                  className="d-none border rounded-circle d-lg-inline-flex w-44 h-44 bg-gray-100 flex-center"
+                  title={
+                    isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+                  }
+                >
+                  <i
+                    className={`ph ${isSidebarCollapsed ? "ph-arrow-right" : "ph-arrow-left"} text-2xl`}
+                  ></i>
+                </button>
+                <button
                   onClick={toggleSidebar}
-                  className="d-lg-none w-44 h-44 bg-neutral-10 border-0 rounded-circle flex-center"
+                  className="d-lg-none w-44 h-44 bg-gray-100 border rounded-circle flex-center"
                 >
                   <i className="ph ph-list text-2xl"></i>
                 </button>

@@ -173,19 +173,6 @@ export default function Layout() {
                           </NavLink>
                         </li>
                       )}
-                      {!loading && (
-                        <li>
-                          <NavLink
-                            to={user ? "/dashboard" : "/login"}
-                            className={navClass}
-                            onClick={closeMobile}
-                          >
-                            {user ? <div>
-                              <i className="bi bi-person-circle"><span className="ms-2">Portal</span></i>
-                            </div> : "Login"}
-                          </NavLink>
-                        </li>
-                      )}
                     </ul>
                   </div>
                 </div>
@@ -209,6 +196,25 @@ export default function Layout() {
                         </span>
                       </Link>
                     </div>
+                    {!loading && (
+                      <li>
+                        <NavLink
+                          to={user ? "/dashboard" : "/login"}
+                          className={navClass}
+                          onClick={closeMobile}
+                        >
+                          {user ? (
+                            <div className="px-10 text-black">
+                              <p className="bi bi-person-circle">
+                                <span className="ms-2">Portal</span>
+                              </p>
+                            </div>
+                          ) : (
+                            <p className="text-black px-10">Login</p>
+                          )}
+                        </NavLink>
+                      </li>
+                    )}
                   </div>
                 </div>
               </div>

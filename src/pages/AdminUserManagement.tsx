@@ -291,7 +291,9 @@ export default function AdminUserManagement() {
                     {filteredUsers.map((u) => (
                       <tr
                         key={u._id}
+                        onClick={() => select(u._id)}
                         className={selectedUserId === u._id ? "bg-main-25" : ""}
+                        style={{ cursor: "pointer" }}
                       >
                         <td className="py-10">
                           <div className="flex-align gap-12">
@@ -322,14 +324,10 @@ export default function AdminUserManagement() {
                         <td className="py-16 text-end">
                           <div className="flex-align gap-8 justify-content-end">
                             <button
-                              onClick={() => select(u._id)}
-                              className="text-sm btn btn-main rounded-pill px-12 py-8"
-                              style={{ whiteSpace: "nowrap" }}
-                            >
-                              {selectedUserId === u._id ? "Selected" : "Select"}
-                            </button>
-                            <button
-                              onClick={() => deleteUser(u._id)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                deleteUser(u._id);
+                              }}
                               className="text-sm btn rounded-circle w-32 h-32 flex-center p-0"
                               style={{ background: "red" }}
                               title="Delete User"
@@ -443,6 +441,18 @@ export default function AdminUserManagement() {
                               >
                                 {d.status}
                               </span>
+                              <a
+                                href={
+                                  d.cloudinaryUrl ||
+                                  `${((window as any).API_BASE || "").replace(/\/+$/, "")}/api/admin/documents/${d._id}/preview?token=${localStorage.getItem("token")}`
+                                }
+                                className="w-32 h-32 flex-center bg-white border border-neutral-30 rounded-circle text-neutral-500 hover-text-main-600 shadow-sm"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Preview"
+                              >
+                                <i className="ph ph-eye"></i>
+                              </a>
                               <a
                                 href={`${((window as any).API_BASE || "").replace(/\/+$/, "")}/api/admin/documents/${d._id}/download?token=${localStorage.getItem("token")}`}
                                 className="w-32 h-32 flex-center bg-white border border-neutral-30 rounded-circle text-neutral-500 hover-text-main-600 shadow-sm"
