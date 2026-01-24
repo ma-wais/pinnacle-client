@@ -30,5 +30,6 @@ export type Document = {
   mimeType: string;
   size: number;
   status: DocumentStatus;
+  cloudinaryUrl?: string;
   uploadedAt: string;
 };
