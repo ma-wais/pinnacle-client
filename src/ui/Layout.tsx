@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../lib/AuthContext";
+import { 
+  // Link, NavLink, 
+  Outlet, useLocation } from "react-router-dom";
+// import { useAuth } from "../lib/AuthContext";
 
-const navClass = ({ isActive }: { isActive: boolean }) =>
-  isActive ? "active" : "";
+// const navClass = ({ isActive }: { isActive: boolean }) =>
+//   isActive ? "active" : "";
 
 export default function Layout() {
-  const { user, loading } = useAuth();
+  // const { user, loading } = useAuth();
   const { pathname } = useLocation();
-  const [mobileToggle, setMobileToggle] = useState(false);
-  const [isSticky, setIsSticky] = useState<string | undefined>();
+  // const [mobileToggle, setMobileToggle] = useState(false);
+  // const [isSticky, setIsSticky] = useState<string | undefined>();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const isPortal =
@@ -20,11 +22,11 @@ export default function Layout() {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       if (currentScrollPos > prevScrollPos) {
-        setIsSticky("cs-gescout_sticky");
+        // setIsSticky("cs-gescout_sticky");
       } else if (currentScrollPos !== 0) {
-        setIsSticky("cs-gescout_show cs-gescout_sticky");
+        // setIsSticky("cs-gescout_show cs-gescout_sticky");
       } else {
-        setIsSticky(undefined);
+        // setIsSticky(undefined);
       }
       setPrevScrollPos(currentScrollPos);
     };
@@ -76,11 +78,11 @@ export default function Layout() {
 
   if (isPortal) return <Outlet />;
 
-  const closeMobile = () => setMobileToggle(false);
+  // const closeMobile = () => setMobileToggle(false);
 
   return (
     <div className="main-page-area">
-      <div className="header-area2 header_nav_03">
+      {/* <div className="header-area2 header_nav_03">
         <header
           className={`cs_site_header cs_style_1 cs_sticky_header cs_site_header_full_width ${isSticky ? isSticky : ""}`}
         >
@@ -221,11 +223,11 @@ export default function Layout() {
             </div>
           </div>
         </header>
-      </div>
+      </div> */}
 
       <Outlet />
 
-      <div className="footer1 _relative">
+      {/* <div className="footer1 _relative">
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-md-6 col-12">
@@ -367,7 +369,7 @@ export default function Layout() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

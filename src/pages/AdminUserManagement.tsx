@@ -195,7 +195,7 @@ export default function AdminUserManagement() {
       )}
 
       {/* Admin Stats */}
-      <div className="row gy-24 mb-16">
+      {/* <div className="row gy-24 mb-16">
         <div className="col-xl-4 col-sm-6">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm  item-hover h-100">
             <div className="flex-between mb-16">
@@ -230,7 +230,7 @@ export default function AdminUserManagement() {
             </h4>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="row gy-24">
         <div className="col-lg-6 mt-10">

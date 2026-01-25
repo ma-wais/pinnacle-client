@@ -30,7 +30,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main>
+    <main className="mb-28">
       <div className="common-hero">
         <div className="container">
           <div className="row align-items-center text-center">
@@ -146,7 +146,7 @@ export default function LoginPage() {
                         <button
                           type="button"
                           onClick={() => navigate("/apply")}
-                          className="btn btn-link"
+                          className="theme-btn1"
                         >
                           Register here
                         </button>
