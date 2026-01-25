@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { apiFetch, apiFetchForm } from "../lib/api";
 import type { Document, DocumentType, Profile, User } from "../lib/types";
 import DashboardShell from "../ui/DashboardShell";
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -42,12 +40,6 @@ export default function DashboardPage() {
       }
     })();
   }, []);
-
-  useEffect(() => {
-    if (user?.role === "admin") {
-      navigate("/admin", { replace: true });
-    }
-  }, [user, navigate]);
 
   const upload = async (e: React.FormEvent) => {
     e.preventDefault();

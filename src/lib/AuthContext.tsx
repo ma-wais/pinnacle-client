@@ -11,8 +11,8 @@ import type { User } from "./types";
 type AuthState = {
   user: User | null;
   loading: boolean;
-  refresh: () => Promise<void>;
-  login: (email: string, password: string) => Promise<void>;
+  refresh: () => Promise<User | null>;
+  login: (email: string, password: string) => Promise<User | null>;
   register: (input: {
     email: string;
     password: string;
@@ -32,20 +32,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const refresh = async () => {
+  const refresh = async (): Promise<User | null> => {
     try {
       const data = await apiFetch<{ user: User | null }>(
         `/api/auth/me?t=${Date.now()}`,
       );
       console.log("Auth Refresh Result:", data);
       setUser(data.user);
+      return data.user;
     } catch (err) {
       console.error("Auth Refresh Failed:", err);
       setUser(null);
+      return null;
     }
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (
+    email: string,
+    password: string,
+  ): Promise<User | null> => {
     console.log("Attempting login...");
     const res = await apiFetch<{ token: string }>("/api/auth/login", {
       method: "POST",
@@ -55,7 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("token", res.token);
     }
     console.log("Login successful, refreshing...");
-    await refresh();
+    return await refresh();
   };
 
   const register: AuthState["register"] = async (input) => {
