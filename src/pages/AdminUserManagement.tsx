@@ -633,14 +633,14 @@ export default function AdminUserManagement() {
                         </div>
 
                         <div className="px-4">
-                          <div className="flex-between mb-8">
+                          {/* <div className="flex-between mb-8">
                             <span className="text-xs text-neutral-400">
                               Business:
                             </span>
                             <span className="text-xs fw-bold text-neutral-800">
                               {selected.profile?.businessName || "N/A"}
                             </span>
-                          </div>
+                          </div> */}
                           <div className="flex-between mb-8">
                             <span className="text-xs text-neutral-400">
                               Phone:
