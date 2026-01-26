@@ -233,7 +233,7 @@ export default function DashboardPage() {
                     Document Type
                   </label>
                   <select
-                    className="common-input rounded-pill h-48-px px-20 border-neutral-30 bg-white"
+                    className="form-select rounded-pill px-20 border-neutral-40 h-40-px text-xs fw-bold"
                     value={docType}
                     onChange={(e) => setDocType(e.target.value as DocumentType)}
                   >
@@ -249,7 +249,7 @@ export default function DashboardPage() {
                   </label>
                   <div className="position-relative">
                     <input
-                      className="border rounded w-100 p-10"
+                      className="border p-8 rounded-pill px-20 border-neutral-40 h-40-px text-xs fw-bold"
                       type="file"
                       accept="application/pdf,image/jpeg,image/png"
                       onChange={(e) => setFile(e.target.files?.[0] ?? null)}

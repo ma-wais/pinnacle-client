@@ -96,61 +96,94 @@ export default function LoginPage() {
             <div className="col-lg-6">
               <div className="contact-form-details">
                 <form onSubmit={onSubmit}>
-                  <div className="row">
+                  <div className="row g-24">
                     <div className="col-lg-12">
-                      <div className="single-input">
+                      <div className="flex-column gap-8">
+                        <label className="text-md fw-bold text-neutral-600">
+                          Email Address
+                        </label>
                         <input
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           type="email"
-                          placeholder="Email Address"
+                          style={{
+                            marginLeft: '10px',
+                            padding: "10px 15px",
+                            border: "2px solid #e2e8f0",
+                            borderRadius: "25px",
+                            fontSize: "16px",
+                            color: "#1e293b",
+                            transition: "all 0.2s ease",
+                            outline: "none",
+                            width: "250px",
+                          }}
+                          placeholder="name@company.com"
                           required
                         />
                       </div>
                     </div>
-                    <div className="col-lg-12">
-                      <div className="single-input">
+                    <div className="col-lg-12 mt-12">
+                      <div className="flex-column gap-8">
+                        <label className="text-md fw-bold text-neutral-600">
+                          Security Password
+                        </label>
                         <input
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           type="password"
-                          placeholder="Password"
+                          style={{
+                            marginLeft: '10px',
+                            marginBottom: '10px',
+                            padding: "10px 15px",
+                            border: "2px solid #e2e8f0",
+                            borderRadius: "25px",
+                            fontSize: "16px",
+                            color: "#1e293b",
+                            transition: "all 0.2s ease",
+                            outline: "none",
+                            width: "250px",
+                          }}
+                          placeholder="••••••••"
                           required
                         />
                       </div>
                     </div>
 
                     {error && (
-                      <div className="col-lg-12">
-                        <div className="alert alert-danger mt-20" role="alert">
+                      <div className="col-lg-12 mt-12">
+                        <div
+                          className="alert alert-danger bg-danger-50 border-danger-100 text-danger-600 rounded-12 flex-align gap-8"
+                          role="alert"
+                        >
+                          <i className="ph ph-warning-circle"></i>
                           {error}
                         </div>
                       </div>
                     )}
 
-                    <div className="col-lg-12">
+                    <div className="col-lg-12 mt-12">
                       <button
-                        className="theme-btn1"
+                        className="btn btn-main rounded-pill w-100 h-60-px flex-center gap-12 text-16 fw-bold shadow-main-sm"
                         type="submit"
                         disabled={busy}
                       >
                         {busy ? "Authenticating..." : "Sign In"}{" "}
-                        <span>
-                          <i className="bi bi-arrow-right"></i>
-                        </span>
+                        <i className="ph ph-arrow-right"></i>
                       </button>
                     </div>
                     <div className="col-lg-12">
-                      <p className="text-center mt-16">
-                        Need an account?{" "}
+                      <div className="flex-center flex-column gap-16 mt-24 pt-24 border-top border-neutral-20">
+                        <p className="text-neutral-500 mb-0">
+                          Don't have an account?
+                        </p>
                         <button
                           type="button"
                           onClick={() => navigate("/apply")}
-                          className="theme-btn1"
+                          className="btn btn-outline-main rounded-pill px-32 py-12 fw-bold"
                         >
-                          Register here
+                          Register Now
                         </button>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </form>

@@ -40,3 +40,44 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Pinnacle Custom Styles */
+.custom-input-pinnacle {
+  width: 100%;
+  height: 56px;
+  padding: 0 24px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #1e293b;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.custom-input-pinnacle:focus {
+  background: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.custom-input-pinnacle::placeholder {
+  color: #94a3b8;
+}
+
+.hover-bg-main-25:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.sticky-details {
+  position: sticky;
+  top: 100px;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}

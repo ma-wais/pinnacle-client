@@ -33,3 +33,17 @@ export type Document = {
   cloudinaryUrl?: string;
   uploadedAt: string;
 };
+
+export type Complaint = {
+  _id: string;
+  userId: {
+    _id: string;
+    email: string;
+    profile?: Profile;
+  };
+  subject: string;
+  message: string;
+  status: "pending" | "resolved";
+  createdAt: string;
+  updatedAt: string;
+};
