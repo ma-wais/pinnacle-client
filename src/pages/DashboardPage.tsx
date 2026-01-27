@@ -194,7 +194,7 @@ export default function DashboardPage() {
                   {profile?.phone || "---"}
                 </div>
               </div>
-              <div className="profile-detail">
+              {/* <div className="profile-detail">
                 <span className="text-neutral-400 text-12 text-uppercase fw-bold mb-4 d-block">
                   Business Info
                 </span>
@@ -204,7 +204,7 @@ export default function DashboardPage() {
                 <div className="text-neutral-500 text-sm mt-4">
                   {profile?.addressLine1}, {profile?.city}
                 </div>
-              </div>
+              </div> */}
 
               <div className="mt-12 p-20 bg-main-25 rounded-16 border border-main-100 border-dashed">
                 <p className="text-sm text-neutral-600 mb-0 d-flex gap-8">

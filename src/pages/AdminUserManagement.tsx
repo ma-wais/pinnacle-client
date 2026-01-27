@@ -10,6 +10,7 @@ type UserRow = {
   accountId: string;
   verificationStatus: "unverified" | "verified";
   createdAt: string;
+  fullName?: string;
 };
 
 export default function AdminUserManagement() {
@@ -174,7 +175,7 @@ export default function AdminUserManagement() {
       u.email.toLowerCase().includes(search.toLowerCase()) ||
       u.accountId.toLowerCase().includes(search.toLowerCase()),
   );
-
+  console.log("Filtered Users:", filteredUsers);
   const exportUsers = async () => {
     try {
       const data = await apiFetch<{ users: any[] }>("/api/admin/users/export");
@@ -267,7 +268,7 @@ export default function AdminUserManagement() {
                     </div>
                   )}
                   <div className="p-24 border-bottom border-neutral-40 flex-between flex-wrap gap-16">
-                    <div className="flex-align gap-16">
+                    <div className="flex-align gap-16 mt-8">
                       <h5 className="mb-0">User Directory</h5>
                       <select
                         value={statusFilter}
@@ -323,7 +324,7 @@ export default function AdminUserManagement() {
                   </div>
 
                   <div className="p-24 overflow-x-auto">
-                    <table className="table table-borderless vertical-middle mb-0">
+                    <table className="table table-borderless table-hover vertical-middle mb-0">
                       <thead className="bg-neutral-10">
                         <tr>
                           <th className="px-16 py-12 text-neutral-600 fw-bold rounded-start-8">
@@ -373,6 +374,11 @@ export default function AdminUserManagement() {
                                 <p className="text-sm fw-bold text-main-600 mb-0">
                                   {u.accountId}
                                 </p>
+                                
+                                  <p className="text-xs fw-semibold text-neutral-700 mb-0">
+                                    {u.fullName}
+                                  </p>
+                                
                                 <p className="text-xs text-neutral-500 mb-0">
                                   {u.email}
                                 </p>
@@ -660,24 +666,29 @@ export default function AdminUserManagement() {
                         </div>
 
                         <div className="pt-24 flex-column gap-12 mt-16 border-top border-neutral-20">
-                          {selected.user?.verificationStatus ===
-                          "unverified" ? (
+                          <div className="flex-align gap-12">
                             <button
                               onClick={() => setVerification("verified")}
-                              className="btn btn-success-600 rounded-pill w-100 flex-center gap-8 py-12 shadow-main-sm fw-bold border-0"
+                              disabled={
+                                selected.user?.verificationStatus === "verified"
+                              }
+                              className={` rounded-pill w-100 flex-center gap-8 py-12 shadow-sm fw-bold border-0 ${selected.user?.verificationStatus === "verified" ? "bg-neutral-100 text-neutral-400 cursor-not-allowed" : "border text-success-600 bg-success-50 hover-text-success-700 border-10"}`}
                             >
-                              <i className="ph-fill ph-seal-check text-18"></i>
-                              Approve User Access
+                              <i className="ph-fill ph-check-circle text-18"></i>
+                              Approve
                             </button>
-                          ) : (
                             <button
                               onClick={() => setVerification("unverified")}
-                              className="btn btn-outline-danger-600 rounded-pill w-100 flex-center gap-8 py-12 fw-bold"
+                              disabled={
+                                selected.user?.verificationStatus ===
+                                "unverified"
+                              }
+                              className={`rounded-pill w-100 flex-center gap-8 py-12 fw-bold ${selected.user?.verificationStatus === "unverified" ? "bg-neutral-100 text-neutral-400 cursor-not-allowed" : "border text-danger-600 bg-danger-50  hover-text-danger-700 border-10"}`}
                             >
-                              <i className="ph-fill ph-prohibit text-18"></i>
-                              Revoke User Access
+                              <i className="ph-fill ph-x-circle text-18"></i>
+                              Reject
                             </button>
-                          )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -695,7 +706,7 @@ export default function AdminUserManagement() {
                       <div className="w-40 h-40 bg-main-100 text-main-600 rounded-circle flex-center">
                         <i className="ph-fill ph-shield-check text-20"></i>
                       </div>
-                      <h5 className="mb-0">Global Compliance Pipeline</h5>
+                      <h5 className="mb-0">Global Complaints</h5>
                     </div>
                     <div className="flex-align gap-12">
                       <span className="text-xs fw-bold text-neutral-500">
@@ -718,7 +729,7 @@ export default function AdminUserManagement() {
                   </div>
 
                   <div className="p-24 overflow-x-auto">
-                    <table className="table table-borderless vertical-middle mb-0">
+                    <table className="table table-borderless table-hover vertical-middle mb-0">
                       <thead className="bg-neutral-20">
                         <tr>
                           <th className="px-16 py-12 text-neutral-600 fw-bold rounded-start-8">

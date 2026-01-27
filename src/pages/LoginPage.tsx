@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 
 export default function LoginPage() {
@@ -8,6 +8,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -29,169 +30,223 @@ export default function LoginPage() {
     }
   };
 
+  const inputStyle = {
+    padding: "12px 20px",
+    border: "2px solid #e2e8f0",
+    borderRadius: "4px",
+    fontSize: "16px",
+    color: "#1e293b",
+    outline: "none",
+    width: "100%",
+    transition: "all 0.2s ease",
+  };
+
   return (
-    <main className="mb-28">
-      <div className="common-hero">
-        <div className="container">
-          <div className="row align-items-center text-center">
-            <div className="col-lg-6 m-auto">
-              <div className="main-heading">
-                <h1>Client Login</h1>
-                <div className="space16"></div>
-                <span className="span">
-                  <img src="/assets/img/icons/span1.png" alt="" />
-                  Secure access to your recycling portal
-                </span>
-              </div>
+    <div
+      style={{
+        minHeight: "90vh",
+        backgroundColor: "#f9fafb",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "#ffffff",
+          padding: "48px",
+          width: "100%",
+          maxWidth: "450px",
+          boxShadow:
+            "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "42px",
+            fontFamily: "'Times New Roman', serif",
+            marginBottom: "16px",
+            color: "#1f2937",
+            fontWeight: "400",
+            lineHeight: "1",
+          }}
+        >
+          Log in
+        </h1>
+
+        <p style={{ marginBottom: "32px", fontSize: "15px", color: "#374151" }}>
+          Need a Pinnacle account?{" "}
+          <Link
+            to="/apply"
+            style={{
+              color: "#007C89",
+              textDecoration: "underline",
+              fontWeight: "500",
+            }}
+          >
+            Create an account
+          </Link>
+        </p>
+
+        {error && (
+          <div
+            className="alert alert-danger"
+            style={{
+              marginBottom: "20px",
+              fontSize: "14px",
+              padding: "10px",
+              backgroundColor: "#fee2e2",
+              color: "#991b1b",
+              borderRadius: "4px",
+            }}
+          >
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={onSubmit}>
+          <div style={{ marginBottom: "20px" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+                fontSize: "15px",
+                color: "#1f2937",
+              }}
+            >
+              Username or Email
+            </label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              required
+              style={inputStyle}
+              onFocus={(e) => (e.target.style.borderColor = "#007C89")}
+              onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+            />
+          </div>
+
+          <div style={{ marginBottom: "20px", position: "relative" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "600",
+                fontSize: "15px",
+                color: "#1f2937",
+              }}
+            >
+              Password
+            </label>
+            <div style={{ position: "relative" }}>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+                required
+                style={inputStyle}
+                onFocus={(e) => (e.target.style.borderColor = "#007C89")}
+                onBlur={(e) => (e.target.style.borderColor = "#e2e8f0")}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: "absolute",
+                  right: "15px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "none",
+                  border: "none",
+                  color: "#007C89",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                }}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="space100"></div>
-      <div className="contact-page">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="contact-boxs">
-                <div className="heading1">
-                  <h2>Access Your Portal</h2>
-                  <div className="space16"></div>
-                  <p>
-                    View verification status, upload documents, and track your
-                    account with Pinnacle Metals.
-                  </p>
-                </div>
-                <div className="contact-box">
-                  <div className="icon">
-                    <img
-                      src="/assets/img/icons/contact-page-icon1.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="heading">
-                    <h5>Need help?</h5>
-                    <a href="tel:07398071934" className="text">
-                      07398 071934
-                    </a>
-                  </div>
-                </div>
-                <div className="contact-box">
-                  <div className="icon">
-                    <img
-                      src="/assets/img/icons/contact-page-icon2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="heading">
-                    <h5>Email support</h5>
-                    <a href="mailto:info@pinnaclemetals.co.uk" className="text">
-                      info@pinnaclemetals.co.uk
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6">
-              <div className="contact-form-details">
-                <form onSubmit={onSubmit}>
-                  <div className="row g-24">
-                    <div className="col-lg-12">
-                      <div className="flex-column gap-8">
-                        <label className="text-md fw-bold text-neutral-600">
-                          Email Address
-                        </label>
-                        <input
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          style={{
-                            marginLeft: '10px',
-                            padding: "10px 15px",
-                            border: "2px solid #e2e8f0",
-                            borderRadius: "25px",
-                            fontSize: "16px",
-                            color: "#1e293b",
-                            transition: "all 0.2s ease",
-                            outline: "none",
-                            width: "250px",
-                          }}
-                          placeholder="name@company.com"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="col-lg-12 mt-12">
-                      <div className="flex-column gap-8">
-                        <label className="text-md fw-bold text-neutral-600">
-                          Security Password
-                        </label>
-                        <input
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          type="password"
-                          style={{
-                            marginLeft: '10px',
-                            marginBottom: '10px',
-                            padding: "10px 15px",
-                            border: "2px solid #e2e8f0",
-                            borderRadius: "25px",
-                            fontSize: "16px",
-                            color: "#1e293b",
-                            transition: "all 0.2s ease",
-                            outline: "none",
-                            width: "250px",
-                          }}
-                          placeholder="••••••••"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {error && (
-                      <div className="col-lg-12 mt-12">
-                        <div
-                          className="alert alert-danger bg-danger-50 border-danger-100 text-danger-600 rounded-12 flex-align gap-8"
-                          role="alert"
-                        >
-                          <i className="ph ph-warning-circle"></i>
-                          {error}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="col-lg-12 mt-12">
-                      <button
-                        className="btn btn-main rounded-pill w-100 h-60-px flex-center gap-12 text-16 fw-bold shadow-main-sm"
-                        type="submit"
-                        disabled={busy}
-                      >
-                        {busy ? "Authenticating..." : "Sign In"}{" "}
-                        <i className="ph ph-arrow-right"></i>
-                      </button>
-                    </div>
-                    <div className="col-lg-12">
-                      <div className="flex-center flex-column gap-16 mt-24 pt-24 border-top border-neutral-20">
-                        <p className="text-neutral-500 mb-0">
-                          Don't have an account?
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() => navigate("/apply")}
-                          className="btn btn-outline-main rounded-pill px-32 py-12 fw-bold"
-                        >
-                          Register Now
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "32px",
+            }}
+          >
+            <input
+              type="checkbox"
+              id="keepLoggedIn"
+              style={{
+                width: "18px",
+                height: "18px",
+                marginRight: "10px",
+                accentColor: "#007C89",
+                cursor: "pointer",
+              }}
+            />
+            <label
+              htmlFor="keepLoggedIn"
+              style={{ fontSize: "14px", color: "#4b5563", cursor: "pointer" }}
+            >
+              Keep me logged in
+            </label>
           </div>
+
+          <button
+            type="submit"
+            disabled={busy}
+            style={{
+              width: "100%",
+              padding: "16px",
+              backgroundColor: "#007C89",
+              color: "white",
+              border: "none",
+              borderRadius: "30px",
+              fontSize: "16px",
+              fontWeight: "600",
+              cursor: busy ? "not-allowed" : "pointer",
+              opacity: busy ? 0.7 : 1,
+              transition: "background-color 0.2s",
+              marginBottom: "24px",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = "#00606b")
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = "#007C89")
+            }
+          >
+            {busy ? "Logging in..." : "Log in"}
+          </button>
+        </form>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "13px",
+          }}
+        >
+          {/* <a href="#" style={{ color: "#007C89", textDecoration: "underline" }}>
+            Forgot username?
+          </a>
+          <a href="#" style={{ color: "#007C89", textDecoration: "underline" }}>
+            Forgot password?
+          </a> */}
         </div>
+        {/* <div style={{ marginTop: "16px", fontSize: "13px" }}>
+          <a href="#" style={{ color: "#007C89", textDecoration: "underline" }}>
+            Can't log in?
+          </a>
+        </div> */}
       </div>
-    </main>
+    </div>
   );
 }
