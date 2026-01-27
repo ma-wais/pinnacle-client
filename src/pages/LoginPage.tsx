@@ -241,11 +241,14 @@ export default function LoginPage() {
             Forgot password?
           </a> */}
         </div>
-        {/* <div style={{ marginTop: "16px", fontSize: "13px" }}>
-          <a href="#" style={{ color: "#007C89", textDecoration: "underline" }}>
-            Can't log in?
+        <div style={{ marginTop: "16px", fontSize: "13px" }}>
+          <a
+            href="https://dev4.inserito.com/pinnaclemetals/"
+            style={{ color: "#007C89", textDecoration: "underline" }}
+          >
+            Back to Website
           </a>
-        </div> */}
+        </div>
       </div>
     </div>
   );

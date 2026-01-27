@@ -96,7 +96,7 @@ export default function ApplyPage() {
           Sign up
         </h1>
 
-        <p style={{ marginBottom: "32px", fontSize: "15px", color: "#374151" }}>
+        <p style={{ marginBottom: "20px", fontSize: "15px", color: "#374151", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           Already have an account?{" "}
           <Link
             to="/login"
@@ -104,12 +104,19 @@ export default function ApplyPage() {
               color: "#007C89",
               textDecoration: "underline",
               fontWeight: "500",
+              marginLeft: "8px",
             }}
           >
             Log in
           </Link>
+          <a
+            href="https://dev4.inserito.com/pinnaclemetals/"
+            style={{ color: "#007C89", textDecoration: "underline", marginLeft: "auto" }}
+          >
+            Back to Website
+          </a>
         </p>
-
+       
         {error && (
           <div
             className="alert alert-danger"
