@@ -141,8 +141,8 @@ export default function DashboardShell({
             )}
             <ul className="p-0 m-0" style={{ listStyle: "none" }}>
               <li>
-                <Link
-                  to="/"
+                <a
+                  href="https://dev4.inserito.com/pinnaclemetals/"
                   className={`fw-medium d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-main-600 hover-text-white rounded-12 transition-1`}
                   title={isSidebarCollapsed ? "Back to Website" : undefined}
                 >
@@ -150,7 +150,7 @@ export default function DashboardShell({
                     <i className="ph ph-house"></i>
                   </span>
                   {!isSidebarCollapsed && "Back to Website"}
-                </Link>
+                </a>
               </li>
               <li className="mt-8">
                 <button

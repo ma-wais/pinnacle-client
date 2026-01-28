@@ -98,6 +98,7 @@ export default function AdminUserManagement() {
 
   const select = async (id: string) => {
     setError(null);
+    console.log(selectedUserId, id);
     setSelectedUserId(id);
     try {
       await loadUser(id);
@@ -175,7 +176,7 @@ export default function AdminUserManagement() {
       u.email.toLowerCase().includes(search.toLowerCase()) ||
       u.accountId.toLowerCase().includes(search.toLowerCase()),
   );
-  console.log("Filtered Users:", filteredUsers);
+  // console.log("Filtered Users:", filteredUsers);
   const exportUsers = async () => {
     try {
       const data = await apiFetch<{ users: any[] }>("/api/admin/users/export");
@@ -368,22 +369,53 @@ export default function AdminUserManagement() {
                             <tr
                               key={u._id}
                               onClick={() => select(u._id)}
-                              className={`border-bottom border-neutral-20 cursor-pointer hover-bg-main-25 transition-all ${selectedUserId === u._id ? "bg-main-50 border-main-200 shadow-sm" : ""}`}
+                              className={`border-bottom border-neutral-20 transition-all ${
+                                selectedUserId === u._id
+                                  ? "shadow-sm"
+                                  : "hover-bg-main-50"
+                              }`}
+                              style={{
+                                cursor: "pointer",
+                                backgroundColor:
+                                  selectedUserId === u._id
+                                    ? "#F0F9FA"
+                                    : "transparent",
+                              }}
                             >
-                              <td className="px-16 py-20">
+                              <td
+                                className="px-16 py-20"
+                                style={{
+                                  backgroundColor:
+                                    selectedUserId === u._id
+                                      ? "#F0F9FA"
+                                      : "inherit",
+                                  borderLeft:
+                                    selectedUserId === u._id
+                                      ? "6px solid #066ccb"
+                                      : "6px solid transparent",
+                                }}
+                              >
                                 <p className="text-sm fw-bold text-main-600 mb-0">
                                   {u.accountId}
                                 </p>
-                                
-                                  <p className="text-xs fw-semibold text-neutral-700 mb-0">
-                                    {u.fullName}
-                                  </p>
-                                
+
+                                <p className="text-xs fw-semibold text-neutral-700 mb-0">
+                                  {u.fullName}
+                                </p>
+
                                 <p className="text-xs text-neutral-500 mb-0">
                                   {u.email}
                                 </p>
                               </td>
-                              <td className="px-16 py-20">
+                              <td
+                                className="px-16 py-20"
+                                style={{
+                                  backgroundColor:
+                                    selectedUserId === u._id
+                                      ? "#F0F9FA"
+                                      : "inherit",
+                                }}
+                              >
                                 <span
                                   className={`px-12 py-4 rounded-pill text-10 fw-bold text-uppercase ${
                                     u.verificationStatus === "verified"
@@ -395,13 +427,29 @@ export default function AdminUserManagement() {
                                 </span>
                               </td>
                               {!selectedUserId && (
-                                <td className="px-16 py-20">
+                                <td
+                                  className="px-16 py-20"
+                                  style={{
+                                    backgroundColor:
+                                      selectedUserId === u._id
+                                        ? "#F0F9FA"
+                                        : "inherit",
+                                  }}
+                                >
                                   <span className="text-xs text-neutral-500">
                                     {new Date(u.createdAt).toLocaleDateString()}
                                   </span>
                                 </td>
                               )}
-                              <td className="px-16 py-20 text-end">
+                              <td
+                                className="px-16 py-20 text-end"
+                                style={{
+                                  backgroundColor:
+                                    selectedUserId === u._id
+                                      ? "#F0F9FA"
+                                      : "inherit",
+                                }}
+                              >
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
