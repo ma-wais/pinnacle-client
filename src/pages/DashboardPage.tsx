@@ -13,7 +13,7 @@ export default function DashboardPage() {
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const [docType, setDocType] = useState<DocumentType>("id");
+  const [docType, setDocType] = useState<DocumentType>("all");
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -237,10 +237,10 @@ export default function DashboardPage() {
                     value={docType}
                     onChange={(e) => setDocType(e.target.value as DocumentType)}
                   >
+                    <option value="all">All</option>
                     <option value="id">Photo ID</option>
                     <option value="proof_of_address">Proof of Address</option>
                     <option value="business_doc">Business Document</option>
-                    <option value="other">Other</option>
                   </select>
                 </div>
                 <div className="col-md-6">
@@ -251,7 +251,6 @@ export default function DashboardPage() {
                     <input
                       className="border p-8 rounded-pill px-20 border-neutral-40 h-40-px text-xs fw-bold"
                       type="file"
-                      accept="application/pdf,image/jpeg,image/png"
                       onChange={(e) => setFile(e.target.files?.[0] ?? null)}
                     />
                   </div>

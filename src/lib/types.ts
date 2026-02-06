@@ -18,7 +18,7 @@ export type Profile = {
   businessName?: string;
 };
 
-export type DocumentType = "id" | "proof_of_address" | "business_doc" | "other";
+export type DocumentType = "all" | "id" | "proof_of_address" | "business_doc";
 export type DocumentStatus = "pending" | "approved" | "rejected";
 
 export type Document = {
