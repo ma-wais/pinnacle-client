@@ -177,26 +177,44 @@ export default function LoginPage() {
             style={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "space-between",
               marginBottom: "32px",
             }}
           >
-            <input
-              type="checkbox"
-              id="keepLoggedIn"
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input
+                type="checkbox"
+                id="keepLoggedIn"
+                style={{
+                  width: "18px",
+                  height: "18px",
+                  marginRight: "10px",
+                  accentColor: "#007C89",
+                  cursor: "pointer",
+                }}
+              />
+              <label
+                htmlFor="keepLoggedIn"
+                style={{
+                  fontSize: "14px",
+                  color: "#4b5563",
+                  cursor: "pointer",
+                }}
+              >
+                Keep me logged in
+              </label>
+            </div>
+            <Link
+              to="/forgot-password"
               style={{
-                width: "18px",
-                height: "18px",
-                marginRight: "10px",
-                accentColor: "#007C89",
-                cursor: "pointer",
+                fontSize: "14px",
+                color: "#007C89",
+                fontWeight: "500",
+                textDecoration: "none",
               }}
-            />
-            <label
-              htmlFor="keepLoggedIn"
-              style={{ fontSize: "14px", color: "#4b5563", cursor: "pointer" }}
             >
-              Keep me logged in
-            </label>
+              Forgot password?
+            </Link>
           </div>
 
           <button

@@ -140,6 +140,12 @@ export default function DashboardShell({
               </span>
             )}
             <ul className="p-0 m-0" style={{ listStyle: "none" }}>
+              <SideLink
+                to="/settings"
+                label="Account Settings"
+                icon="ph ph-gear"
+                collapsed={isSidebarCollapsed}
+              />
               <li>
                 <a
                   href="https://dev4.inserito.com/pinnaclemetals/"

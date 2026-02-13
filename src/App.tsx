@@ -1,11 +1,18 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import ApplyPage from "./pages/ApplyPage";
 import LoginPage from "./pages/LoginPage";
+import ForgotPage from "./pages/ForgotPage";
+import ResetPage from "./pages/ResetPage";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
 import DashboardPage from "./pages/DashboardPage";
+import SettingsPage from "./pages/SettingsPage.jsx";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminUserManagement from "./pages/AdminUserManagement";
 import Layout from "./ui/Layout";
 import RequireAuth from "./ui/RequireAuth";
+import RequireUser from "./ui/RequireUser";
 import RequireAdmin from "./ui/RequireAdmin";
 import { useAuth } from "./lib/AuthContext";
 
@@ -33,14 +40,27 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/contact" element={<ContactPage />} /> */}
         {/* <Route path="/quote" element={<QuotePage />} /> */}
-        {/* <Route path="/terms" element={<TermsPage />} /> */}
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/register" element={<ApplyPage />} />
+        <Route path="/forgot-password" element={<ForgotPage />} />
+        <Route path="/reset-password" element={<ResetPage />} />
+        <Route path="/verify-email" element={<VerifyEmailPage />} />
 
         <Route
           path="/dashboard"
           element={
-            <RequireAuth>
+            <RequireUser>
               <DashboardPage />
+            </RequireUser>
+          }
+        />
+
+        <Route
+          path="/settings"
+          element={
+            <RequireAuth>
+              <SettingsPage />
             </RequireAuth>
           }
         />

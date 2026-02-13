@@ -3,6 +3,7 @@ import {
   // Link, NavLink, 
   Outlet, useLocation } from "react-router-dom";
 // import { useAuth } from "../lib/AuthContext";
+import WhatsAppWidget from "./WhatsAppWidget";
 
 // const navClass = ({ isActive }: { isActive: boolean }) =>
 //   isActive ? "active" : "";
@@ -15,7 +16,12 @@ export default function Layout() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const isPortal =
-    pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/settings") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/apply") ||
+    pathname.startsWith("/register");
 
   useEffect(() => {
     if (isPortal) return;
@@ -76,7 +82,14 @@ export default function Layout() {
     return () => removeLinks();
   }, [isPortal]);
 
-  if (isPortal) return <Outlet />;
+  if (isPortal) {
+    return (
+      <>
+        <Outlet />
+        <WhatsAppWidget />
+      </>
+    );
+  }
 
   // const closeMobile = () => setMobileToggle(false);
 
@@ -139,11 +152,11 @@ export default function Layout() {
                       </li>
                       <li>
                         <NavLink
-                          to="/quote"
+                          to="/settings"
                           className={navClass}
                           onClick={closeMobile}
                         >
-                          Get Quote
+                          Portal
                         </NavLink>
                       </li>
                       <li>
@@ -187,19 +200,19 @@ export default function Layout() {
                       </div>
                       <div className="headding">
                         <p>Call the Yard</p>
-                        <a href="tel:07398071934">07398 071934</a>
+                        <a href="tel:073989071934">07398 9071934</a>
                       </div>
                     </div>
                     <div className="button">
-                      <Link to="/quote" className="theme-btn1">
-                        Get A Quote{" "}
+                      <Link to="/apply" className="theme-btn1">
+                        Register Now{" "}
                         <span>
                           <i className="bi bi-arrow-right"></i>
                         </span>
                       </Link>
                     </div>
                     {!loading && (
-                      <li>
+                      <div className="ms-3">
                         <NavLink
                           to={user ? "/dashboard" : "/login"}
                           className={navClass}
@@ -207,15 +220,15 @@ export default function Layout() {
                         >
                           {user ? (
                             <div className="px-10 text-black">
-                              <p className="bi bi-person-circle">
+                              <p className="bi bi-person-circle m-0">
                                 <span className="ms-2">Portal</span>
                               </p>
                             </div>
                           ) : (
-                            <p className="text-black px-10">Login</p>
+                            <p className="text-black px-10 m-0">Login</p>
                           )}
                         </NavLink>
-                      </li>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -229,7 +242,7 @@ export default function Layout() {
 
       {/* <div className="footer1 _relative">
         <div className="container">
-          <div className="row">
+          <div className="row gy-40">
             <div className="col-lg-4 col-md-6 col-12">
               <div className="single-footer-items footer-logo-area">
                 <div className="footer-logo">
@@ -279,16 +292,16 @@ export default function Layout() {
                 <h3>Recycling Services</h3>
                 <ul className="menu-list">
                   <li>
-                    <Link to="/quote">Ferrous & Non-Ferrous Scrap</Link>
+                    <Link to="/apply">Ferrous & Non-Ferrous Scrap</Link>
                   </li>
                   <li>
-                    <Link to="/quote">Industrial Collections</Link>
+                    <Link to="/apply">Industrial Collections</Link>
                   </li>
                   <li>
-                    <Link to="/quote">Factory & Site Clearances</Link>
+                    <Link to="/apply">Factory & Site Clearances</Link>
                   </li>
                   <li>
-                    <Link to="/quote">Cable & Catalytic Converters</Link>
+                    <Link to="/apply">Cable & Catalytic Converters</Link>
                   </li>
                 </ul>
               </div>
@@ -302,7 +315,7 @@ export default function Layout() {
                     <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <Link to="/quote">Get Quote</Link>
+                    <Link to="/apply">Apply Now</Link>
                   </li>
                   <li>
                     <Link to="/contact">Contact Us</Link>
@@ -323,7 +336,7 @@ export default function Layout() {
                     <img src="/assets/img/icons/footer1-icon1.png" alt="" />
                   </div>
                   <div className="pera">
-                    <a href="tel:07398071934">07398 071934</a>
+                    <a href="tel:073989071934">07398 9071934</a>
                   </div>
                 </div>
 
@@ -370,6 +383,7 @@ export default function Layout() {
           </div>
         </div>
       </div> */}
+      <WhatsAppWidget />
     </div>
   );
 }
