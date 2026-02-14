@@ -54,7 +54,7 @@ export default function LoginPage() {
         className="d-none d-lg-flex"
         style={{
           flex: "1.2",
-          background: "#282927",
+          background: "#818384",
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",
@@ -64,12 +64,12 @@ export default function LoginPage() {
         }}
       >
         <div style={{ maxWidth: "550px" }}>
-          {/* <img
+          <img
             src="/eduall/assets/images/logo/logo.png"
             alt="Pinnacle Metals"
             className="mb-40"
-            style={{ maxHeight: "100px", filter: "" }}
-          /> */}
+            style={{ maxHeight: "120px", filter: "" }}
+          />
           <p
             style={{
               fontSize: "56px",
