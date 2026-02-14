@@ -177,25 +177,28 @@ export default function DashboardShell({
           <div
             className={`position-absolute bottom-0 start-0 w-100 ${isSidebarCollapsed ? "p-12" : "p-24"}`}
           >
-            <div className="bg-main-25 rounded-16 p-8 border border-neutral-30">
-              <div
-                className={`d-flex align-items-center gap-12 ${isSidebarCollapsed ? "justify-content-center" : ""}`}
-              >
-                <div className="w-40 h-40 bg-main-600 text-white rounded-circle flex-center text-lg font-bold">
-                  {user?.email?.[0].toUpperCase()}
-                </div>
-                {!isSidebarCollapsed && (
-                  <div className="overflow-hidden">
-                    <div className="text-14 fw-bold text-neutral-700 truncate">
-                      {user?.email?.split("@")[0]}
-                    </div>
-                    <div className="text-12 text-neutral-400 truncate">
-                      {user?.role}
-                    </div>
+            {/* link back to profile page */}
+              <div className="bg-main-25 rounded-16 p-8 border border-neutral-30">
+            <a href="/settings" className="d-flex align-items-center gap-12 text-neutral-700 text-decoration-none">
+                <div
+                  className={`d-flex align-items-center gap-12 ${isSidebarCollapsed ? "justify-content-center" : ""}`}
+                >
+                  <div className="w-40 h-40 bg-main-600 text-white rounded-circle flex-center text-lg font-bold">
+                    {user?.email?.[0].toUpperCase()}
                   </div>
-                )}
+                  {!isSidebarCollapsed && (
+                    <div className="overflow-hidden">
+                      <div className="text-14 fw-bold text-neutral-700 truncate">
+                        {user?.email?.split("@")[0]}
+                      </div>
+                      <div className="text-12 text-neutral-400 truncate">
+                        {user?.role}
+                      </div>
+                    </div>
+                  )}
+                </div>
+            </a>
               </div>
-            </div>
           </div>
         </aside>
 
@@ -236,23 +239,30 @@ export default function DashboardShell({
                   <i className="ph ph-list text-2xl"></i>
                 </button>
                 <h4 className="mb-0 text-neutral-700">{title}</h4>
-                <span className="w-1 h-24 bg-neutral-40 d-none d-sm-block"></span>
-                <span className="text-neutral-400 text-14 d-none d-sm-block">
-                  Viewing Secure Portal
-                </span>
               </div>
               <div className="d-flex align-items-center gap-16">
                 <div className="d-sm-flex d-none flex-column align-items-end">
                   <span className="text-14 fw-bold text-neutral-700">
-                    Need Help?
+                    {user?.email.split("@")[0]}
                   </span>
-                  <a href="tel:07398071934" className="text-main-600 text-12">
-                    07398 071934
-                  </a>
+                  <span className="text-neutral-400 text-12 text-capitalize">
+                    {user?.role} Portal
+                  </span>
                 </div>
-                <div className="w-48 h-48 bg-main-25 border border-neutral-30 rounded-circle flex-center text-main-600 text-2xl">
-                  <i className="ph ph-headphones"></i>
-                </div>
+                <Link
+                  to="/settings"
+                  className="w-48 h-48 bg-main-50 border border-main-100 rounded-circle flex-center text-main-600 text-2xl hover-bg-main-100 transition-1"
+                  title="Account Settings"
+                >
+                  <i className="ph ph-user-circle"></i>
+                </Link>
+                <button
+                  onClick={logout}
+                  className="w-44 h-44 bg-danger-50 border border-danger-100 rounded-circle flex-center text-danger-600 text-xl hover-bg-danger-100 transition-1"
+                  title="Logout"
+                >
+                  <i className="ph ph-sign-out"></i>
+                </button>
               </div>
             </div>
           </header>

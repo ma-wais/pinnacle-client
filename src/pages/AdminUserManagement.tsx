@@ -98,7 +98,7 @@ export default function AdminUserManagement() {
 
   const select = async (id: string) => {
     setError(null);
-    console.log(selectedUserId, id);
+    // console.log(selectedUserId, id);
     setSelectedUserId(id);
     try {
       await loadUser(id);

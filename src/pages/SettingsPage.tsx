@@ -145,7 +145,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill bg-neutral-10 border-neutral-40 h-48-px"
+                    className="form-control rounded bg-neutral-10 border-neutral-40 h-48-px"
                     value={user?.email}
                     disabled
                   />
@@ -154,13 +154,13 @@ export default function SettingsPage() {
                   </small>
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-6 mt-20">
                   <label className="form-label text-neutral-500 text-sm fw-bold">
                     Full Name
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill border-neutral-40 h-48-px"
+                    className="form-control rounded bg-neutral-10 border-neutral-40 h-48-px"
                     value={profile.fullName}
                     onChange={(e) =>
                       setProfile({ ...profile, fullName: e.target.value })
@@ -169,13 +169,13 @@ export default function SettingsPage() {
                   />
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-md-6 mt-20">
                   <label className="form-label text-neutral-500 text-sm fw-bold">
                     Phone Number
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill border-neutral-40 h-48-px"
+                    className="form-control rounded border-neutral-40 h-48-px"
                     value={profile.phone || ""}
                     onChange={(e) =>
                       setProfile({ ...profile, phone: e.target.value })
@@ -183,13 +183,13 @@ export default function SettingsPage() {
                   />
                 </div>
 
-                <div className="col-12">
+                <div className="col-8 mt-20">
                   <label className="form-label text-neutral-500 text-sm fw-bold">
                     Business Name (Optional)
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill border-neutral-40 h-48-px"
+                    className="form-control rounded border-neutral-40 h-48-px"
                     value={profile.businessName || ""}
                     onChange={(e) =>
                       setProfile({ ...profile, businessName: e.target.value })
@@ -197,27 +197,27 @@ export default function SettingsPage() {
                   />
                 </div>
 
-                <div className="col-md-8">
+                {/* <div className="col-md-8">
                   <label className="form-label text-neutral-500 text-sm fw-bold">
                     Address Line 1
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill border-neutral-40 h-48-px"
+                    className="form-control rounded border-neutral-40 h-48-px"
                     value={profile.addressLine1 || ""}
                     onChange={(e) =>
                       setProfile({ ...profile, addressLine1: e.target.value })
                     }
                   />
-                </div>
+                </div> */}
 
-                <div className="col-md-4">
+                <div className="col-md-4 mt-20">
                   <label className="form-label text-neutral-500 text-sm fw-bold">
                     City
                   </label>
                   <input
                     type="text"
-                    className="form-control rounded-pill border-neutral-40 h-48-px"
+                    className="form-control rounded border-neutral-40 h-48-px"
                     value={profile.city || ""}
                     onChange={(e) =>
                       setProfile({ ...profile, city: e.target.value })
@@ -225,11 +225,11 @@ export default function SettingsPage() {
                   />
                 </div>
 
-                <div className="col-12 text-end mt-12">
+                <div className="col-12 text-end mt-30">
                   <button
                     disabled={busy}
                     type="submit"
-                    className="btn btn-main rounded-pill px-40 py-12 fw-bold"
+                    className="btn btn-main rounded px-40 py-12 fw-bold"
                   >
                     {busy ? (
                       <span className="spinner-border spinner-border-sm me-8"></span>
@@ -256,7 +256,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     type="password"
-                    className="form-control rounded-pill border-neutral-40 h-40-px"
+                    className="form-control rounded border-neutral-40 h-40-px"
                     value={passForm.currentPassword}
                     onChange={(e) =>
                       setPassForm({
@@ -274,7 +274,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     type="password"
-                    className="form-control rounded-pill border-neutral-40 h-40-px"
+                    className="form-control rounded border-neutral-40 h-40-px"
                     value={passForm.newPassword}
                     onChange={(e) =>
                       setPassForm({ ...passForm, newPassword: e.target.value })
@@ -293,7 +293,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     type="password"
-                    className="form-control rounded-pill border-neutral-40 h-40-px"
+                    className="form-control rounded border-neutral-40 h-40-px"
                     value={passForm.confirmPassword}
                     onChange={(e) =>
                       setPassForm({
@@ -309,7 +309,7 @@ export default function SettingsPage() {
                   <button
                     disabled={busy}
                     type="submit"
-                    className="btn btn-outline-main rounded-pill w-100 py-12 fw-bold"
+                    className="btn btn-outline-main rounded w-100 py-12 fw-bold"
                   >
                     Change Password
                   </button>

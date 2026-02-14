@@ -10,6 +10,7 @@ export default function DashboardPage() {
   const [priceData, setPriceData] = useState<{
     price: number;
     lastUpdated: string;
+    rawPrice?: number;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -149,7 +150,12 @@ export default function DashboardPage() {
             <h4 className="mb-0 text-white text-18">
               £{priceData?.price?.toLocaleString() || "---"}
             </h4>
-            <div className="text-xs text-white text-opacity-50 mt-8">
+            {priceData?.rawPrice && (
+              <div className="text-xs text-white text-opacity-70 mt-4">
+                Raw: ${priceData.rawPrice.toFixed(5)} / lb
+              </div>
+            )}
+            <div className="text-xs text-white text-opacity-50 mt-4">
               Updated:{" "}
               {priceData
                 ? new Date(priceData.lastUpdated).toLocaleTimeString()

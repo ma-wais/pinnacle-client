@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await apiFetch<{ user: User | null }>(
         `/api/auth/me?t=${Date.now()}`,
       );
-      console.log("Auth Refresh Result:", data);
+      // console.log("Auth Refresh Result:", data);
       setUser(data.user);
       return data.user;
     } catch (err) {

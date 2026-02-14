@@ -16,6 +16,7 @@ type Stats = {
 type PriceData = {
   price: number;
   lastUpdated: string;
+  rawPrice?: number;
 };
 
 export default function AdminDashboardPage() {
@@ -161,9 +162,14 @@ export default function AdminDashboardPage() {
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Copper (LME)</h6>
-            <h4 className="mb-16">
+            <h4 className="mb-4">
               £{(priceData?.price || 0).toLocaleString()}
             </h4>
+            {priceData?.rawPrice && (
+              <div className="text-neutral-400 text-xs mb-12">
+                Raw: ${priceData.rawPrice.toFixed(5)} / lb
+              </div>
+            )}
             <div className="text-orange-600 text-sm fw-bold">
               Live Market Rate
             </div>
