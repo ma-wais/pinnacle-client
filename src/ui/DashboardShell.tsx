@@ -246,7 +246,7 @@ export default function DashboardShell({
                     {user?.email.split("@")[0]}
                   </span>
                   <span className="text-neutral-400 text-12 text-capitalize">
-                    {user?.role} Portal
+                    Portal
                   </span>
                 </div>
                 <Link
