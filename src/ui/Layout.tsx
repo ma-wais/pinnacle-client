@@ -94,7 +94,7 @@ export default function Layout() {
   // const closeMobile = () => setMobileToggle(false);
 
   return (
-    <div className="main-page-area">
+    <div className="">
       {/* <div className="header-area2 header_nav_03">
         <header
           className={`cs_site_header cs_style_1 cs_sticky_header cs_site_header_full_width ${isSticky ? isSticky : ""}`}
