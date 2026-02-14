@@ -378,7 +378,7 @@ export default function AdminUserManagement() {
                                 cursor: "pointer",
                                 backgroundColor:
                                   selectedUserId === u._id
-                                    ? "#F0F9FA"
+                                    ? "var(--main-25)"
                                     : "transparent",
                               }}
                             >
@@ -387,11 +387,11 @@ export default function AdminUserManagement() {
                                 style={{
                                   backgroundColor:
                                     selectedUserId === u._id
-                                      ? "#F0F9FA"
+                                      ? "var(--main-25)"
                                       : "inherit",
                                   borderLeft:
                                     selectedUserId === u._id
-                                      ? "6px solid #066ccb"
+                                      ? "6px solid var(--main-600)"
                                       : "6px solid transparent",
                                 }}
                               >
@@ -563,7 +563,7 @@ export default function AdminUserManagement() {
                                     href={d.cloudinaryUrl}
                                     download={d.originalName}
                                     target="_blank"
-                                    className="w-28 h-28 flex-center rounded-circle border border-neutral-30 bg-white text-neutral-400 hover-text-info-600 transition-all shadow-xs"
+                                    className="w-28 h-28 flex-center rounded-circle border border-neutral-30 bg-white text-neutral-400 hover-text-main-600 transition-all shadow-xs"
                                     title="Download File"
                                   >
                                     <i className="ph ph-download-simple text-14"></i>

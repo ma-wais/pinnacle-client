@@ -212,13 +212,13 @@ export default function DashboardPage() {
                 </div>
               </div> */}
 
-              <div className="mt-12 p-20 bg-main-25 rounded-16 border border-main-100 border-dashed">
+              {/* <div className="mt-12 p-20 bg-main-25 rounded-16 border border-main-100 border-dashed">
                 <p className="text-sm text-neutral-600 mb-0 d-flex gap-8">
                   <i className="ph-fill ph-info text-main-600 text-lg"></i>
                   Need to update your details? Contact our yard team at
                   info@pinnaclemetals.co.uk
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -265,7 +265,11 @@ export default function DashboardPage() {
                   <button
                     disabled={busy}
                     type="submit"
-                    className="btn btn-main rounded-pill px-32 py-12 flex-align gap-8 d-inline-flex mt-10"
+                    className="btn rounded-pill px-32 py-12 flex-align gap-8 d-inline-flex mt-10"
+                    style={{
+                      background: "var(--main-600)",
+                      color: "#fff",
+                    }}
                   >
                     {busy ? (
                       <span className="spinner-border spinner-border-sm"></span>

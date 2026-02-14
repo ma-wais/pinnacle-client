@@ -66,7 +66,11 @@ export default function ForgotPage() {
             <p className="text-neutral-600 mb-32">{success}</p>
             <Link
               to="/login"
-              className="btn btn-main rounded-pill w-100 py-12 fw-bold"
+              className="btn w-100 py-12 fw-bold"
+              style={{
+                background: "#BA932A",
+                color: "#fff",
+              }}
             >
               Back to Login
             </Link>
@@ -79,7 +83,7 @@ export default function ForgotPage() {
               </label>
               <input
                 type="email"
-                className="form-control rounded-pill border-neutral-40 h-48-px"
+                className="form-control border-neutral-40 h-48-px"
                 placeholder="yours@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -90,7 +94,10 @@ export default function ForgotPage() {
             <button
               disabled={busy}
               type="submit"
-              className="btn btn-main rounded-pill w-100 py-12 fw-bold flex-center gap-10"
+              className="btn  w-100 py-12 fw-bold flex-center gap-10"
+              style={{
+                background: "#BA932A",
+              }}
             >
               {busy ? (
                 <span className="spinner-border spinner-border-sm"></span>
@@ -101,7 +108,13 @@ export default function ForgotPage() {
 
             <div className="text-center mt-32">
               <span className="text-neutral-500">Remembered it? </span>
-              <Link to="/login" className="text-main-600 fw-bold">
+              <Link
+                to="/login"
+                style={{
+                  color: "#BA932A",
+                  fontWeight: "bold",
+                }}
+              >
                 Login
               </Link>
             </div>

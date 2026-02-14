@@ -229,7 +229,11 @@ export default function SettingsPage() {
                   <button
                     disabled={busy}
                     type="submit"
-                    className="btn btn-main rounded px-40 py-12 fw-bold"
+                    className="btn rounded px-40 py-12 fw-bold"
+                    style={{
+                      background: "var(--main-600)",
+                      color: "#fff",
+                    }}
                   >
                     {busy ? (
                       <span className="spinner-border spinner-border-sm me-8"></span>
@@ -309,7 +313,11 @@ export default function SettingsPage() {
                   <button
                     disabled={busy}
                     type="submit"
-                    className="btn btn-outline-main rounded w-100 py-12 fw-bold"
+                    className="btn rounded w-100 py-12 fw-bold"
+                    style={{
+                      background: "var(--main-600)",
+                      color: "#fff",
+                    }}
                   >
                     Change Password
                   </button>

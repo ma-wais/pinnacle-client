@@ -143,13 +143,13 @@ export default function AdminDashboardPage() {
         <div className="col-xl-3 col-sm-6 mt-8">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
-              <span className="w-52 h-52 flex-center bg-info-50 text-info-600 text-24 rounded-circle border border-info-100">
+              <span className="w-52 h-52 flex-center bg-main-50 text-main-600 text-24 rounded-circle border border-main-100">
                 <i className="ph-fill ph-files"></i>
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Approved Docs</h6>
             <h4 className="mb-16">{stats?.approvedDocuments || 0}</h4>
-            <div className="text-info-600 text-sm fw-bold">Compliant Files</div>
+            <div className="text-main-600 text-sm fw-bold">Compliant Files</div>
           </div>
         </div>
 

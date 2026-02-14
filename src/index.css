@@ -11,13 +11,33 @@ body {
   overflow-x: hidden;
 }
 
+:root {
+  /* Pinnacle Gold Theme Overlay */
+  --main-25: #fdfaf1;
+  --main-50: #fbf5e2;
+  --main-100: #f7e9be;
+  --main-200: #efd380;
+  --main-300: #e7bd42;
+  --main-400: #dfa704;
+  --main-500: #e2b024;
+  --main-600: #ba932a;
+  --main-700: #a8821f;
+  /* Map secondary theme colors to gold/neutral to remove blue/teal */
+  --main-two-600: #ba932a;
+  --main-two-25: #fdfaf1;
+  --main-two-100: #f7e9be;
+
+  --main-three-600: #ba932a;
+  --main-three-25: #fdfaf1;
+  --main-three-100: #f7e9be;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* inria sans */
   font-family: "Inria Sans", sans-serif;
 }
-
 
 @media (min-width: 992px) {
   .d-lg-flex {
