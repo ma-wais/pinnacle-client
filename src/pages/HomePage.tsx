@@ -325,7 +325,14 @@ export default function HomePage() {
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                   <a href="#" className="pm-read-more">
-                    Read More <i className="bi bi-arrow-right" />
+                    Read More{" "}
+                    <i
+                      className="bi bi-arrow-right "
+                      style={{
+                        fontSize: "20px",
+                        marginTop: "4px",
+                      }}
+                    />
                   </a>
                 </div>
               </article>
@@ -347,7 +354,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="pm-process-copy">
-              <p className="pm-section-eyebrow">Why Choose Us</p>
+              <p className="pm-section-eyebrow color-gold">Why Choose Us</p>
               <h2>
                 Trusted Metal Solutions With Quality, Expertise &amp;
                 Reliability
@@ -359,7 +366,20 @@ export default function HomePage() {
                 precision to ensure fair pricing and long-term client
                 confidence.
               </p>
-              <a href="#" className="pm-btn pm-btn-primary mt-20">
+              <a
+                href="#"
+                className="pm-btn pm-btn-primary mt-20"
+                style={{
+                  backgroundColor: "#ba932a",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#000";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "#fff";
+                }}
+              >
                 See Our Process
               </a>
             </div>
@@ -388,8 +408,8 @@ export default function HomePage() {
             </article>
           </div>
 
-          <div className="pm-how-it-works">
-            <p className="pm-section-eyebrow center">How It Works</p>
+          <div className="pm-how-it-works pt-20">
+            <p className="pm-section-eyebrow color-gold">How It Works</p>
             <h3>How Our Metal Recycling Process Works</h3>
             <p>
               Simple steps from drop-off to payment — fast, transparent, and
@@ -519,24 +539,21 @@ export default function HomePage() {
 
       <section id="contact" className="pm-contact-map-wrap">
         <div className="pm-map-bg" aria-hidden="true">
-          <iframe
-            title="Europe map background"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-11.5%2C34.5%2C31.5%2C71.5&layer=mapnik"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+          <img src="/assets/img/bg/europe-map.svg" alt="Europe map" />
         </div>
 
         <div className="pm-container pm-contact-overlays">
           <article className="pm-contact-card">
-            <h3>Contact Us</h3>
-            <p>
-              Have questions or need a custom metal solution? Reach out to
-              Pinnacle Metals.
-            </p>
+            <div>
+              <h3>Contact Us</h3>
+              <p>
+                Have questions or need a custom metal solution? Reach out to
+                Pinnacle Metals.
+              </p>
+            </div>
             <ul>
               <li>
-                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley,
+                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley, <br />
                 S72 7PE
               </li>
               <li>

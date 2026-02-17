@@ -13,17 +13,28 @@
   color: var(--pm-gold) !important;
 }
 .pm-container {
-  width: min(1180px, calc(100% - 2rem));
+  width: 90%;
   margin: 0 auto;
 }
 
 .pm-section-eyebrow {
   color: var(--pm-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 8px;
+}
+
+.pm-section-eyebrow::before {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .pm-btn {
@@ -43,6 +54,7 @@
 
 .pm-btn-primary {
   background: var(--pm-gold);
+  font-size: 17px;
   color: #fff;
 }
 
@@ -52,8 +64,9 @@
 }
 
 .pm-btn-secondary {
-  background: rgba(186, 147, 42, 0.16);
+  background: #282927;
   color: #fff;
+  font-size: 17px;
 }
 
 .pm-btn-secondary:hover {
@@ -84,7 +97,7 @@
 }
 
 .pm-hero-content {
-  width: min(1180px, calc(100% - 2rem));
+  width: 85%;
   margin: 0 auto;
   padding-top: 92px;
 }
@@ -108,7 +121,7 @@
   max-width: 760px;
   color: #d6d9df;
   line-height: 2;
-  font-size: 15px;
+  font-size: 16px;
   margin: 30px 0;
 }
 
@@ -130,7 +143,7 @@
   gap: 8px 14px;
   width: 100%;
   padding: 28px 0;
-}
+  }
 
 .pm-quick-item {
   display: flex;
@@ -142,7 +155,7 @@
 }
 
 .pm-process-section {
-  background: linear-gradient(to right, #1f2329, #2a2f36);
+  background: #282927;
   padding: 40px 20px;
 }
 
@@ -236,6 +249,8 @@
   position: absolute;
   left: 0;
   top: 0;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--pm-gold);
 }
 
@@ -327,19 +342,12 @@
   height: 220px;
   object-fit: cover;
   order: 1;
+  border-radius: 5px;
 }
 
 .pm-service-body {
   padding: 16px;
   order: 2;
-}
-
-.pm-service-card:nth-child(3n + 2) img {
-  order: 2;
-}
-
-.pm-service-card:nth-child(3n + 2) .pm-service-body {
-  order: 1;
 }
 .pm-service-body {
   padding: 14px;
@@ -453,7 +461,7 @@
 }
 
 .pm-section-eyebrow.center {
-  text-align: center;
+  justify-content: center;
 }
 
 .pm-how-it-works h3 {
@@ -653,11 +661,12 @@
   background: #dfe4ea;
 }
 
-.pm-map-bg iframe {
+.pm-map-bg img {
   width: 100%;
   height: 100%;
-  border: 0;
-  filter: saturate(0.35) contrast(1.05) brightness(0.95);
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.45) contrast(1.03) brightness(0.96);
   pointer-events: none;
 }
 
@@ -666,8 +675,7 @@
   margin-top: -406px !important;
   z-index: 2;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 18px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .pm-contact-card,
@@ -677,9 +685,16 @@
 }
 
 .pm-contact-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   background: #21242a;
   color: #fff;
-  padding: 24px;
+  padding: 24px; 
+  margin-top: 18%;
+  height: 250px;
+  transform: translateX(10px);
+  align-items: center;
 }
 
 .pm-contact-card h3 {
@@ -688,7 +703,9 @@
 
 .pm-contact-card p {
   color: #d1d5db;
-  margin-bottom: 14px;
+  font-size: 14px;
+  text-wrap: wrap;
+  max-width: 240px;
 }
 
 .pm-contact-card ul {
@@ -702,6 +719,7 @@
   color: #e5e7eb;
   display: flex;
   gap: 8px;
+  font-size: 14px;
 }
 
 .pm-contact-card i {
@@ -741,11 +759,12 @@
 }
 
 @media (max-width: 1120px) {
-  .pm-benefits-grid,
   .pm-quick-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-
+  .pm-services-grid img {
+    height: 380px;
+  }
   .pm-testimonial-slide {
     flex: 0 0 50%;
     max-width: 50%;
@@ -754,10 +773,11 @@
 
 @media (max-width: 860px) {
   .pm-quick-grid {
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    display: none;
+    /* flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 30px; */
   }
 
   .pm-process-container {
@@ -795,7 +815,7 @@
     text-align: center;
   }
 
-   .pm-materials-grid img {
+  .pm-materials-grid img {
     margin: 0 auto 14px;
   }
   .pm-services-grid,
@@ -807,21 +827,28 @@
   }
 
   .pm-benefits-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    width: 100% !important;
+    gap: 18px;
+    align-items: center;
   }
+
   .pm-benefits-grid article {
+    width: 100% !important;
+    max-width: 100% !important;
     margin-top: 10px !important;
-    padding: 5px 4px;
   }
-   .pm-benefits-grid article img {
+  .pm-benefits-grid article img {
     width: 50px;
     height: 50px;
   }
   .pm-benefits-grid article h4 {
     font-size: 15px;
   }
+
   .pm-benefits-grid article p {
     font-size: 12px;
+    margin: 20px 0 0;
   }
   .pm-testimonial-slide {
     flex: 0 0 100%;
@@ -834,5 +861,12 @@
 
   .pm-hero-content {
     padding-top: 64px;
+  }
+  .pm-contact-card{
+    margin: 20px 0;
+    transform: translateX(0);
+    height: auto;
+    flex-direction: column;
+    gap: 12px;
   }
 }

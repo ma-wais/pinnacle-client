@@ -9,7 +9,7 @@
 }
 
 .pm-container {
-  width: min(1180px, calc(100% - 2rem));
+  width: 85%;
   margin: 0 auto;
 }
 
@@ -60,6 +60,22 @@
   gap: 10px;
 }
 
+.pm-burger-btn {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--pm-gold);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--pm-gold);
+  align-items: center;
+  justify-content: center;
+}
+
+.pm-burger-btn i {
+  font-size: 22px;
+}
+
 .pm-circle-icon {
   width: 34px;
   height: 34px;
@@ -83,10 +99,67 @@
   font-weight: 700;
 }
 
+.pm-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1200;
+}
+
+.pm-mobile-drawer {
+  width: min(400px, 92vw);
+  height: 100%;
+  background: #dbdbde;
+  padding: 22px;
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.22);
+}
+
+.pm-mobile-drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.pm-mobile-logo {
+  width: 130px;
+}
+
+.pm-drawer-close {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: var(--pm-gold);
+  color: #1f2937;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pm-drawer-close i {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.pm-mobile-nav {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pm-mobile-nav a {
+  text-decoration: none;
+  color: #2f3338;
+  font-size: 20px !important;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 .pm-footer {
   background: #0d1014;
   color: #ffffff;
-  padding-top: 38px;
+  padding-top: 80px;
   font-weight: 500;
 }
 
@@ -185,6 +258,18 @@
     justify-self: end;
   }
 
+  .pm-burger-btn {
+    display: inline-flex;
+    background-color: #ba932a;
+    color: #fff;
+    font-size: 20px !important;
+  }
+
+  .pm-burger-btn:hover {
+    transition: all 0.2s ease;
+    color: #000000;
+  }
+
   .pm-footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -195,7 +280,7 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
-   .pm-newsletter {
+  .pm-newsletter {
     justify-content: center;
   }
   .pm-socials {
@@ -203,5 +288,9 @@
   }
   .pm-quote-btn {
     display: none;
+  }
+
+  .pm-mobile-nav a {
+    font-size: 32px;
   }
 }

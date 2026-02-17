@@ -1,10 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import WhatsAppWidget from "./WhatsAppWidget";
 import "./Layout.css";
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Materials", href: "/#materials" },
+    { label: "How It Works", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
+  ];
 
   const isAdminArea =
     pathname.startsWith("/dashboard") ||
@@ -52,6 +62,19 @@ export default function Layout() {
     return () => removeLinks();
   }, [isAdminArea]);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileMenuOpen]);
+
   if (isAdminArea) {
     return (
       <>
@@ -78,15 +101,24 @@ export default function Layout() {
           </Link>
 
           <nav className="pm-nav" aria-label="Primary">
-            <a href="/#home">Home</a>
-            <a href="/#about">About</a>
-            <a href="/#services">Services</a>
-            <a href="/#materials">Materials</a>
-            <a href="/#process">How It Works</a>
-            <a href="/#contact">Contact</a>
+            {navItems.map((item) => (
+              <a key={item.label} href={item.href}>
+                {item.label}
+              </a>
+            ))}
           </nav>
 
           <div className="pm-header-actions">
+            <button
+              type="button"
+              className="pm-burger-btn"
+              aria-label="Open menu"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <i className="bi bi-list" style={{
+                fontSize: '25px'
+              }} />
+            </button>
             <Link to="/login" className="pm-circle-icon" aria-label="Login">
               <i className="bi bi-person" />
             </Link>
@@ -96,6 +128,62 @@ export default function Layout() {
           </div>
         </div>
       </header>
+
+      {mobileMenuOpen && (
+        <div
+          className="pm-mobile-overlay"
+          role="button"
+          tabIndex={0}
+          onClick={() => setMobileMenuOpen(false)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              setMobileMenuOpen(false);
+            }
+          }}
+        >
+          <aside
+            className="pm-mobile-drawer"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="pm-mobile-drawer-head">
+              <img
+                src="/eduall/assets/images/logo/logo.png"
+                alt="Pinnacle Metals"
+                className="pm-mobile-logo"
+              />
+              <button
+                type="button"
+                className="pm-drawer-close"
+                aria-label="Close menu"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <i
+                  className="bi bi-x-lg"
+                  style={{
+                    //hover color black
+                    background: "#ba932a",
+                    transition: "all 300ms",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#fff")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "#000")
+                  }
+                />
+              </button>
+            </div>
+
+            <nav className="pm-mobile-nav" aria-label="Mobile menu">
+              {navItems.map((item) => (
+                <a key={item.label} href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      )}
 
       <Outlet />
 
@@ -135,9 +223,24 @@ export default function Layout() {
           <div>
             <h4>Contact Us</h4>
             <ul>
-              <li><i className="bi bi-telephone" /> <span style={{ marginLeft : '5px'}}>07398 071934</span></li>
-              <li> <i className="bi bi-envelope" /> <span style={{ marginLeft : '5px'}}>info@pinnaclemetals.co.uk</span></li>
-              <li> <i className="bi bi-geo-alt" /> <span style={{ marginLeft : '5px'}}>Acorn Way, Grimethorpe, S72 7PE</span></li>
+              <li>
+                <i className="bi bi-telephone" />{" "}
+                <span style={{ marginLeft: "5px" }}>07398 071934</span>
+              </li>
+              <li>
+                {" "}
+                <i className="bi bi-envelope" />{" "}
+                <span style={{ marginLeft: "5px" }}>
+                  info@pinnaclemetals.co.uk
+                </span>
+              </li>
+              <li>
+                {" "}
+                <i className="bi bi-geo-alt" />{" "}
+                <span style={{ marginLeft: "5px" }}>
+                  Acorn Way, Grimethorpe, S72 7PE
+                </span>
+              </li>
             </ul>
           </div>
 
