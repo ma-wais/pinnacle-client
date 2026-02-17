@@ -135,9 +135,9 @@ export default function Layout() {
           <div>
             <h4>Contact Us</h4>
             <ul>
-              <li>07398 071934</li>
-              <li>info@pinnaclemetals.co.uk</li>
-              <li>Acorn Way, Grimethorpe Barnsley, S72 7PE</li>
+              <li><i className="bi bi-telephone" /> <span style={{ marginLeft : '5px'}}>07398 071934</span></li>
+              <li> <i className="bi bi-envelope" /> <span style={{ marginLeft : '5px'}}>info@pinnaclemetals.co.uk</span></li>
+              <li> <i className="bi bi-geo-alt" /> <span style={{ marginLeft : '5px'}}>Acorn Way, Grimethorpe, S72 7PE</span></li>
             </ul>
           </div>
 

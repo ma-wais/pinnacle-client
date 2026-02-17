@@ -85,8 +85,9 @@
 
 .pm-footer {
   background: #0d1014;
-  color: #d1d5db;
+  color: #ffffff;
   padding-top: 38px;
+  font-weight: 500;
 }
 
 .pm-footer-grid {
@@ -101,7 +102,6 @@
 }
 
 .pm-footer h4 {
-  color: #fff;
   margin-bottom: 10px;
 }
 
@@ -113,7 +113,6 @@
 
 .pm-footer li {
   margin-bottom: 8px;
-  color: #adb3bd;
   font-size: 14px;
 }
 
@@ -140,25 +139,24 @@
 
 .pm-newsletter {
   display: flex;
-  gap: 8px;
 }
 
 .pm-newsletter input {
-  flex: 1;
   border: 1px solid #333a45;
   background: #1d2128;
   color: #e5e7eb;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 8px 0 0 8px;
+  padding: 0 10px;
+  outline: none;
 }
 
 .pm-newsletter button {
-  border: none;
   background: var(--pm-gold);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 0 8px 8px 0;
   padding: 10px 14px;
   font-weight: 600;
+  text-wrap: nowrap;
 }
 
 .pm-footer-bottom {
@@ -174,7 +172,7 @@
   color: #9ca3af;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1080px) {
   .pm-nav {
     display: none;
   }

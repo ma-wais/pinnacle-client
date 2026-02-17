@@ -67,26 +67,31 @@ const testimonials = [
     name: "Kristie Abernathy",
     role: "Legacy Mobility Owner",
     text: "Their team is friendly, the process was efficient, and we were paid quickly. Highly recommend Pinnacle Metals.",
+    src: "/assets/img/work/testimonial-1.jpg",
   },
   {
     name: "Stacy Bach",
     role: "Legacy Mobility Officer",
     text: "Pinnacle Metals consistently delivers fast quality service to our team. Their team is responsive and transparent.",
+    src: "/assets/img/work/testimonial-2.jpg",
   },
   {
     name: "Shelly Schmitt",
     role: "Customer Relations Specialist",
     text: "The quality and reliability of the team are unmatched. Their customer service is always prompt and professional.",
+    src: "/assets/img/work/testimonial-3.jpg",
   },
   {
     name: "Megan Harper",
     role: "Procurement Manager",
     text: "Excellent communication, competitive prices and fast processing. Their service is dependable every time.",
+    src: "/assets/img/work/testimonial-4.jpg",
   },
   {
     name: "Noah Flynn",
     role: "Operations Supervisor",
     text: "Smooth collection scheduling and transparent payment process. We trust the team for regular loads.",
+    src: "/assets/img/work/testimonial-5.jpg",
   },
 ];
 
@@ -184,6 +189,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="pm-process-section">
+        <div className="pm-process-container">
+          <div className="pm-process-item">
+            <div className="pm-process-icon">
+              <img src="/assets/img/work/collect.png" alt="Collect" />
+            </div>
+            <div className="pm-process-content">
+              <h3 className="pm-process-title">Collect</h3>
+              <p className="pm-process-text">
+                We arrange convenient scrap metal collections from sites,
+                businesses, and individuals.
+              </p>
+            </div>
+          </div>
+
+          <div className="pm-process-divider"></div>
+
+          <div className="pm-process-item">
+            <div className="pm-process-icon">
+              <img src="/assets/img/work/justice.png" alt="Weigh" />
+            </div>
+            <div className="pm-process-content">
+              <h3 className="pm-process-title">Weigh & Value</h3>
+              <p className="pm-process-text">
+                All materials are accurately weighed and priced at competitive
+                market rates.
+              </p>
+            </div>
+          </div>
+
+          <div className="pm-process-divider"></div>
+
+          <div className="pm-process-item">
+            <div className="pm-process-icon">
+              <img src="/assets/img/work/Layer.png" alt="Recycle" />
+            </div>
+            <div className="pm-process-content">
+              <h3 className="pm-process-title">Recycle & Pay</h3>
+              <p className="pm-process-text">
+                Metals are responsibly recycled with fast, secure payments made
+                promptly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <section id="about" className="pm-about">
         <div className="pm-container pm-about-grid">
           <div className="pm-about-copy">
@@ -244,7 +296,7 @@ export default function HomePage() {
               alt="Scrap metal team"
             />
             <div className="pm-exp-box">
-              <h3>0+</h3>
+              <h3>20+</h3>
               <span>Years Of Experience</span>
             </div>
           </div>
@@ -452,7 +504,7 @@ export default function HomePage() {
               {testimonials.map((item) => (
                 <article key={item.name} className="pm-testimonial-slide">
                   <div className="pm-testimonial-avatar">
-                    <img src="/assets/img/icons/user.png" alt={item.name} />
+                    <img src={item.src} alt={item.name} />
                   </div>
                   <p className="pm-stars">★★★★★</p>
                   <p className="pm-testimonial-text">“{item.text}”</p>

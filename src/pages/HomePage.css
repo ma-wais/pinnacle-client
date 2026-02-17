@@ -94,14 +94,14 @@
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 0.08em;
-  margin-top: 90px;
+  margin-top: 70px;
 }
 
 .pm-hero h1 {
-  font-size: clamp(30px, 4vw, 52px);
   line-height: 1.1;
   max-width: 760px;
   margin: 18px 0;
+  font-size: 47px ;
 }
 
 .pm-hero-copy {
@@ -109,7 +109,7 @@
   color: #d6d9df;
   line-height: 2;
   font-size: 15px;
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .pm-hero-buttons {
@@ -128,6 +128,7 @@
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 8px 14px;
+  width: 100%;
   padding: 28px 0;
 }
 
@@ -140,6 +141,55 @@
   justify-content: center;
 }
 
+.pm-process-section {
+  background: linear-gradient(to right, #1f2329, #2a2f36);
+  padding: 40px 20px;
+}
+
+.pm-process-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pm-process-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.pm-process-icon {
+  flex-shrink: 0;
+}
+
+.pm-process-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.pm-process-title {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.pm-process-text {
+  color: #b0b6be;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pm-process-divider {
+  width: 1px;
+  height: 50px;
+  background: var(--pm-grey);
+  margin: 0 30px;
+}
 .pm-about {
   padding: 78px 35px;
   background: #f8f7f2;
@@ -518,8 +568,8 @@
 }
 
 .pm-slider-arrows button {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: var(--pm-gold);
@@ -562,8 +612,9 @@
 }
 
 .pm-testimonial-avatar img {
-  width: 50px;
-  height: 50px;
+  margin-top: 12px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -596,7 +647,7 @@
 }
 
 .pm-map-bg {
-  height: 340px;
+  height: 500px;
   position: relative;
   overflow: hidden;
   background: #dfe4ea;
@@ -612,7 +663,7 @@
 
 .pm-contact-overlays {
   position: relative;
-  margin-top: -106px;
+  margin-top: -406px !important;
   z-index: 2;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
