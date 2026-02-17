@@ -1,45 +1,15 @@
-import { useEffect, useState } from "react";
-import { 
-  // Link, NavLink, 
-  Outlet, useLocation } from "react-router-dom";
-// import { useAuth } from "../lib/AuthContext";
+import { useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import WhatsAppWidget from "./WhatsAppWidget";
-
-// const navClass = ({ isActive }: { isActive: boolean }) =>
-//   isActive ? "active" : "";
+import "./Layout.css";
 
 export default function Layout() {
-  // const { user, loading } = useAuth();
   const { pathname } = useLocation();
-  // const [mobileToggle, setMobileToggle] = useState(false);
-  // const [isSticky, setIsSticky] = useState<string | undefined>();
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-  const isPortal =
+  const isAdminArea =
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/admin") ||
-    pathname.startsWith("/settings") ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/apply") ||
-    pathname.startsWith("/register");
-
-  useEffect(() => {
-    if (isPortal) return;
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      if (currentScrollPos > prevScrollPos) {
-        // setIsSticky("cs-gescout_sticky");
-      } else if (currentScrollPos !== 0) {
-        // setIsSticky("cs-gescout_show cs-gescout_sticky");
-      } else {
-        // setIsSticky(undefined);
-      }
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isPortal, prevScrollPos]);
+    pathname.startsWith("/settings");
 
   useEffect(() => {
     const linkDefs = [
@@ -64,7 +34,7 @@ export default function Layout() {
       });
     };
 
-    if (isPortal) {
+    if (isAdminArea) {
       removeLinks();
       return;
     }
@@ -80,9 +50,9 @@ export default function Layout() {
     });
 
     return () => removeLinks();
-  }, [isPortal]);
+  }, [isAdminArea]);
 
-  if (isPortal) {
+  if (isAdminArea) {
     return (
       <>
         <Outlet />
@@ -91,298 +61,111 @@ export default function Layout() {
     );
   }
 
-  // const closeMobile = () => setMobileToggle(false);
-
   return (
-    <div className="">
-      {/* <div className="header-area2 header_nav_03">
-        <header
-          className={`cs_site_header cs_style_1 cs_sticky_header cs_site_header_full_width ${isSticky ? isSticky : ""}`}
-        >
-          <div className="cs_top_header">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="pera">
-                    <p>
-                      <img src="/assets/img/icons/header-top-span.png" alt="" />
-                      Fully licensed scrap metal recycling in South Yorkshire.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="pm-layout">
+      <header className="pm-global-header-wrap">
+        <div className="pm-global-header pm-container">
+          <Link
+            to="/"
+            className="pm-logo-wrap"
+            aria-label="Pinnacle Metals Home"
+          >
+            <img
+              src="/eduall/assets/images/logo/logo.png"
+              alt="Pinnacle Metals"
+              className="pm-logo"
+            />
+          </Link>
+
+          <nav className="pm-nav" aria-label="Primary">
+            <a href="/#home">Home</a>
+            <a href="/#about">About</a>
+            <a href="/#services">Services</a>
+            <a href="/#materials">Materials</a>
+            <a href="/#process">How It Works</a>
+            <a href="/#contact">Contact</a>
+          </nav>
+
+          <div className="pm-header-actions">
+            <Link to="/login" className="pm-circle-icon" aria-label="Login">
+              <i className="bi bi-person" />
+            </Link>
+            <a href="/#quote" className="pm-quote-btn">
+              Get A Quote
+            </a>
           </div>
-
-          <div className="cs_main_header cs_accent_bg">
-            <div className="container">
-              <div className="cs_main_header_in">
-                <div className="cs_main_header_left">
-                  <Link className="cs_site_branding" to="/">
-                    <img
-                      src="/eduall/assets/images/logo/logo.png"
-                      alt="Pinnacle Metals"
-                      style={{ maxHeight: 100 }}
-                    />
-                  </Link>
-                </div>
-
-                <div className="cs_main_header_center1">
-                  <div className="cs_nav cs_primary_font fw-medium">
-                    <span
-                      className={
-                        mobileToggle
-                          ? "cs-munu_toggle cs_teggle_active"
-                          : "cs-munu_toggle"
-                      }
-                      onClick={() => setMobileToggle(!mobileToggle)}
-                    >
-                      <span></span>
-                    </span>
-
-                    <ul className="cs_nav_list fw-medium">
-                      <li>
-                        <NavLink
-                          to="/"
-                          className={navClass}
-                          onClick={closeMobile}
-                        >
-                          Home
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to="/settings"
-                          className={navClass}
-                          onClick={closeMobile}
-                        >
-                          Portal
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to="/contact"
-                          className={navClass}
-                          onClick={closeMobile}
-                        >
-                          Contact
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to="/terms"
-                          className={navClass}
-                          onClick={closeMobile}
-                        >
-                          Terms
-                        </NavLink>
-                      </li>
-                      {!loading && !user && (
-                        <li>
-                          <NavLink
-                            to="/apply"
-                            className={navClass}
-                            onClick={closeMobile}
-                          >
-                            Register
-                          </NavLink>
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="cs_main_header_right header_right_one">
-                  <div className="header1-buttons">
-                    <div className="contact-btn">
-                      <div className="icon">
-                        <img src="/assets/img/icons/header1-icon.png" alt="" />
-                      </div>
-                      <div className="headding">
-                        <p>Call the Yard</p>
-                        <a href="tel:073989071934">07398 9071934</a>
-                      </div>
-                    </div>
-                    <div className="button">
-                      <Link to="/apply" className="theme-btn1">
-                        Register Now{" "}
-                        <span>
-                          <i className="bi bi-arrow-right"></i>
-                        </span>
-                      </Link>
-                    </div>
-                    {!loading && (
-                      <div className="ms-3">
-                        <NavLink
-                          to={user ? "/dashboard" : "/login"}
-                          className={navClass}
-                          onClick={closeMobile}
-                        >
-                          {user ? (
-                            <div className="px-10 text-black">
-                              <p className="bi bi-person-circle m-0">
-                                <span className="ms-2">Portal</span>
-                              </p>
-                            </div>
-                          ) : (
-                            <p className="text-black px-10 m-0">Login</p>
-                          )}
-                        </NavLink>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </div> */}
+        </div>
+      </header>
 
       <Outlet />
 
-      {/* <div className="footer1 _relative">
-        <div className="container">
-          <div className="row gy-40">
-            <div className="col-lg-4 col-md-6 col-12">
-              <div className="single-footer-items footer-logo-area">
-                <div className="footer-logo">
-                  <Link to="/">
-                    <img
-                      src="/eduall/assets/images/logo/logo.png"
-                      alt="Pinnacle Metals"
-                    />
-                  </Link>
-                </div>
-                <div className="space20"></div>
-                <div className="heading1">
-                  <p>
-                    Pinnacle Metals provides compliant scrap metal recycling for
-                    trade, construction and household customers across Barnsley
-                    and South Yorkshire. Same-day payments, transparent weights,
-                    and responsible processing.
-                  </p>
-                </div>
-                <ul className="social-icon">
-                  <li>
-                    <a href="#">
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="bi bi-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="bi bi-youtube"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="bi bi-instagram"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="col-lg col-md-6 col-12">
-              <div className="single-footer-items">
-                <h3>Recycling Services</h3>
-                <ul className="menu-list">
-                  <li>
-                    <Link to="/apply">Ferrous & Non-Ferrous Scrap</Link>
-                  </li>
-                  <li>
-                    <Link to="/apply">Industrial Collections</Link>
-                  </li>
-                  <li>
-                    <Link to="/apply">Factory & Site Clearances</Link>
-                  </li>
-                  <li>
-                    <Link to="/apply">Cable & Catalytic Converters</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="col-lg col-md-6 col-12">
-              <div className="single-footer-items">
-                <h3>Useful Links</h3>
-                <ul className="menu-list">
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/apply">Apply Now</Link>
-                  </li>
-                  <li>
-                    <Link to="/contact">Contact Us</Link>
-                  </li>
-                  <li>
-                    <Link to="/terms">Terms & Conditions</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="col-lg-3 col-md-6 col-12">
-              <div className="single-footer-items">
-                <h3>Contact Us</h3>
-
-                <div className="contact-box">
-                  <div className="icon">
-                    <img src="/assets/img/icons/footer1-icon1.png" alt="" />
-                  </div>
-                  <div className="pera">
-                    <a href="tel:073989071934">07398 9071934</a>
-                  </div>
-                </div>
-
-                <div className="contact-box">
-                  <div className="icon">
-                    <img src="/assets/img/icons/footer1-icon3.png" alt="" />
-                  </div>
-                  <div className="pera">
-                    <a href="mailto:info@pinnaclemetals.co.uk">
-                      info@pinnaclemetals.co.uk
-                    </a>
-                  </div>
-                </div>
-
-                <div className="contact-box">
-                  <div className="icon">
-                    <img src="/assets/img/icons/footer1-icon4.png" alt="" />
-                  </div>
-                  <div className="pera">
-                    <span>Acorn Way, Grimethorpe, Barnsley, S72 7PE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <footer className="pm-footer">
+        <div className="pm-container pm-footer-grid">
+          <div>
+            <img
+              src="/eduall/assets/images/logo/logo.png"
+              alt="Pinnacle Metals"
+              className="pm-footer-logo"
+            />
+            <p>
+              Pinnacle Metals is committed to delivering high-quality metal
+              solutions with expertise, reliability and exceptional customer
+              service.
+            </p>
           </div>
 
-          <div className="space40"></div>
-        </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul>
+              <li>
+                <a href="/#home">Home</a>
+              </li>
+              <li>
+                <a href="/#about">About</a>
+              </li>
+              <li>
+                <a href="/#materials">Materials</a>
+              </li>
+              <li>
+                <a href="/#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
 
-        <div className="copyright-area">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-md-5">
-                <div className="coppyright">
-                  <p>Copyright @2026 Pinnacle Metals. All Rights Reserved</p>
-                </div>
-              </div>
-              <div className="col-md-7">
-                <div className="coppyright right-area">
-                  <Link to="/terms">Terms & Conditions</Link>
-                </div>
-              </div>
+          <div>
+            <h4>Contact Us</h4>
+            <ul>
+              <li>07398 071934</li>
+              <li>info@pinnaclemetals.co.uk</li>
+              <li>Acorn Way, Grimethorpe Barnsley, S72 7PE</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Follow Us</h4>
+            <div className="pm-socials">
+              <a href="#" aria-label="Facebook">
+                <i className="bi bi-facebook" />
+              </a>
+              <a href="#" aria-label="Instagram">
+                <i className="bi bi-instagram" />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <i className="bi bi-linkedin" />
+              </a>
+            </div>
+            <h4>Newsletter</h4>
+            <div className="pm-newsletter">
+              <input type="email" placeholder="Email" />
+              <button type="button">Subscribe</button>
             </div>
           </div>
         </div>
-      </div> */}
+        <div className="pm-footer-bottom">
+          <p>© 2026 Pinnacle Metals. All Rights Reserved.</p>
+        </div>
+      </footer>
+
       <WhatsAppWidget />
     </div>
   );

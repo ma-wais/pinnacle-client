@@ -1,463 +1,516 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./HomePage.css";
+
+const quickStats = [
+  "Licensed Recycler",
+  "Fair Pricing",
+  "Metal Collection",
+  "Eco Recycling",
+  "Valued Experts",
+  "UK Coverage",
+  "Private Metals",
+  "Fast Payments",
+];
+
+const services = [
+  {
+    title: "Collection Service",
+    description:
+      "We collect scrap metal from your location. Pay for your collections and large quantities.",
+    image: "/assets/img/work/service-collection.jpg",
+  },
+  {
+    title: "Onsite Weighing",
+    description:
+      "Accurate on-site weighing ensures secure weight and fair pricing for all materials.",
+    image: "/assets/img/work/service-weighing.jpg",
+  },
+  {
+    title: "Same-Day Payment",
+    description:
+      "Get paid instantly when your scrap is processed. Bank transfer available.",
+    image: "/assets/img/work/service-payment.jpg",
+  },
+  {
+    title: "Responsible Recycling",
+    description:
+      "All materials are processed in an environmentally responsible manner.",
+    image: "/assets/img/work/service-recycling.jpg",
+  },
+  {
+    title: "Scrap Collection",
+    description:
+      "We offer a convenient collection service for businesses and large quantities.",
+    image: "/assets/img/work/service-scrap.jpg",
+  },
+  {
+    title: "Commercial Services",
+    description:
+      "Tailored solutions for businesses with regular scrap metal needs and volume loads.",
+    image: "/assets/img/work/service-commercial.jpg",
+  },
+];
+
+const materialTags = [
+  "Copper",
+  "Aluminium",
+  "Brass",
+  "Lead",
+  "Steel",
+  "Iron",
+  "Stainless Steel",
+  "Car Batteries",
+];
+
+const testimonials = [
+  {
+    name: "Kristie Abernathy",
+    role: "Legacy Mobility Owner",
+    text: "Their team is friendly, the process was efficient, and we were paid quickly. Highly recommend Pinnacle Metals.",
+  },
+  {
+    name: "Stacy Bach",
+    role: "Legacy Mobility Officer",
+    text: "Pinnacle Metals consistently delivers fast quality service to our team. Their team is responsive and transparent.",
+  },
+  {
+    name: "Shelly Schmitt",
+    role: "Customer Relations Specialist",
+    text: "The quality and reliability of the team are unmatched. Their customer service is always prompt and professional.",
+  },
+  {
+    name: "Megan Harper",
+    role: "Procurement Manager",
+    text: "Excellent communication, competitive prices and fast processing. Their service is dependable every time.",
+  },
+  {
+    name: "Noah Flynn",
+    role: "Operations Supervisor",
+    text: "Smooth collection scheduling and transparent payment process. We trust the team for regular loads.",
+  },
+];
+
+function getSlidesPerView() {
+  if (typeof window === "undefined") return 3;
+  if (window.innerWidth < 860) return 1;
+  if (window.innerWidth < 1120) return 2;
+  return 3;
+}
 
 export default function HomePage() {
+  const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView);
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const maxStartIndex = Math.max(0, testimonials.length - slidesPerView);
+
+  useEffect(() => {
+    const onResize = () => setSlidesPerView(getSlidesPerView());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    setSlideIndex((prev) => Math.min(prev, maxStartIndex));
+  }, [maxStartIndex]);
+
+  useEffect(() => {
+    if (maxStartIndex === 0) return;
+    const timer = window.setInterval(() => {
+      setSlideIndex((prev) => (prev >= maxStartIndex ? 0 : prev + 1));
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, [maxStartIndex]);
+
+  const handlePrev = () => {
+    setSlideIndex((prev) => (prev <= 0 ? maxStartIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setSlideIndex((prev) => (prev >= maxStartIndex ? 0 : prev + 1));
+  };
+
   return (
-    <main className="home-page1">
-      <section className="hero_main_area1">
-        <div
-          className="hero1"
-          style={{ backgroundImage: "url('/assets/img/bg/hero1-bg.png')" }}
-        >
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-5">
-                <div className="main-headding">
-                  <span className="span">
-                    <img src="/assets/img/icons/span1.png" alt="" />
-                    Pinnacle Metals Recycling
-                  </span>
-                  <h1 className="title tg-element-title">
-                    Scrap metal recycling that delivers
-                    <span className="after"> same-day payouts</span>
-                  </h1>
-                  <div className="space16"></div>
-                  <p>
-                    Serving Barnsley and South Yorkshire with transparent
-                    weighing, competitive rates and compliant processing for
-                    ferrous and non-ferrous scrap.
-                  </p>
+    <main className="pm-home">
+      <section className="pm-hero" id="home">
+        <div className="pm-hero-overlay" />
 
-                  <div className="space30"></div>
-                  <div className="buttons">
-                    <Link className="theme-btn1" to="/quote">
-                      Get A Quote{" "}
-                      <span>
-                        <i className="bi bi-arrow-right"></i>
-                      </span>
-                    </Link>
-                    <a className="play-btn" href="tel:07398071934">
-                      <span>
-                        <i className="bi bi-telephone"></i>
-                      </span>{" "}
-                      Call 07398 071934
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-lg-7">
-                <div className="hero1-all-images">
-                  {/* <div className="image1">
-                    <img src="/assets/img/hero/hero1-image1.png" alt="" />
-                  </div> */}
-                  <div className="image2">
-                    <img src="/assets/img/hero/hero2-main-img1.png" alt="" />
-                  </div>
-                  <div className="image3 shape-animaiton3">
-                    <img src="/assets/img/hero/hero1-image3.png" alt="" />
-                  </div>
-                  {/* <div className="image4 shape-animaiton3">
-                    <img src="/assets/img/hero/hero1-image4.png" alt="" />
-                  </div> */}
-                  <div className="shape1">
-                    <img src="/assets/img/shapes/header1-shape1.png" alt="" />
-                  </div>
-                  <div className="shape2">
-                    <img src="/assets/img/shapes/header1-shape2.png" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="pm-hero-content">
+          <p className="pm-hero-eyebrow">
+            Pinnacle Metal Services Trusted Across The UK
+          </p>
+          <h1>
+            Trusted Scrap Metal Recycling &amp;
+            <br /> Collection Services Across The UK
+          </h1>
+          <p className="pm-hero-copy">
+            Pinnacle Metals provides reliable, fast turnover scrap metal
+            recycling solutions for businesses and individuals. With precision
+            weighing, transparent rates and eco-friendly processing, we deliver
+            secure, convenient and compliant recycling.
+          </p>
+          <div className="pm-hero-buttons">
+            <a href="#quote" className="pm-btn pm-btn-secondary">
+              Get A Quote{" "}
+              <i
+                className="bi bi-arrow-right-short"
+                style={{
+                  fontSize: "20px",
+                  padding: "0",
+                }}
+              />
+            </a>
+            <a href="#services" className="pm-btn pm-btn-primary">
+              View All Services{" "}
+              <i
+                className="bi bi-arrow-right-short"
+                style={{
+                  fontSize: "20px",
+                  padding: "0",
+                }}
+              />
+            </a>
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="container">
-          <div className="row hero-bottom-area">
-            <div className="col-lg-3">
-              <div className="single-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/hero-bottom-icon1.png" alt="" />
-                </div>
-                <div className="headding">
-                  <h5>Licensed & Compliant</h5>
-                  <p>
-                    Fully registered and aligned with UK recycling standards.
-                  </p>
-                </div>
-              </div>
+      <section className="pm-quick-strip">
+        <div className="pm-container pm-quick-grid">
+          {quickStats.map((item) => (
+            <div key={item} className="pm-quick-item">
+              <li>{item}</li>
             </div>
-            <div className="col-lg-3">
-              <div className="single-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/hero-bottom-icon2.png" alt="" />
-                </div>
-                <div className="headding">
-                  <h5>Transparent Weights</h5>
-                  <p>Certified digital scales with clear on-site receipts.</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="single-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/hero-bottom-icon3.png" alt="" />
-                </div>
-                <div className="headding">
-                  <h5>Same-Day Payments</h5>
-                  <p>
-                    BACS payments processed as soon as your load is weighed.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3">
-              <div className="single-box">
-                <div className="icon">
-                  <img src="/assets/img/icons/hero-bottom-icon4.png" alt="" />
-                </div>
-                <div className="headding">
-                  <h5>Local Collections</h5>
-                  <p>Fast pickups for trade and industrial volume loads.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      <section className="about1 sp">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="about-image">
-                {/* <div className="image1">
-                  <img src="/assets/img/about/about1-img1.png" alt="" />
-                </div> */}
-                <div className="image2 image-anime">
-                  <img src="/assets/img/hero/hero2-main-img2.png" alt="" />
-                </div>
-                <div className="icon-box">
-                  <img src="/assets/img/icons/about1-shape-icon.png" alt="" />
-                  <h4>24/7 Support</h4>
-                  <p>We respond fast for urgent collections.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6">
-              <div className="heading1">
-                <span className="span">
-                  <img src="/assets/img/icons/span1.png" alt="" /> About Us
-                </span>
-                <h2 className="title tg-element-title">
-                  A trusted scrap metal partner for households and industry
-                </h2>
-                <div className="space16"></div>
+      <section id="about" className="pm-about">
+        <div className="pm-container pm-about-grid">
+          <div className="pm-about-copy">
+            <p className="pm-section-eyebrow">About Us</p>
+            <h2>Trusted Experts In Scrap Metal Recycling</h2>
+            <p>
+              Pinnacle Metals is a professional scrap metal recycling company
+              providing reliable collection and recycling services across the
+              UK. With a strong focus on transparency, fair pricing, and
+              responsible recycling, we help businesses and individuals maximise
+              the value of their scrap metal while supporting sustainable
+              practices.
+            </p>
+            <ul>
+              <li>Fully licensed and compliant scrap metal recycler</li>
+              <li>Competitive market-based pricing and real value</li>
+              <li>Reliable collections for commercial and industrial sites</li>
+            </ul>
+            <div className="pm-about-mini-grid">
+              <div>
+                <img src="/assets/img/hero/waste.png" alt="" />
+                <h4>Scrap Metal Services</h4>
                 <p>
-                  Pinnacle Metals is a licensed recycling yard in Barnsley. We
-                  serve contractors, fabricators, demolition teams and the local
-                  community with honest weights, clear pricing, and rapid
-                  payments.
+                  Trusted and dependable metal recycling with reliable
+                  collections.
                 </p>
-                <ul className="list">
-                  <li>
-                    <span>
-                      <i className="bi bi-check-lg"></i>
-                    </span>{" "}
-                    Certified digital weighbridge and trade receipts.
-                  </li>
-                  <li>
-                    <span>
-                      <i className="bi bi-check-lg"></i>
-                    </span>{" "}
-                    Domestic and commercial acceptance with ID verification.
-                  </li>
-                  <li>
-                    <span>
-                      <i className="bi bi-check-lg"></i>
-                    </span>{" "}
-                    South Yorkshire collection for bulk loads.
-                  </li>
-                </ul>
-                <div className="space30"></div>
-                <div>
-                  <Link className="theme-btn1" to="/contact">
-                    Talk to the Yard{" "}
-                    <span>
-                      <i className="bi bi-arrow-right"></i>
-                    </span>
-                  </Link>
-                </div>
               </div>
+              <div>
+                <img src="/assets/img/hero/recycle-sign.png" alt="" />
+                <h4>Responsible Recycling</h4>
+                <p>
+                  Environmentally compliant recycling with sustainable
+                  practices.
+                </p>
+              </div>
+            </div>
+            <a
+              href="#services"
+              className="pm-btn pm-btn-primary"
+              style={{
+                backgroundColor: "#ba932a",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#000";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#fff";
+              }}
+            >
+              Learn More
+            </a>
+          </div>
+
+          <div className="pm-about-image-wrap">
+            <img
+              src="/assets/img/hero/hero2-main-img3.jpg"
+              alt="Scrap metal team"
+            />
+            <div className="pm-exp-box">
+              <h3>0+</h3>
+              <span>Years Of Experience</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="service sp">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 m-auto text-center">
-              <div className="heading1">
-                <span className="span">
-                  <img src="/assets/img/icons/span1.png" alt="" /> Our Services
-                </span>
-                <h2 className="title tg-element-title">
-                  Reliable recycling services for every type of load
-                </h2>
+      <section id="services" className="pm-services">
+        <div className="pm-container">
+          <div className="pm-section-header">
+            <div>
+              <p className="pm-section-eyebrow">Our Services</p>
+              <h2>
+                Waste Management Solutions Tailored <br /> To You
+              </h2>
+            </div>
+            <a href="#" className="pm-btn pm-btn-primary mb-22">
+              View All
+            </a>
+          </div>
+
+          <div className="pm-services-grid">
+            {services.map((service) => (
+              <article key={service.title} className="pm-service-card">
+                <img src={service.image} alt={service.title} />
+                <div className="pm-service-body">
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <a href="#" className="pm-read-more">
+                    Read More <i className="bi bi-arrow-right" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="process" className="pm-process">
+        <div className="pm-container">
+          <div className="pm-process-top">
+            <div className="pm-process-image">
+              <img
+                src="/assets/img/work/metal-piece.jpg"
+                alt="Industrial precision cutting"
+              />
+              <div className="pm-rating">
+                4.8+ <span>Total Rating</span>
               </div>
+            </div>
+            <div className="pm-process-copy">
+              <p className="pm-section-eyebrow">Why Choose Us</p>
+              <h2>
+                Trusted Metal Solutions With Quality, Expertise &amp;
+                Reliability
+              </h2>
+              <p>
+                At Pinnacle Metals, we combine trusted industry expertise with
+                modern recycling methods to deliver a professional, fast and
+                secure service for our clients. Every stage is managed with
+                precision to ensure fair pricing and long-term client
+                confidence.
+              </p>
+              <a href="#" className="pm-btn pm-btn-primary mt-20">
+                See Our Process
+              </a>
             </div>
           </div>
 
-          <div className="space30"></div>
-          <div className="row">
-            {[
-              {
-                icon: "/assets/img/icons/service-icon1.png",
-                title: "Ferrous & Non-Ferrous",
-                desc: "Steel, copper, brass, aluminium, lead and alloys with clear grading.",
-              },
-              {
-                icon: "/assets/img/icons/service-icon2.png",
-                title: "Site Clearances",
-                desc: "Demolition and factory clearances with scheduled collections.",
-              },
-              {
-                icon: "/assets/img/icons/service-icon3.png",
-                title: "Cable & Cat Converters",
-                desc: "Insulated cable, catalytic converters, and specialist materials.",
-              },
-              {
-                icon: "/assets/img/icons/service-icon4.png",
-                title: "Trade Accounts",
-                desc: "Dedicated pricing and account access for regular suppliers.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="col-lg-3 col-md-6">
-                <div className="single-box">
-                  <div className="icon">
-                    <img src={item.icon} alt="" />
-                  </div>
-                  <div className="heading1">
-                    <h4>{item.title}</h4>
-                    <div className="space16"></div>
-                    <p>{item.desc}</p>
-                    <div className="space16"></div>
-                    <Link to="/quote" className="learn">
-                      Get Quote{" "}
-                      <span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="30"
-                          height="30"
-                          fill="currentColor"
-                          className="bi bi-arrow-right-short"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
-                  </div>
-                </div>
+          <div className="pm-benefits-grid">
+            <article>
+              <img src="/assets/img/work/medal.png" alt="" />
+              <h4>Superior Quality</h4>
+              <p>High-grade metal and precise market-focused services.</p>
+            </article>
+            <article>
+              <img src="/assets/img/work/professional-services.png" alt="" />
+              <h4>Experienced Team</h4>
+              <p>Skilled professionals with years of industry expertise.</p>
+            </article>
+            <article>
+              <img src="/assets/img/work/delivery-truck.png" alt="" />
+              <h4>Timely Delivery</h4>
+              <p>Reliable supply chain ensuring projects stay on schedule.</p>
+            </article>
+            <article>
+              <img src="/assets/img/work/love.png" alt="" />
+              <h4>Customer Focused</h4>
+              <p>Personalized service with attention to every detail.</p>
+            </article>
+          </div>
+
+          <div className="pm-how-it-works">
+            <p className="pm-section-eyebrow center">How It Works</p>
+            <h3>How Our Metal Recycling Process Works</h3>
+            <p>
+              Simple steps from drop-off to payment — fast, transparent, and
+              responsible.
+            </p>
+            <div className="pm-steps-grid">
+              <article>
+                <img src="/assets/img/work/one.png" alt="" />
+                <h4>Arrive At Our Yard</h4>
+                <p>
+                  Bring your scrap to our trusted facility for fast sorting and
+                  intake.
+                </p>
+              </article>
+              <article>
+                <img src="/assets/img/work/two.png" alt="" />
+                <h4>Get Weighed</h4>
+                <p>
+                  We use certified digital scales for transparent and accurate
+                  measurements.
+                </p>
+              </article>
+              <article>
+                <img src="/assets/img/work/three.png" alt="" />
+                <h4>Unload Your Scrap</h4>
+                <p>
+                  Our team assists with safe offloading and efficient material
+                  separation.
+                </p>
+              </article>
+              <article>
+                <img src="/assets/img/work/four.png" alt="" />
+                <h4>Get Paid Instantly</h4>
+                <p>
+                  Receive same-day payment once your materials are processed.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="materials" className="pm-materials">
+        <div className="pm-container pm-materials-grid">
+          <div>
+            <p className="pm-section-eyebrow color-gold">What We Accept</p>
+            <h2>Materials We Work With</h2>
+            <p className="my-30">
+              At Pinnacle Metals, we combine industry-leading expertise with
+              state-of-the-art technology to deliver premium metal products and
+              solutions. Our commitment to quality, efficiency, and customer
+              satisfaction ensures that every project is completed to the
+              highest standards, on time, and within budget. We pride ourselves
+              on innovative approaches that meet the evolving needs of our
+              clients. With a focus on sustainability and precision, we aim to
+              provide solutions that are not only reliable but also
+              environmentally responsible.
+            </p>
+            <a href="#" className="pm-btn pm-btn-primary">
+              Full List of Materials
+            </a>
+          </div>
+          <div className="pm-tags-grid">
+            {materialTags.map((tag) => (
+              <div key={tag}>
+                <img src="/assets/img/work/settings.png" alt="" />
+                <span>{tag}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="work sp">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="heading1">
-                <span className="span">
-                  <img src="/assets/img/icons/span1.png" alt="" /> Our Process
-                </span>
-                <h2 className="title tg-element-title">
-                  A simple, transparent recycling experience
-                </h2>
-                <div className="space16"></div>
-                <p>
-                  From arrival to payout, we follow a clear process that keeps
-                  you informed and compliant.
-                </p>
-
-                {[
-                  {
-                    img: "/assets/img/icons/work-iocn1.png",
-                    title: "Check-In & ID",
-                    desc: "We confirm identification and classify your load accurately.",
-                  },
-                  {
-                    img: "/assets/img/icons/work-iocn2.png",
-                    title: "Certified Weighing",
-                    desc: "Digital weighing with trade receipts and material grades.",
-                  },
-                  {
-                    img: "/assets/img/icons/work-iocn3.png",
-                    title: "Instant Payment",
-                    desc: "BACS payment processed promptly after weighing.",
-                  },
-                ].map((item) => (
-                  <div key={item.title} className="single-items">
-                    <div className="icon">
-                      <img src={item.img} alt="" />
-                    </div>
-                    <div>
-                      <h4>{item.title}</h4>
-                      <div className="space10"></div>
-                      <p>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="space30"></div>
-              <Link className="theme-btn1" to="/contact">
-                Arrange Collection{" "}
-                <span>
-                  <i className="bi bi-arrow-right"></i>
-                </span>
-              </Link>
+      <section className="pm-testimonials">
+        <div className="pm-container">
+          <div className="pm-section-header">
+            <div className="mx-20">
+              <p className="pm-section-eyebrow">Testimonial</p>
+              <h2>Hear It From Our Clients</h2>
+              <p className="text-testimonials">
+                We take pride in delivering high-quality metal solutions and
+                exceptional service. Hear directly from our satisfied clients
+                about their experience working with Pinnacle Metals.
+              </p>
             </div>
 
-            <div className="col-lg-6">
-              <div className="work-images">
-                <div className="row align-items-center">
-                  <div className="col-md-6">
-                    <div className="image image-anime">
-                      <img src="/assets/img/work/crypto.png" alt="dawd" />
-                    </div>
-                    <div className="image image-anime">
-                      <img src="/assets/img/work/mining.png" alt="dawda" />
-                    </div>
+            <div className="pm-slider-arrows">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous testimonial"
+              >
+                <i className="bi bi-arrow-left" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next testimonial"
+              >
+                <i className="bi bi-arrow-right" />
+              </button>
+            </div>
+          </div>
+
+          <div className="pm-testimonial-slider">
+            <div
+              className="pm-testimonial-track"
+              style={{
+                transform: `translateX(-${(slideIndex * 100) / slidesPerView}%)`,
+              }}
+            >
+              {testimonials.map((item) => (
+                <article key={item.name} className="pm-testimonial-slide">
+                  <div className="pm-testimonial-avatar">
+                    <img src="/assets/img/icons/user.png" alt={item.name} />
                   </div>
-                  <div className="col-md-6">
-                    <div className="image image-anime">
-                      <img src="/assets/img/work/pick.png" alt="dawda" />
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="/assets/img/bg/work-bg.png"
-                  alt=""
-                  className="bg-image shape-animaiton4"
-                />
-              </div>
+                  <p className="pm-stars">★★★★★</p>
+                  <p className="pm-testimonial-text">“{item.text}”</p>
+                  <h4>{item.name}</h4>
+                  <span>{item.role}</span>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="testimonial sp testimonial_area1">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 m-auto text-center">
-              <div className="heading1">
-                <span className="span">
-                  <img src="/assets/img/icons/span1.png" alt="" /> Testimonials
-                </span>
-                <h2 className="title tg-element-title">
-                  What our customers say about Pinnacle Metals
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className="space30"></div>
-          <div className="row">
-            {[
-              {
-                name: "Barnsley Fabrication Ltd",
-                text: "Clear pricing, quick turnaround and smooth collections. We rely on Pinnacle for consistent payouts.",
-              },
-              {
-                name: "South Yorkshire Demolition",
-                text: "Site clearances were handled fast and safely. We got paid the same day without delays.",
-              },
-              {
-                name: "Independent Trades",
-                text: "Friendly yard team, fair weights and honest grading. The process is always transparent.",
-              },
-            ].map((item) => (
-              <div key={item.name} className="col-lg-4">
-                <div className="single-box">
-                  <div className="icon">
-                    <img src="/assets/img/icons/qute.svg" alt="" />
-                  </div>
-                  <div className="heading1">
-                    <p>{item.text}</p>
-                    <div className="space20"></div>
-                    <h4>{item.name}</h4>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <section id="contact" className="pm-contact-map-wrap">
+        <div className="pm-map-bg" aria-hidden="true">
+          <iframe
+            title="Europe map background"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-11.5%2C34.5%2C31.5%2C71.5&layer=mapnik"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
-      </section>
 
-      <section className="cta">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <div className="heading1-w">
-                <h2 className="title tg-element-title">
-                  Ready to recycle? Get a fast, transparent quote today.
-                </h2>
-                <div className="space16"></div>
-                <p>
-                  Send us your material details and estimated weight. We will
-                  respond quickly with the latest market rate and collection
-                  options.
-                </p>
+        <div className="pm-container pm-contact-overlays">
+          <article className="pm-contact-card">
+            <h3>Contact Us</h3>
+            <p>
+              Have questions or need a custom metal solution? Reach out to
+              Pinnacle Metals.
+            </p>
+            <ul>
+              <li>
+                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley,
+                S72 7PE
+              </li>
+              <li>
+                <i className="bi bi-envelope" /> info@pinnaclemetals.co.uk
+              </li>
+              <li>
+                <i className="bi bi-telephone" /> 07398 071934
+              </li>
+            </ul>
+          </article>
+
+          <article id="quote" className="pm-quote-card">
+            <h3>Get A Quote</h3>
+            <form>
+              <div className="pm-form-grid">
+                <input type="text" placeholder="First name" />
+                <input type="text" placeholder="Last name" />
+                <input type="email" placeholder="Email address" />
+                <input type="text" placeholder="Subject" />
               </div>
-            </div>
-            <div className="col-lg-5">
-              <div className="buttons">
-                <Link className="cta-btn1" to="/quote">
-                  Request a Quote{" "}
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="30"
-                      height="30"
-                      fill="currentColor"
-                      className="bi bi-arrow-right-short"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-                <Link className="cta-btn2" to="/contact">
-                  Speak to the Team{" "}
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="30"
-                      height="30"
-                      fill="currentColor"
-                      className="bi bi-arrow-right-short"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </div>
+              <textarea placeholder="Comments / Questions *" rows={4} />
+              <button type="button" className="pm-btn pm-btn-primary pm-btn-sm">
+                Send Message
+              </button>
+            </form>
+          </article>
         </div>
       </section>
     </main>

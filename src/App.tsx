@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import ApplyPage from "./pages/ApplyPage";
+import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ForgotPage from "./pages/ForgotPage";
 import ResetPage from "./pages/ResetPage";
@@ -14,28 +15,12 @@ import Layout from "./ui/Layout";
 import RequireAuth from "./ui/RequireAuth";
 import RequireUser from "./ui/RequireUser";
 import RequireAdmin from "./ui/RequireAdmin";
-import { useAuth } from "./lib/AuthContext";
 
 export default function App() {
-  const { user } = useAuth();
-
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route
-          path="/"
-          element={
-            user ? (
-              user.role === "admin" ? (
-                <Navigate to="/admin" replace />
-              ) : (
-                <Navigate to="/dashboard" replace />
-              )
-            ) : (
-              <LoginPage />
-            )
-          }
-        />
+        <Route path="/" element={<HomePage />} />
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/contact" element={<ContactPage />} /> */}

@@ -10,6 +10,7 @@ export default function WhatsAppWidget() {
         position: "fixed",
         bottom: "30px",
         right: "30px",
+        zIndex: 2000,
         backgroundColor: "#25d366",
         color: "white",
         width: "60px",
