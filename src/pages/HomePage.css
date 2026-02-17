@@ -101,7 +101,7 @@
   line-height: 1.1;
   max-width: 760px;
   margin: 18px 0;
-  font-size: 47px ;
+  font-size: 47px;
 }
 
 .pm-hero-copy {
@@ -527,7 +527,7 @@
   line-height: 1.7;
   margin-bottom: 16px;
 }
-.text-testimonials{
+.text-testimonials {
   color: var(--pm-text-muted);
   line-height: 1.7;
   margin-bottom: 16px;
@@ -741,13 +741,9 @@
 }
 
 @media (max-width: 1120px) {
-  .pm-services-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .pm-benefits-grid,
   .pm-quick-grid {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .pm-testimonial-slide {
@@ -757,6 +753,37 @@
 }
 
 @media (max-width: 860px) {
+  .pm-quick-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .pm-process-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 44px;
+  }
+  .pm-process-container p {
+    max-width: 300px;
+  }
+  .pm-process-divider {
+    display: none;
+  }
+
+  .pm-process-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pm-process-title {
+    font-size: 16px;
+  }
+
+  .pm-process-text {
+    font-size: 13px;
+  }
   .pm-about-grid,
   .pm-process-top,
   .pm-materials-grid,
@@ -764,16 +791,38 @@
     grid-template-columns: 1fr;
   }
 
+  .pm-materials-grid {
+    text-align: center;
+  }
+
+   .pm-materials-grid img {
+    margin: 0 auto 14px;
+  }
   .pm-services-grid,
   .pm-about-mini-grid,
   .pm-form-grid,
   .pm-tags-grid,
-  .pm-steps-grid,
-  .pm-benefits-grid,
-  .pm-quick-grid {
+  .pm-steps-grid {
     grid-template-columns: 1fr;
   }
 
+  .pm-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  .pm-benefits-grid article {
+    margin-top: 10px !important;
+    padding: 5px 4px;
+  }
+   .pm-benefits-grid article img {
+    width: 50px;
+    height: 50px;
+  }
+  .pm-benefits-grid article h4 {
+    font-size: 15px;
+  }
+  .pm-benefits-grid article p {
+    font-size: 12px;
+  }
   .pm-testimonial-slide {
     flex: 0 0 100%;
     max-width: 100%;

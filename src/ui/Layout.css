@@ -193,8 +193,14 @@
 @media (max-width: 860px) {
   .pm-footer-grid {
     grid-template-columns: 1fr;
+    text-align: center;
   }
-
+   .pm-newsletter {
+    justify-content: center;
+  }
+  .pm-socials {
+    justify-content: center;
+  }
   .pm-quote-btn {
     display: none;
   }
