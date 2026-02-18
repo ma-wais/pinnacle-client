@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { apiFetch } from "../lib/api";
 import type { Profile, User } from "../lib/types";
 import DashboardShell from "../ui/DashboardShell";
+import { AlertTriangle, CheckCircle } from "lucide-react";
 
 export default function SettingsPage() {
   const [user, setUser] = useState<User | null>(null);
@@ -108,7 +109,7 @@ export default function SettingsPage() {
           {error && (
             <div className="alert alert-danger bg-danger-50 border-danger-100 text-danger-600 rounded-12 mb-24 flex-between">
               <div className="flex-align gap-12">
-                <i className="ph-fill ph-warning-circle text-24"></i>
+                <AlertTriangle size={20} />
                 {error}
               </div>
               <button
@@ -120,7 +121,7 @@ export default function SettingsPage() {
           {success && (
             <div className="alert alert-success bg-success-50 border-success-100 text-success-600 rounded-12 mb-24 flex-between">
               <div className="flex-align gap-12">
-                <i className="ph-fill ph-check-circle text-24"></i>
+                <CheckCircle size={20} />
                 {success}
               </div>
               <button

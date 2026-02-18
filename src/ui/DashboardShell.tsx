@@ -1,6 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
 import { useState } from "react";
+import {
+  BarChart3,
+  House,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Settings,
+  UserCircle,
+  Users,
+  X,
+} from "lucide-react";
+import "./DashboardShell.css";
 
 function SideLink({
   to,
@@ -10,7 +22,7 @@ function SideLink({
 }: {
   to: string;
   label: string;
-  icon: string;
+  icon: React.ReactNode;
   collapsed: boolean;
 }) {
   return (
@@ -27,9 +39,7 @@ function SideLink({
         }
         title={collapsed ? label : undefined}
       >
-        <span className="d-flex text-xl">
-          <i className={icon}></i>
-        </span>
+        <span className="d-flex text-xl">{icon}</span>
         {!collapsed && label}
       </NavLink>
     </li>
@@ -45,41 +55,23 @@ export default function DashboardShell({
 }) {
   const { user, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const isSidebarCollapsed = false;
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const toggleSidebarCollapsed = () =>
-    setIsSidebarCollapsed(!isSidebarCollapsed);
-  const sidebarWidth = isSidebarCollapsed ? 88 : 288;
 
   return (
     <div
-      className={`dashbord-layout bg-main-25 min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}
+      className={`dashbord-layout pm-dashboard-layout pm-sidebar-expanded bg-main-25 min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}
     >
       {/* Mobile Sidebar Overlay */}
       <div
-        className={`sidebar-overlay d-lg-none ${isSidebarOpen ? "d-block" : "d-none"}`}
+        className={`pm-sidebar-overlay d-lg-none ${isSidebarOpen ? "d-block" : "d-none"}`}
         onClick={toggleSidebar}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          background: "rgba(0,0,0,0.5)",
-          zIndex: 998,
-        }}
       ></div>
 
       <div className="d-flex">
         <aside
-          className={`dashboard-sidebar px-20 py-32 bg-white border-end border-neutral-40 h-100 z-10 transition-1 ${isSidebarOpen ? "active" : ""}`}
-          style={{
-            width: `${sidebarWidth}px`,
-            position: "fixed",
-            left: isSidebarOpen ? "0" : "var(--sidebar-shift, 0)",
-            zIndex: 999,
-          }}
+          className={`dashboard-sidebar pm-dashboard-sidebar px-20 py-32 bg-white border-end border-neutral-40 h-100 z-10 transition-1 ${isSidebarOpen ? "active" : ""}`}
         >
           <div
             className={`flex-between ${isSidebarCollapsed ? "ps-0 pe-0" : "ps-24 pe-16"}`}
@@ -88,7 +80,7 @@ export default function DashboardShell({
               <img
                 src="/eduall/assets/images/logo/logo.png"
                 alt="Pinnacle Metals"
-                style={{ maxHeight: isSidebarCollapsed ? "48px" : "100px" }}
+                className={`pm-sidebar-logo ${isSidebarCollapsed ? "collapsed" : ""}`}
               />
             </Link>
             <div className="d-flex align-items-center gap-8">
@@ -96,7 +88,7 @@ export default function DashboardShell({
                 onClick={toggleSidebar}
                 className="d-lg-none border bg-transparent text-neutral-400"
               >
-                <i className="ph ph-x text-2xl"></i>
+                <X size={20} />
               </button>
             </div>
           </div>
@@ -107,12 +99,12 @@ export default function DashboardShell({
                 Main Menu
               </span>
             )}
-            <ul className="p-0 mt-16" style={{ listStyle: "none" }}>
+            <ul className="pm-sidebar-list mt-16">
               {user?.role !== "admin" && (
                 <SideLink
                   to="/dashboard"
                   label="Dashboard"
-                  icon="ph ph-squares-four"
+                  icon={<LayoutDashboard size={18} />}
                   collapsed={isSidebarCollapsed}
                 />
               )}
@@ -121,13 +113,13 @@ export default function DashboardShell({
                   <SideLink
                     to="/admin"
                     label="Admin Dashboard"
-                    icon="ph ph-chart-bar"
+                    icon={<BarChart3 size={18} />}
                     collapsed={isSidebarCollapsed}
                   />
                   <SideLink
                     to="/admin/users"
                     label="User Management"
-                    icon="ph ph-users"
+                    icon={<Users size={18} />}
                     collapsed={isSidebarCollapsed}
                   />
                 </>
@@ -139,24 +131,24 @@ export default function DashboardShell({
                 System
               </span>
             )}
-            <ul className="p-0 m-0" style={{ listStyle: "none" }}>
+            <ul className="pm-sidebar-list m-0">
               <SideLink
                 to="/settings"
                 label="Account Settings"
-                icon="ph ph-gear"
+                icon={<Settings size={18} />}
                 collapsed={isSidebarCollapsed}
               />
               <li>
-                <a
-                  href="https://dev4.inserito.com/pinnaclemetals/"
+                <Link
+                  to={"/"}
                   className={`fw-medium d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-main-600 hover-text-white rounded-12 transition-1`}
                   title={isSidebarCollapsed ? "Back to Website" : undefined}
                 >
                   <span className="d-flex text-xl">
-                    <i className="ph ph-house"></i>
+                    <House size={18} />
                   </span>
                   {!isSidebarCollapsed && "Back to Website"}
-                </a>
+                </Link>
               </li>
               <li className="mt-8">
                 <button
@@ -166,7 +158,7 @@ export default function DashboardShell({
                   title={isSidebarCollapsed ? "Logout" : undefined}
                 >
                   <span className="d-flex text-xl">
-                    <i className="ph ph-sign-out"></i>
+                    <LogOut size={18} />
                   </span>
                   {!isSidebarCollapsed && "Logout"}
                 </button>
@@ -178,8 +170,11 @@ export default function DashboardShell({
             className={`position-absolute bottom-0 start-0 w-100 ${isSidebarCollapsed ? "p-12" : "p-24"}`}
           >
             {/* link back to profile page */}
-              <div className="bg-main-25 rounded-16 p-8 border border-neutral-30">
-            <a href="/settings" className="d-flex align-items-center gap-12 text-neutral-700 text-decoration-none">
+            <div className="bg-main-25 rounded-16 p-8 border border-neutral-30">
+              <a
+                href="/settings"
+                className="d-flex align-items-center gap-12 text-neutral-700 text-decoration-none"
+              >
                 <div
                   className={`d-flex align-items-center gap-12 ${isSidebarCollapsed ? "justify-content-center" : ""}`}
                 >
@@ -197,46 +192,20 @@ export default function DashboardShell({
                     </div>
                   )}
                 </div>
-            </a>
-              </div>
+              </a>
+            </div>
           </div>
         </aside>
 
-        <div
-          className="dashbord-main flex-grow-1"
-          style={{
-            width: "100%",
-            marginLeft: "0",
-            transition: "margin-left 0.3s ease",
-          }}
-        >
-          <style>{`
-            @media (min-width: 992px) {
-              .dashbord-main {
-                margin-left: ${sidebarWidth}px !important;
-                width: calc(100% - ${sidebarWidth}px) !important;
-              }
-            }
-          `}</style>
+        <div className="dashbord-main pm-dashboard-main flex-grow-1">
           <header className="bg-white border-bottom border-neutral-40 px-32 py-20 sticky-top">
             <div className="d-flex align-items-center justify-content-between gap-24">
               <div className="flex-align gap-12">
                 <button
-                  onClick={toggleSidebarCollapsed}
-                  className="d-none border rounded-circle d-lg-inline-flex w-44 h-44 bg-gray-100 flex-center"
-                  title={
-                    isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-                  }
-                >
-                  <i
-                    className={`ph ${isSidebarCollapsed ? "ph-arrow-right" : "ph-arrow-left"} text-2xl`}
-                  ></i>
-                </button>
-                <button
                   onClick={toggleSidebar}
                   className="d-lg-none w-44 h-44 bg-gray-100 border rounded-circle flex-center"
                 >
-                  <i className="ph ph-list text-2xl"></i>
+                  <Menu size={20} />
                 </button>
                 <h4 className="mb-0 text-neutral-700">{title}</h4>
               </div>
@@ -254,14 +223,14 @@ export default function DashboardShell({
                   className="w-48 h-48 bg-main-50 border border-main-100 rounded-circle flex-center text-main-600 text-2xl hover-bg-main-100 transition-1"
                   title="Account Settings"
                 >
-                  <i className="ph ph-user-circle"></i>
+                  <UserCircle size={22} />
                 </Link>
                 <button
                   onClick={logout}
                   className="w-44 h-44 bg-danger-50 border border-danger-100 rounded-circle flex-center text-danger-600 text-xl hover-bg-danger-100 transition-1"
                   title="Logout"
                 >
-                  <i className="ph ph-sign-out"></i>
+                  <LogOut size={20} />
                 </button>
               </div>
             </div>

@@ -1,0 +1,337 @@
+.pm-auth-page {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+}
+
+.pm-auth-info {
+  flex: 1.2;
+  background: #818384;
+  color: white;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pm-auth-form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.pm-auth-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 24px;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.pm-auth-card h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.pm-auth-card p.subtitle {
+  margin-bottom: 32px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.pm-auth-error {
+  margin-bottom: 24px;
+  font-size: 13px;
+  padding: 14px;
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-radius: 12px;
+  border: 1px solid #fee2e2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pm-auth-input-group {
+  margin-bottom: 15px;
+}
+
+.pm-auth-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #475569;
+}
+
+.pm-auth-input {
+  padding: 10px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1e293b;
+  outline: none;
+  width: 100%;
+  transition: all 0.2s ease;
+  background-color: #f8fafc;
+}
+
+.pm-auth-input:focus {
+  border-color: #ba932a;
+}
+
+.pm-auth-link {
+  color: #ba932a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pm-auth-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #ba932a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(186, 147, 42, 0.2);
+}
+
+.pm-auth-btn:hover {
+  background-color: #a8821f;
+}
+
+.pm-auth-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.pm-auth-btn-block {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pm-auth-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+}
+
+.pm-auth-back-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Auth Info Styles */
+.pm-auth-info-content {
+  max-width: 550px;
+}
+
+.pm-auth-logo {
+  max-height: 120px;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.pm-auth-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.pm-auth-subtitle-text {
+  font-size: 18px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.pm-auth-stats-row {
+  display: flex;
+  gap: 32px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.pm-auth-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pm-auth-stat-label {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* Form Layout Helpers */
+.pm-auth-input-container {
+  position: relative;
+}
+
+.pm-auth-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.pm-auth-link-small {
+  font-size: 12px;
+}
+
+.pm-auth-show-hide-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.pm-auth-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.pm-auth-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.pm-auth-checkbox-label {
+  font-size: 13px;
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pm-auth-flex-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pm-auth-flex-row.mb-24 {
+  margin-bottom: 24px;
+}
+
+.pm-auth-flex-item {
+  flex: 1;
+}
+
+.pm-auth-error i {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+/* Status Screen Styles (Success/Error/Verify) */
+.pm-auth-status-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.pm-auth-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.pm-auth-icon-circle.success {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.pm-auth-icon-circle.error {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.pm-auth-icon-circle i {
+  font-size: 32px;
+}
+
+.pm-auth-status-text {
+  color: #4b5563;
+  margin-bottom: 32px;
+}
+
+.pm-auth-centered-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.pm-auth-logo-small {
+  max-height: 80px;
+}
+
+.pm-auth-title-small {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.pm-auth-desc-small {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.pm-auth-mt-32 {
+  margin-top: 32px;
+}
+
+/* Secondary Auth Pages (Forgot, Reset, etc) */
+.pm-auth-centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+/* Responsiveness */
+@media (max-width: 991px) {
+  .pm-auth-info {
+    display: none !important;
+  }
+  .pm-auth-card {
+    padding: 30px 20px;
+    margin: 0;
+  }
+  .pm-auth-page input {
+    font-size: 13px;
+    padding: 8px 14px;
+
+  }
+
+}

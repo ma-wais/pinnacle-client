@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { apiFetch } from "../lib/api";
+import "./AuthPages.css";
 
 export default function ForgotPage() {
   const [email, setEmail] = useState("");
@@ -31,59 +32,41 @@ export default function ForgotPage() {
   };
 
   return (
-    <div className="login-page bg-main-25 min-vh-100 d-flex align-items-center justify-content-center p-20">
-      <div
-        className="bg-white rounded-24 p-40 shadow-sm border border-neutral-40 w-100"
-        style={{ maxWidth: 450 }}
-      >
-        <div className="text-center mb-32">
+    <div className="pm-auth-centered">
+      <div className="pm-auth-card">
+        <div className="pm-auth-centered-header">
           <Link to="/">
             <img
               src="/eduall/assets/images/logo/logo.png"
               alt="Pinnacle Metals"
-              style={{ maxHeight: 80 }}
+              className="pm-auth-logo-small"
             />
           </Link>
-          <h3 className="mt-24 mb-8 text-neutral-700 font-bold">
-            Forgot Password
-          </h3>
-          <p className="text-neutral-400">
+          <h1 className="pm-auth-title-small">Forgot Password</h1>
+          <p className="pm-auth-desc-small">
             Enter your email and we'll send you a reset link.
           </p>
         </div>
 
-        {error && (
-          <div className="alert alert-danger bg-danger-50 border-danger-100 text-danger-600 rounded-12 mb-24">
-            {error}
-          </div>
-        )}
+        {error && <div className="pm-auth-error">{error}</div>}
 
         {success ? (
-          <div className="text-center pt-20">
-            <div className="w-64 h-64 bg-success-50 text-success-600 rounded-circle flex-center mx-auto mb-20">
-              <i className="ph-fill ph-check-circle text-32"></i>
+          <div className="pm-auth-status-container">
+            <div className="pm-auth-icon-circle success">
+              <i className="ph-fill ph-check-circle"></i>
             </div>
-            <p className="text-neutral-600 mb-32">{success}</p>
-            <Link
-              to="/login"
-              className="btn w-100 py-12 fw-bold"
-              style={{
-                background: "#BA932A",
-                color: "#fff",
-              }}
-            >
+            <p className="pm-auth-status-text">{success}</p>
+            <Link to="/login" className="pm-auth-btn pm-auth-btn-block">
               Back to Login
             </Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="mb-24">
-              <label className="form-label text-neutral-500 text-sm fw-bold">
-                Email Address
-              </label>
+            <div className="pm-auth-input-group">
+              <label className="pm-auth-label">Email Address</label>
               <input
                 type="email"
-                className="form-control border-neutral-40 h-48-px"
+                className="pm-auth-input"
                 placeholder="yours@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -91,31 +74,13 @@ export default function ForgotPage() {
               />
             </div>
 
-            <button
-              disabled={busy}
-              type="submit"
-              className="btn  w-100 py-12 fw-bold flex-center gap-10"
-              style={{
-                background: "#BA932A",
-              }}
-            >
-              {busy ? (
-                <span className="spinner-border spinner-border-sm"></span>
-              ) : (
-                "Send Reset Link"
-              )}
+            <button disabled={busy} type="submit" className="pm-auth-btn">
+              {busy ? "Sending..." : "Send Reset Link"}
             </button>
 
-            <div className="text-center mt-32">
-              <span className="text-neutral-500">Remembered it? </span>
-              <Link
-                to="/login"
-                style={{
-                  color: "#BA932A",
-                  fontWeight: "bold",
-                }}
-              >
-                Login
+            <div className="pm-auth-footer">
+              <Link to="/login" className="pm-auth-link pm-auth-link-small">
+                Back to Sign in
               </Link>
             </div>
           </form>

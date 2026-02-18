@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { apiFetch } from "../lib/api";
 import DashboardShell from "../ui/DashboardShell";
 import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Calendar,
+  Clock3,
+  FileText,
+  Files,
+  TrendingUp,
+  UserPlus,
+  Users,
+} from "lucide-react";
 
 type Stats = {
   totalUsers: number;
@@ -53,7 +64,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-25 text-main-600 text-24 rounded-circle border border-main-100">
-                <i className="ph-fill ph-users"></i>
+                <Users size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Total Users</h6>
@@ -62,7 +73,7 @@ export default function AdminDashboardPage() {
               to="/admin/users"
               className="text-main-600 text-sm fw-bold hover-text-main-700"
             >
-              Manage Users <i className="ph ph-arrow-right"></i>
+              Manage Users <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -72,7 +83,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-warning-50 text-warning-600 text-24 rounded-circle border border-warning-100">
-                <i className="ph-fill ph-user-circle-plus"></i>
+                <UserPlus size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">
@@ -83,7 +94,7 @@ export default function AdminDashboardPage() {
               to="/admin/users"
               className="text-main-600 text-sm fw-bold hover-text-main-700"
             >
-              Review Users <i className="ph ph-arrow-right"></i>
+              Review Users <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -93,7 +104,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-success-50 text-success-600 text-24 rounded-circle border border-success-100">
-                <i className="ph-fill ph-check-circle"></i>
+                <BadgeCheck size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Verified Users</h6>
@@ -109,7 +120,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-purple-50 text-purple-600 text-24 rounded-circle border border-purple-100">
-                <i className="ph-fill ph-file-text"></i>
+                <FileText size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Total Documents</h6>
@@ -125,7 +136,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-danger-50 text-danger-600 text-24 rounded-circle border border-danger-100">
-                <i className="ph-fill ph-clock-counter-clockwise"></i>
+                <Clock3 size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Pending Review</h6>
@@ -134,7 +145,7 @@ export default function AdminDashboardPage() {
               to="/admin/users"
               className="text-main-600 text-sm fw-bold hover-text-main-700"
             >
-              Action Required <i className="ph ph-arrow-right"></i>
+              Action Required <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -144,7 +155,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-50 text-main-600 text-24 rounded-circle border border-main-100">
-                <i className="ph-fill ph-files"></i>
+                <Files size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Approved Docs</h6>
@@ -158,7 +169,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-orange-50 text-orange-600 text-24 rounded-circle border border-orange-100">
-                <i className="ph-fill ph-chart-line-up"></i>
+                <TrendingUp size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">Copper (LME)</h6>
@@ -181,7 +192,7 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-neutral-50 text-neutral-600 text-24 rounded-circle border border-neutral-100">
-                <i className="ph-fill ph-calendar"></i>
+                <Calendar size={22} />
               </span>
             </div>
             <h6 className="text-neutral-500 mb-4 fw-medium">

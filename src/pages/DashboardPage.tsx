@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { apiFetch, apiFetchForm } from "../lib/api";
 import type { Document, DocumentType, Profile, User } from "../lib/types";
 import DashboardShell from "../ui/DashboardShell";
+import {
+  AlertTriangle,
+  Download,
+  FileText,
+  IdCard,
+  TrendingUp,
+  Upload,
+  UserCog,
+  UserRound,
+  X,
+} from "lucide-react";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
@@ -73,14 +84,14 @@ export default function DashboardPage() {
           role="alert"
         >
           <div className="flex-align gap-12">
-            <i className="ph-fill ph-warning-circle text-24"></i>
+            <AlertTriangle size={20} />
             {error}
           </div>
           <button
             onClick={() => setError(null)}
             className="text-danger-600 hover-text-danger-800 bg-transparent border-0"
           >
-            <i className="ph ph-x"></i>
+            <X size={16} />
           </button>
         </div>
       )}
@@ -90,7 +101,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-25 text-main-600 text-24 rounded-circle border border-main-100 shadow-sm">
-                <i className="ph-fill ph-user-focus"></i>
+                <UserRound size={22} />
               </span>
               <span
                 className={`badge ${user?.verificationStatus === "verified" ? "text-bg-success" : "text-bg-warning"} rounded-pill px-12 py-6 shadow-sm`}
@@ -110,7 +121,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-two-25 text-main-two-600 text-24 rounded-circle border border-main-two-100 shadow-sm">
-                <i className="ph-fill ph-file-text"></i>
+                <FileText size={22} />
               </span>
               <span className="text-neutral-400 text-sm">Total Docs</span>
             </div>
@@ -124,7 +135,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-three-25 text-main-three-600 text-24 rounded-circle border border-main-three-100 shadow-sm">
-                <i className="ph-fill ph-identification-card"></i>
+                <IdCard size={22} />
               </span>
               <div className="text-neutral-400 text-sm">Valid UID</div>
             </div>
@@ -138,7 +149,7 @@ export default function DashboardPage() {
           <div className="bg-main-600 rounded-20 p-24 shadow-sm item-hover h-100 animation-scalation text-white border-0">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-white bg-opacity-20 text-white text-24 rounded-circle border border-white border-opacity-25 shadow-sm">
-                <i className="ph-fill ph-chart-line-up"></i>
+                <TrendingUp size={22} />
               </span>
               <div className="text-white text-opacity-80 text-sm">
                 Live Feed
@@ -173,7 +184,7 @@ export default function DashboardPage() {
                 Account Details
               </h5>
               <div className="w-40 h-40 bg-main-25 text-main-600 rounded-circle flex-center">
-                <i className="ph ph-user-circle-gear text-24"></i>
+                <UserCog size={20} />
               </div>
             </div>
 
@@ -274,7 +285,7 @@ export default function DashboardPage() {
                     {busy ? (
                       <span className="spinner-border spinner-border-sm"></span>
                     ) : (
-                      <i className="ph-bold ph-upload-simple"></i>
+                      <Upload size={16} />
                     )}
                     {busy ? "Uploading..." : "Upload Document"}
                   </button>
@@ -343,7 +354,7 @@ export default function DashboardPage() {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <i className="ph ph-download-simple"></i>
+                            <Download size={14} />
                           </a>
                         </td>
                       </tr>

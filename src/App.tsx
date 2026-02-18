@@ -21,6 +21,8 @@ export default function App() {
     <Routes>
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<ForgotPage />} />
+        <Route path="/verify-email" element={<VerifyEmailPage />} />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         {/* <Route path="/contact" element={<ContactPage />} /> */}
@@ -28,9 +30,7 @@ export default function App() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/register" element={<ApplyPage />} />
-        <Route path="/forgot-password" element={<ForgotPage />} />
         <Route path="/reset-password" element={<ResetPage />} />
-        <Route path="/verify-email" element={<VerifyEmailPage />} />
 
         <Route
           path="/dashboard"

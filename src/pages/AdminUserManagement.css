@@ -1,0 +1,80 @@
+.pm-admin-users {
+  --pm-admin-mobile-pad: 14px;
+}
+
+@media (max-width: 767.98px) {
+  .pm-admin-users .row {
+    --bs-gutter-x: 0.75rem;
+  }
+
+  .pm-admin-users .p-40 {
+    padding: 20px !important;
+  }
+
+  .pm-admin-users .p-24 {
+    padding: var(--pm-admin-mobile-pad) !important;
+  }
+
+  .pm-admin-users .px-16 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .pm-admin-users .py-20 {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .pm-admin-users .py-12 {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .pm-admin-users h5 {
+    font-size: 16px !important;
+  }
+
+  .pm-admin-users h6 {
+    font-size: 14px !important;
+  }
+
+  .pm-admin-users .text-sm {
+    font-size: 12px !important;
+  }
+
+  .pm-admin-users .text-xs,
+  .pm-admin-users .text-12,
+  .pm-admin-users .text-10 {
+    font-size: 11px !important;
+  }
+
+  .pm-admin-users table th,
+  .pm-admin-users table td {
+    font-size: 12px;
+    vertical-align: middle;
+  }
+
+  .pm-admin-users .pm-admin-users-search {
+    width: 150px !important;
+    font-size: 13px !important;
+    padding: 6px 34px !important;
+  }
+
+  .pm-admin-users .pm-admin-users-export {
+    width: 78px !important;
+    font-size: 13px !important;
+    padding: 4px 6px !important;
+  }
+
+  .pm-admin-users .w-80,
+  .pm-admin-users .h-80 {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .pm-admin-users .w-60,
+  .pm-admin-users .h-60 {
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
