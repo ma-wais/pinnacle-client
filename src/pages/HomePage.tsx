@@ -312,7 +312,16 @@ export default function HomePage() {
                 Waste Management Solutions Tailored <br /> To You
               </h2>
             </div>
-            <a href="#" className="pm-btn pm-btn-primary mb-22">
+            <a href="#" className="pm-btn pm-btn-primary mb-22"
+             onMouseEnter={(e) => {
+                const button = e.target as HTMLButtonElement;
+                button.style.background = "var(--pm-gold-dark)";
+              }}
+              onMouseLeave={(e) => {
+                const button = e.target as HTMLButtonElement;
+                button.style.background = "var(--pm-gold)";
+              }}
+              >
               View All
             </a>
           </div>
@@ -575,7 +584,16 @@ export default function HomePage() {
                 <input type="text" placeholder="Subject" />
               </div>
               <textarea placeholder="Comments / Questions *" rows={4} />
-              <button type="button" className="pm-btn pm-btn-primary pm-btn-sm">
+              <button type="button" className="pm-btn pm-btn-primary pm-btn-sm"
+              onMouseEnter={(e) => {
+                const button = e.target as HTMLButtonElement;
+                button.style.background = "var(--pm-gold-dark)";
+              }}
+              onMouseLeave={(e) => {
+                const button = e.target as HTMLButtonElement;
+                button.style.background = "var(--pm-gold)";
+              }}
+              >
                 Send Message
               </button>
             </form>

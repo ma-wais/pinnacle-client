@@ -99,6 +99,11 @@
   font-weight: 700;
 }
 
+.pm-quote-btn:hover {
+  background: black !important;
+  color: white;
+}
+
 .pm-mobile-overlay {
   position: fixed;
   inset: 0;
