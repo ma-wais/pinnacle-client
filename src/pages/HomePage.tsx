@@ -272,20 +272,7 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
-            <a
-              href="#services"
-              className="pm-btn pm-btn-primary"
-              style={{
-                backgroundColor: "#ba932a",
-                transition: "color 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "#000";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "#fff";
-              }}
-            >
+            <a href="#services" className="pm-btn pm-btn-primary">
               Learn More
             </a>
           </div>
@@ -312,16 +299,7 @@ export default function HomePage() {
                 Waste Management Solutions Tailored <br /> To You
               </h2>
             </div>
-            <a href="#" className="pm-btn pm-btn-primary mb-22"
-             onMouseEnter={(e) => {
-                const button = e.target as HTMLButtonElement;
-                button.style.background = "var(--pm-gold-dark)";
-              }}
-              onMouseLeave={(e) => {
-                const button = e.target as HTMLButtonElement;
-                button.style.background = "var(--pm-gold)";
-              }}
-              >
+            <a href="#" className="pm-btn pm-btn-primary mb-22">
               View All
             </a>
           </div>
@@ -383,7 +361,7 @@ export default function HomePage() {
                   transition: "color 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#000";
+                  e.currentTarget.style.color = "#fff";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = "#fff";
@@ -495,7 +473,7 @@ export default function HomePage() {
       <section className="pm-testimonials">
         <div className="pm-container">
           <div className="pm-section-header">
-            <div className="mx-20">
+            <div >
               <p className="pm-section-eyebrow">Testimonial</p>
               <h2>Hear It From Our Clients</h2>
               <p className="text-testimonials">
@@ -562,7 +540,8 @@ export default function HomePage() {
             </div>
             <ul>
               <li>
-                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley, <br />
+                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley,{" "}
+                <br />
                 S72 7PE
               </li>
               <li>
@@ -584,16 +563,7 @@ export default function HomePage() {
                 <input type="text" placeholder="Subject" />
               </div>
               <textarea placeholder="Comments / Questions *" rows={4} />
-              <button type="button" className="pm-btn pm-btn-primary pm-btn-sm"
-              onMouseEnter={(e) => {
-                const button = e.target as HTMLButtonElement;
-                button.style.background = "var(--pm-gold-dark)";
-              }}
-              onMouseLeave={(e) => {
-                const button = e.target as HTMLButtonElement;
-                button.style.background = "var(--pm-gold)";
-              }}
-              >
+              <button type="button" className="pm-btn pm-btn-primary pm-btn-sm">
                 Send Message
               </button>
             </form>

@@ -59,7 +59,6 @@
 }
 
 .pm-btn-primary:hover {
-  background: rgba(186, 147, 42, 0.16);
   color: #fff;
 }
 
@@ -70,7 +69,6 @@
 }
 
 .pm-btn-secondary:hover {
-  background: var(--pm-gold);
   color: #fff;
 }
 
@@ -780,6 +778,19 @@
     /* flex-wrap: wrap;
     justify-content: center;
     gap: 30px; */
+  }
+
+  .pm-about{
+    padding: 20px 1px !important;
+  }
+ .pm-services, .pm-testimonials {
+    padding: 40px 1px !important;
+    margin-bottom: 50px;
+  }
+  .pm-exp-box {
+    left: -4px;
+    bottom: 12px;
+    padding: 10px 12px;
   }
 
   .pm-btn {

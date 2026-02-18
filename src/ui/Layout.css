@@ -100,7 +100,6 @@
 }
 
 .pm-quote-btn:hover {
-  background: black !important;
   color: white;
 }
 
@@ -268,11 +267,6 @@
     background-color: #ba932a;
     color: #fff;
     font-size: 20px !important;
-  }
-
-  .pm-burger-btn:hover {
-    transition: all 0.2s ease;
-    color: #000000;
   }
 
   .pm-footer-grid {

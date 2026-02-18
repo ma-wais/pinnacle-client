@@ -125,7 +125,13 @@ export default function Layout() {
               />
             </button>
             <Link to="/login" className="pm-circle-icon" aria-label="Login">
-              <i className="bi bi-person" />
+              <i
+                className="bi bi-person"
+                style={{
+                  fontSize: "20px",
+                  color: "#ba932a",
+                }}
+              />
             </Link>
             <a href="/#quote" className="pm-quote-btn">
               Get A Quote
@@ -165,12 +171,8 @@ export default function Layout() {
                 <i
                   className="bi bi-x-lg"
                   style={{
-                    //hover color black
-                    background: "#ba932a",
-                    transition: "all 300ms",
+                    color: "#fff",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#000")}
                 />
               </button>
             </div>
