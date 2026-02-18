@@ -31,10 +31,7 @@ export default function Layout() {
         id: "techxen-icons",
         href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css",
       },
-      {
-        id: "techxen-main",
-        href: "/assets/css/main.css",
-      },
+      // Note: Removed local /assets/css/main.css injection as it's often too heavy for dynamic loading on mobile
     ];
 
     const removeLinks = () => {
@@ -55,7 +52,6 @@ export default function Layout() {
         link.id = id;
         link.rel = "stylesheet";
         link.href = href;
-        // Optimization: For larger Safari compatibility, ensure CSS is loaded correctly
         link.media = "all";
         document.head.appendChild(link);
       }

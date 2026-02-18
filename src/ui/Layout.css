@@ -19,6 +19,9 @@
   width: 100%;
   top: 0;
   z-index: 900;
+  /* Hardware acceleration for fixed header */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .pm-global-header {

@@ -281,6 +281,7 @@ export default function HomePage() {
             <img
               src="/assets/img/hero/hero2-main-img3.jpg"
               alt="Scrap metal team"
+              loading="lazy"
             />
             <div className="pm-exp-box">
               <h3>20+</h3>
@@ -307,7 +308,7 @@ export default function HomePage() {
           <div className="pm-services-grid">
             {services.map((service) => (
               <article key={service.title} className="pm-service-card">
-                <img src={service.image} alt={service.title} />
+                <img src={service.image} alt={service.title} loading="lazy" />
                 <div className="pm-service-body">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
@@ -473,7 +474,7 @@ export default function HomePage() {
       <section className="pm-testimonials">
         <div className="pm-container">
           <div className="pm-section-header">
-            <div >
+            <div>
               <p className="pm-section-eyebrow">Testimonial</p>
               <h2>Hear It From Our Clients</h2>
               <p className="text-testimonials">
@@ -511,7 +512,7 @@ export default function HomePage() {
               {testimonials.map((item) => (
                 <article key={item.name} className="pm-testimonial-slide">
                   <div className="pm-testimonial-avatar">
-                    <img src={item.src} alt={item.name} />
+                    <img src={item.src} alt={item.name} loading="lazy" />
                   </div>
                   <p className="pm-stars">★★★★★</p>
                   <p className="pm-testimonial-text">“{item.text}”</p>
@@ -525,9 +526,9 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="pm-contact-map-wrap">
-        <div className="pm-map-bg" aria-hidden="true">
-          <img src="/assets/img/bg/europe-map.svg" alt="Europe map" />
-        </div>
+        <div className="pm-map-bg" aria-hidden="true"> 
+          <div className="pm-map-overlay-decorative" />
+         </div>
 
         <div className="pm-container pm-contact-overlays">
           <article className="pm-contact-card">
