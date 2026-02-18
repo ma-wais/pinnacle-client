@@ -68,7 +68,9 @@ export default function LoginPage() {
             src="/eduall/assets/images/logo/logo.png"
             alt="Pinnacle Metals"
             className="mb-40"
-            style={{ maxHeight: "120px", filter: "" }}
+            style={{ maxHeight: "120px", filter: "", cursor: "pointer" }}
+            // to main page
+            onClick={() => navigate("/")}
           />
           <p
             style={{
