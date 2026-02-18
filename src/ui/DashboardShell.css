@@ -1,5 +1,20 @@
 .pm-dashboard-layout {
   position: relative;
+  --main-25: #fdfaf1;
+  --main-50: #fbf5e2;
+  --main-100: #f7e9be;
+  --main-200: #efd380;
+  --main-300: #e7bd42;
+  --main-400: #dfa704;
+  --main-500: #e2b024;
+  --main-600: #ba932a;
+  --main-700: #a8821f;
+  --main-two-25: #fdfaf1;
+  --main-two-100: #f7e9be;
+  --main-two-600: #ba932a;
+  --main-three-25: #fdfaf1;
+  --main-three-100: #f7e9be;
+  --main-three-600: #ba932a;
 }
 
 .pm-sidebar-overlay {

@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../lib/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BarChart3,
+  ChevronLeft,
+  ChevronRight,
   House,
   LayoutDashboard,
   LogOut,
@@ -55,13 +57,42 @@ export default function DashboardShell({
 }) {
   const { user, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isSidebarCollapsed = false;
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebarCollapsed = () => setIsSidebarCollapsed((prev) => !prev);
+
+  useEffect(() => {
+    const ensureStyle = (id: string, href: string) => {
+      let link = document.getElementById(id) as HTMLLinkElement | null;
+      if (!link) {
+        link = document.createElement("link");
+        link.id = id;
+        link.rel = "stylesheet";
+        link.href = href;
+        document.head.appendChild(link);
+      }
+      return link;
+    };
+
+    const bootstrapLink = ensureStyle(
+      "pm-dashboard-bootstrap-css",
+      "/eduall/assets/css/bootstrap.min.css",
+    );
+    const mainLink = ensureStyle(
+      "pm-dashboard-main-css",
+      "/eduall/assets/css/main.css",
+    );
+
+    return () => {
+      bootstrapLink?.remove();
+      mainLink?.remove();
+    };
+  }, []);
 
   return (
     <div
-      className={`dashbord-layout pm-dashboard-layout pm-sidebar-expanded bg-main-25 min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}
+      className={`dashbord-layout pm-dashboard-layout ${isSidebarCollapsed ? "pm-sidebar-collapsed" : "pm-sidebar-expanded"} bg-main-25 min-vh-100 ${isSidebarOpen ? "sidebar-open" : ""}`}
     >
       {/* Mobile Sidebar Overlay */}
       <div
@@ -86,9 +117,9 @@ export default function DashboardShell({
             <div className="d-flex align-items-center gap-8">
               <button
                 onClick={toggleSidebar}
-                className="d-lg-none border bg-transparent text-neutral-400"
+                className="d-lg-none text-neutral-400"
               >
-                <X size={20} />
+                <X size={30} />
               </button>
             </div>
           </div>
@@ -154,7 +185,7 @@ export default function DashboardShell({
                 <button
                   type="button"
                   onClick={logout}
-                  className={`fw-medium d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-danger-600 hover-text-white rounded-12 transition-1 bg-transparent border-0 w-100 text-start`}
+                  className={` d-flex align-items-center text-14 gap-12 ${isSidebarCollapsed ? "px-16 justify-content-center" : "px-24"} py-12 text-neutral-500 hover-bg-danger-600 hover-text-white rounded-12 transition-1 bg-transparent border-0 w-100 text-start`}
                   title={isSidebarCollapsed ? "Logout" : undefined}
                 >
                   <span className="d-flex text-xl">
@@ -201,12 +232,27 @@ export default function DashboardShell({
           <header className="bg-white border-bottom border-neutral-40 px-32 py-20 sticky-top">
             <div className="d-flex align-items-center justify-content-between gap-24">
               <div className="flex-align gap-12">
+                {/* burget for small screens and arrow for big screens */}
+                <button
+                  onClick={toggleSidebarCollapsed}
+                  className="d-none border rounded-circle d-lg-inline-flex w-44 h-44 bg-gray-100 flex-center"
+                  title={
+                    isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+                  }
+                >
+                  {isSidebarCollapsed ? (
+                    <ChevronRight size={20} />
+                  ) : (
+                    <ChevronLeft size={20} />
+                  )}
+                </button>
                 <button
                   onClick={toggleSidebar}
                   className="d-lg-none w-44 h-44 bg-gray-100 border rounded-circle flex-center"
                 >
                   <Menu size={20} />
                 </button>
+
                 <h4 className="mb-0 text-neutral-700">{title}</h4>
               </div>
               <div className="d-flex align-items-center gap-16">
