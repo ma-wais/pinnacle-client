@@ -55,6 +55,8 @@ export default function Layout() {
         link.id = id;
         link.rel = "stylesheet";
         link.href = href;
+        // Optimization: For larger Safari compatibility, ensure CSS is loaded correctly
+        link.media = "all";
         document.head.appendChild(link);
       }
     });
@@ -115,9 +117,12 @@ export default function Layout() {
               aria-label="Open menu"
               onClick={() => setMobileMenuOpen(true)}
             >
-              <i className="bi bi-list" style={{
-                fontSize: '25px'
-              }} />
+              <i
+                className="bi bi-list"
+                style={{
+                  fontSize: "25px",
+                }}
+              />
             </button>
             <Link to="/login" className="pm-circle-icon" aria-label="Login">
               <i className="bi bi-person" />
@@ -164,12 +169,8 @@ export default function Layout() {
                     background: "#ba932a",
                     transition: "all 300ms",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "#fff")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "#000")
-                  }
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#000")}
                 />
               </button>
             </div>

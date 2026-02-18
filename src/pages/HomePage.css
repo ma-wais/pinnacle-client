@@ -82,9 +82,11 @@
 .pm-hero {
   position: relative;
   min-height: 660px;
-  background: url("/assets/img/bg/hero-slide.jpg") center/cover no-repeat;
+  background: #111 url("/assets/img/bg/hero-slide.jpg") center/cover no-repeat;
   color: #fff;
   isolation: isolate;
+  /* Performance optimization for mobile */
+  transform: translateZ(0);
 }
 
 .pm-hero-overlay {
@@ -784,7 +786,7 @@
     font-size: 14px;
     text-wrap: nowrap;
   }
-  
+
   .pm-process-container {
     flex-direction: column;
     flex-wrap: wrap;

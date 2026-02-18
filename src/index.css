@@ -37,6 +37,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* inria sans */
   font-family: "Inria Sans", sans-serif;
+  /* Fix Safari White Screen/Momentary lag on scroll */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure images don't cause layout shift or memory issues on mobile */
+img {
+  max-width: 100%;
+  height: auto;
+  content-visibility: auto;
 }
 
 @media (min-width: 992px) {

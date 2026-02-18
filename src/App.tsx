@@ -6,7 +6,7 @@ import ForgotPage from "./pages/ForgotPage";
 import ResetPage from "./pages/ResetPage";
 import VerifyEmailPage from "./pages/VerifyEmailPage";
 import DashboardPage from "./pages/DashboardPage";
-import SettingsPage from "./pages/SettingsPage.jsx";
+import SettingsPage from "./pages/SettingsPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
