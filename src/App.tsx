@@ -19,10 +19,10 @@ import RequireAdmin from "./ui/RequireAdmin";
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<HomePage />} />
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="/login" element={<LoginPage />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
         {/* <Route path="/contact" element={<ContactPage />} /> */}
         {/* <Route path="/quote" element={<QuotePage />} /> */}
         <Route path="/terms" element={<TermsPage />} />
