@@ -484,11 +484,15 @@ export default function HomePage() {
               </p>
             </div>
 
+          </div>
             <div className="pm-slider-arrows">
               <button
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous testimonial"
+                style={{
+                  marginLeft: 'auto',
+                }}
               >
                 <i className="bi bi-arrow-left" />
               </button>
@@ -500,7 +504,6 @@ export default function HomePage() {
                 <i className="bi bi-arrow-right" />
               </button>
             </div>
-          </div>
 
           <div className="pm-testimonial-slider">
             <div
