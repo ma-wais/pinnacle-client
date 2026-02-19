@@ -297,12 +297,12 @@ export default function HomePage() {
             <div>
               <p className="pm-section-eyebrow">Our Services</p>
               <h2>
-                Waste Management Solutions Tailored <br /> To You
+                Waste Management Solutions Tailored To You
               </h2>
             </div>
-            <a href="#" className="pm-btn pm-btn-primary mb-22">
+            {/* <a href="#" className="pm-btn pm-btn-primary mb-22">
               View All
-            </a>
+            </a> */}
           </div>
 
           <div className="pm-services-grid">
@@ -312,7 +312,7 @@ export default function HomePage() {
                 <div className="pm-service-body">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
-                  <a href="#" className="pm-read-more">
+                  {/* <a href="#" className="pm-read-more">
                     Read More{" "}
                     <i
                       className="bi bi-arrow-right "
@@ -321,7 +321,7 @@ export default function HomePage() {
                         marginTop: "4px",
                       }}
                     />
-                  </a>
+                  </a> */}
                 </div>
               </article>
             ))}
@@ -354,7 +354,7 @@ export default function HomePage() {
                 precision to ensure fair pricing and long-term client
                 confidence.
               </p>
-              <a
+              {/* <a
                 href="#"
                 className="pm-btn pm-btn-primary mt-20"
                 style={{
@@ -369,7 +369,7 @@ export default function HomePage() {
                 }}
               >
                 See Our Process
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -456,7 +456,7 @@ export default function HomePage() {
               provide solutions that are not only reliable but also
               environmentally responsible.
             </p>
-            <a href="#" className="pm-btn pm-btn-primary">
+            <a className="pm-btn pm-btn-primary">
               Full List of Materials
             </a>
           </div>
@@ -526,9 +526,7 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="pm-contact-map-wrap">
-        <div className="pm-map-bg" aria-hidden="true"> 
-          <div className="pm-map-overlay-decorative" />
-         </div>
+        
 
         <div className="pm-container pm-contact-overlays">
           <article className="pm-contact-card">
