@@ -909,11 +909,19 @@
   .pm-services-grid,
   .pm-about-mini-grid,
   .pm-form-grid,
-  .pm-tags-grid,
   .pm-steps-grid {
     grid-template-columns: 1fr;
   }
 
+  .pm-tags-grid div{
+    padding:  0 4px;
+    font-size: 14px;
+  }
+  .pm-tags-grid img{
+    margin-top: 12px;
+    width: 30px;
+  }
+  
   .pm-benefits-grid {
     flex-direction: column;
     width: 100% !important;
