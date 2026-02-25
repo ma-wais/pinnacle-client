@@ -28,27 +28,84 @@ type PriceData = {
   price: number;
   lastUpdated: string;
   rawPrice?: number;
+  source?: string;
+};
+
+type PricingConfig = {
+  baseCopperPrice: number;
+  updatedAt: string;
+};
+
+type MaterialsData = {
+  materials: Array<{
+    key: string;
+    label: string;
+    multiplier: number;
+    formula: string;
+    price: number;
+  }>;
 };
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [priceData, setPriceData] = useState<PriceData | null>(null);
+  const [pricingConfig, setPricingConfig] = useState<PricingConfig | null>(
+    null,
+  );
+  const [materialsData, setMaterialsData] = useState<MaterialsData | null>(
+    null,
+  );
+  const [priceInput, setPriceInput] = useState("");
+  const [savingPrice, setSavingPrice] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const loadData = async () => {
+    const [statsData, pData, configData, materials] = await Promise.all([
+      apiFetch<Stats>("/api/admin/stats"),
+      apiFetch<PriceData>("/api/prices/copper"),
+      apiFetch<PricingConfig>("/api/admin/pricing"),
+      apiFetch<MaterialsData>("/api/prices/materials"),
+    ]);
+
+    setStats(statsData);
+    setPriceData(pData);
+    setPricingConfig(configData);
+    setMaterialsData(materials);
+    setPriceInput(String(configData.baseCopperPrice || ""));
+  };
 
   useEffect(() => {
     (async () => {
       try {
-        const [statsData, pData] = await Promise.all([
-          apiFetch<Stats>("/api/admin/stats"),
-          apiFetch<PriceData>("/api/prices/copper"),
-        ]);
-        setStats(statsData);
-        setPriceData(pData);
+        await loadData();
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load stats");
       }
     })();
   }, []);
+
+  const saveBasePrice = async () => {
+    setError(null);
+    const parsed = Number(priceInput);
+
+    if (Number.isNaN(parsed) || parsed < 0) {
+      setError("Please enter a valid base copper price");
+      return;
+    }
+
+    setSavingPrice(true);
+    try {
+      await apiFetch("/api/admin/pricing", {
+        method: "PATCH",
+        body: JSON.stringify({ baseCopperPrice: parsed }),
+      });
+      await loadData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save price");
+    } finally {
+      setSavingPrice(false);
+    }
+  };
 
   return (
     <DashboardShell title="Admin Dashboard">
@@ -57,6 +114,69 @@ export default function AdminDashboardPage() {
           {error}
         </div>
       )}
+
+      <div className="row gy-24 mb-8">
+        <div className="col-12">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm">
+            <div className="d-flex flex-wrap align-items-end gap-16">
+              <div className="flex-grow-1" style={{ minWidth: 240 }}>
+                <label className="text-neutral-500 text-sm fw-bold mb-8 d-block">
+                  Base Copper Price (GBP per Tonne)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={priceInput}
+                  onChange={(e) => setPriceInput(e.target.value)}
+                  className="form-control border-neutral-30"
+                  placeholder="e.g. 7500"
+                />
+                <small className="text-neutral-400 d-block mt-8">
+                  Dummy formulas currently use multiplier ×1 for all materials.
+                </small>
+              </div>
+              <button
+                type="button"
+                className="btn btn-main rounded-pill px-24"
+                onClick={saveBasePrice}
+                disabled={savingPrice}
+              >
+                {savingPrice ? "Saving..." : "Save Base Price"}
+              </button>
+            </div>
+
+            {pricingConfig && (
+              <p className="text-neutral-400 text-xs mt-12 mb-0">
+                Last updated:{" "}
+                {new Date(pricingConfig.updatedAt).toLocaleString()}
+              </p>
+            )}
+
+            {/* {materialsData?.materials?.length ? (
+              <div className="table-responsive mt-16">
+                <table className="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Material</th>
+                      <th>Formula</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {materialsData.materials.map((item) => (
+                      <tr key={item.key}>
+                        <td>{item.label}</td>
+                        <td>{item.formula}</td>
+                        <td>£{item.price.toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null} */}
+          </div>
+        </div>
+      </div>
 
       <div className="row gy-24">
         {/* Box 1: Total Users */}

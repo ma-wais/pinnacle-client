@@ -22,6 +22,12 @@
   /* Hardware acceleration for fixed header */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  transition: transform 0.25s ease;
+}
+
+.pm-global-header-wrap.pm-header-hidden {
+  transform: translateY(-120%);
+  -webkit-transform: translateY(-120%);
 }
 
 .pm-global-header {

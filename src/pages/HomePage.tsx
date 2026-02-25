@@ -296,9 +296,7 @@ export default function HomePage() {
           <div className="pm-section-header">
             <div>
               <p className="pm-section-eyebrow">Our Services</p>
-              <h2>
-                Waste Management Solutions Tailored To You
-              </h2>
+              <h2>Waste Management Solutions Tailored To You</h2>
             </div>
             {/* <a href="#" className="pm-btn pm-btn-primary mb-22">
               View All
@@ -456,9 +454,7 @@ export default function HomePage() {
               provide solutions that are not only reliable but also
               environmentally responsible.
             </p>
-            <a className="pm-btn pm-btn-primary">
-              Full List of Materials
-            </a>
+            <a className="pm-btn pm-btn-primary">Full List of Materials</a>
           </div>
           <div className="pm-tags-grid">
             {materialTags.map((tag) => (
@@ -483,27 +479,26 @@ export default function HomePage() {
                 about their experience working with Pinnacle Metals.
               </p>
             </div>
-
           </div>
-            <div className="pm-slider-arrows">
-              <button
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous testimonial"
-                style={{
-                  marginLeft: 'auto',
-                }}
-              >
-                <i className="bi bi-arrow-left" />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                aria-label="Next testimonial"
-              >
-                <i className="bi bi-arrow-right" />
-              </button>
-            </div>
+          <div className="pm-slider-arrows">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous testimonial"
+              style={{
+                marginLeft: "auto",
+              }}
+            >
+              <i className="bi bi-arrow-left" />
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next testimonial"
+            >
+              <i className="bi bi-arrow-right" />
+            </button>
+          </div>
 
           <div className="pm-testimonial-slider">
             <div
@@ -529,8 +524,6 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="pm-contact-map-wrap">
-        
-
         <div className="pm-container pm-contact-overlays">
           <article className="pm-contact-card">
             <div>
@@ -550,7 +543,7 @@ export default function HomePage() {
                 <i className="bi bi-envelope" /> info@pinnaclemetals.co.uk
               </li>
               <li>
-                <i className="bi bi-telephone" /> 07398 071934
+                <i className="bi bi-telephone" /> Phone available on request
               </li>
             </ul>
           </article>

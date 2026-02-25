@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import WhatsAppWidget from "./WhatsAppWidget";
 import "./Layout.css";
 
 export default function Layout() {
   const { pathname } = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
 
   const navItems = [
     { label: "Home", href: "/#home" },
@@ -73,18 +73,35 @@ export default function Layout() {
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const movingDown = currentY > lastY;
+      const passedThreshold = currentY > 90;
+      const delta = Math.abs(currentY - lastY);
+
+      if (delta > 8) {
+        setHeaderHidden(movingDown && passedThreshold);
+      }
+
+      lastY = currentY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   if (isAdminArea) {
-    return (
-      <>
-        <Outlet />
-        <WhatsAppWidget />
-      </>
-    );
+    return <Outlet />;
   }
 
   return (
     <div className="pm-layout">
-      <header className="pm-global-header-wrap">
+      <header
+        className={`pm-global-header-wrap ${headerHidden ? "pm-header-hidden" : ""}`}
+      >
         <div className="pm-global-header pm-container">
           <Link
             to="/"
@@ -175,7 +192,11 @@ export default function Layout() {
 
             <nav className="pm-mobile-nav" aria-label="Mobile menu">
               {navItems.map((item) => (
-                <a key={item.label} href={item.href}>
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
                   {item.label}
                 </a>
               ))}
@@ -224,7 +245,9 @@ export default function Layout() {
             <ul>
               <li>
                 <i className="bi bi-telephone" />{" "}
-                <span style={{ marginLeft: "5px" }}>07398 071934</span>
+                <span style={{ marginLeft: "5px" }}>
+                  Phone available on request
+                </span>
               </li>
               <li>
                 {" "}
@@ -267,8 +290,6 @@ export default function Layout() {
           <p>© 2026 Pinnacle Metals. All Rights Reserved.</p>
         </div>
       </footer>
-
-      <WhatsAppWidget />
     </div>
   );
 }

@@ -74,9 +74,7 @@ export default function ContactPage() {
                   </div>
                   <div className="heading">
                     <h5>Call Us</h5>
-                    <a href="tel:07398071934" className="text">
-                      07398 071934
-                    </a>
+                    <span className="text">Phone available on request</span>
                   </div>
                 </div>
 
