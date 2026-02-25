@@ -152,28 +152,29 @@ export default function AdminDashboardPage() {
               </p>
             )}
 
-            {/* {materialsData?.materials?.length ? (
-              <div className="table-responsive mt-16">
-                <table className="table table-sm align-middle mb-0">
-                  <thead>
-                    <tr>
-                      <th>Material</th>
-                      <th>Formula</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {materialsData.materials.map((item) => (
-                      <tr key={item.key}>
-                        <td>{item.label}</td>
-                        <td>{item.formula}</td>
-                        <td>£{item.price.toLocaleString()}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : null} */}
+            {materialsData?.materials?.length ? (
+              // <div className="table-responsive mt-16">
+              //   <table className="table table-sm align-middle mb-0">
+              //     <thead>
+              //       <tr>
+              //         <th>Material</th>
+              //         <th>Formula</th>
+              //         <th>Price</th>
+              //       </tr>
+              //     </thead>
+              //     <tbody>
+              //       {materialsData.materials.map((item) => (
+              //         <tr key={item.key}>
+              //           <td>{item.label}</td>
+              //           <td>{item.formula}</td>
+              //           <td>£{item.price.toLocaleString()}</td>
+              //         </tr>
+              //       ))}
+              //     </tbody>
+              //   </table>
+              // </div>
+              <></>
+            ) : null}
           </div>
         </div>
       </div>
