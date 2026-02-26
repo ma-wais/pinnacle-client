@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
 import "./HomePage.css";
 
 const quickStats = [
@@ -107,8 +105,6 @@ function getSlidesPerView() {
 export default function HomePage() {
   const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView);
   const [slideIndex, setSlideIndex] = useState(0);
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<L.Map | null>(null);
 
   const maxStartIndex = Math.max(0, testimonials.length - slidesPerView);
 
@@ -130,42 +126,6 @@ export default function HomePage() {
 
     return () => window.clearInterval(timer);
   }, [maxStartIndex]);
-
-  useEffect(() => {
-    if (!mapContainerRef.current || mapRef.current) return;
-
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-      shadowUrl:
-        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    });
-
-    const lat = 53.58661;
-    const lng = -1.391624;
-
-    const map = L.map(mapContainerRef.current, {
-      zoomControl: true,
-      scrollWheelZoom: false,
-    }).setView([lat, lng], 14);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(map);
-
-    L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup("Pinnacle Metals, Acorn Way, Grimethorpe, Barnsley, S72 7PE")
-      .openPopup();
-
-    mapRef.current = map;
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-    };
-  }, []);
 
   const handlePrev = () => {
     setSlideIndex((prev) => (prev <= 0 ? maxStartIndex : prev - 1));
@@ -565,7 +525,14 @@ export default function HomePage() {
 
       <section id="contact" className="pm-contact-map-wrap">
         <div className="pm-map-bg">
-          <div ref={mapContainerRef} className="pm-map-frame" />
+          <iframe
+            className="pm-map-frame"
+            src="https://www.google.com/maps?q=Acorn+Way,+Grimethorpe,+S72+7PE&output=embed"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Pinnacle Metals Location"
+          />
           <div className="pm-map-overlay-decorative" />
         </div>
 
@@ -588,7 +555,8 @@ export default function HomePage() {
                 <i className="bi bi-envelope" /> info@pinnaclemetals.co.uk
               </li>
               <li>
-                <i className="bi bi-telephone" /> Phone available on request
+                <i className="bi bi-telephone" />{" "}
+                <a href="tel:+447398071934">+44 7398 071934</a>
               </li>
             </ul>
           </article>

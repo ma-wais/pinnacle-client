@@ -74,7 +74,9 @@ export default function ContactPage() {
                   </div>
                   <div className="heading">
                     <h5>Call Us</h5>
-                    <span className="text">Phone available on request</span>
+                    <a href="tel:+447398071934" className="text">
+                      +44 7398 071934
+                    </a>
                   </div>
                 </div>
 

@@ -244,9 +244,16 @@ export default function Layout() {
             <h4>Contact Us</h4>
             <ul>
               <li>
-                <i className="bi bi-telephone" />{" "}
+                <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
-                  Phone available on request
+                  <a href="tel:+447398071934">+44 7398 071934</a>
+                  <a
+                    href="https://wa.me/447398071934"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    style={{ marginLeft: "10px" }}
+                  ></a>
                 </span>
               </li>
               <li>
