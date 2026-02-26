@@ -22,6 +22,17 @@ export default function DashboardPage() {
     price: number;
     lastUpdated: string;
     rawPrice?: number;
+    source?: string;
+    status?: string;
+  } | null>(null);
+  const [materialsData, setMaterialsData] = useState<{
+    materials: Array<{
+      key: string;
+      label: string;
+      formula: string;
+      multiplier: number;
+      price: number;
+    }>;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,10 +48,20 @@ export default function DashboardPage() {
     const price = await apiFetch<{ price: number; lastUpdated: string }>(
       "/api/prices/copper",
     );
+    const materials = await apiFetch<{
+      materials: Array<{
+        key: string;
+        label: string;
+        formula: string;
+        multiplier: number;
+        price: number;
+      }>;
+    }>("/api/prices/materials");
     setUser(data.user);
     setProfile(data.profile);
     setDocuments(docs.documents);
     setPriceData(price);
+    setMaterialsData(materials);
   };
 
   useEffect(() => {
@@ -98,7 +119,7 @@ export default function DashboardPage() {
 
       <div className="row gy-24 mb-32">
         <div className="col-xl-3 col-sm-6 mt-10">
-          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-25 text-main-600 text-24 rounded-circle border border-main-100 shadow-sm">
                 <UserRound size={22} />
@@ -118,7 +139,7 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="col-xl-3 col-sm-6 mt-10">
-          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-two-25 text-main-two-600 text-24 rounded-circle border border-main-two-100 shadow-sm">
                 <FileText size={22} />
@@ -132,7 +153,7 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="col-xl-3 col-sm-6 mt-10">
-          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100 animation-scalation">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-main-three-25 text-main-three-600 text-24 rounded-circle border border-main-three-100 shadow-sm">
                 <IdCard size={22} />
@@ -146,13 +167,13 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="col-xl-3 col-sm-6 mt-10">
-          <div className="bg-main-600 rounded-20 p-24 shadow-sm item-hover h-100 animation-scalation text-white border-0">
+          <div className="bg-main-600 rounded-20 p-24 shadow-sm item-hover h-100 text-white border-0">
             <div className="flex-between mb-16">
               <span className="w-52 h-52 flex-center bg-white bg-opacity-20 text-white text-24 rounded-circle border border-white border-opacity-25 shadow-sm">
                 <TrendingUp size={22} />
               </span>
               <div className="text-white text-opacity-80 text-sm">
-                Live Feed
+                {priceData?.status || "Live Feed"}
               </div>
             </div>
             <h6 className="text-white text-opacity-80 mb-4 fw-medium font-bold">
@@ -167,10 +188,56 @@ export default function DashboardPage() {
               </div>
             )}
             <div className="text-xs text-white text-opacity-50 mt-4">
+              Source: {priceData?.source || "Market Feed"}
+            </div>
+            <div className="text-xs text-white text-opacity-50 mt-2">
               Updated:{" "}
               {priceData
                 ? new Date(priceData.lastUpdated).toLocaleTimeString()
                 : "---"}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row gy-24 mb-32">
+        <div className="col-12">
+          <div className="bg-white rounded-24 p-24 border border-neutral-40 shadow-sm">
+            <h5 className="mb-16 text-neutral-700 font-bold">
+              Material Price Formulas
+            </h5>
+            <p className="text-neutral-500 text-sm mb-16">
+              Formula used: Base Copper × (Recovery Rate − Processing Deduction)
+            </p>
+            <div className="table-responsive">
+              <table className="table table-sm align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Material</th>
+                    <th>Formula</th>
+                    <th>Multiplier</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {materialsData?.materials?.length ? (
+                    materialsData.materials.map((item) => (
+                      <tr key={item.key}>
+                        <td>{item.label}</td>
+                        <td>{item.formula}</td>
+                        <td>{item.multiplier.toFixed(4)}</td>
+                        <td>£{item.price.toLocaleString()}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={4} className="text-center text-neutral-400">
+                        Formula data not available.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

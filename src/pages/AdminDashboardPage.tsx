@@ -29,6 +29,7 @@ type PriceData = {
   lastUpdated: string;
   rawPrice?: number;
   source?: string;
+  status?: string;
 };
 
 type PricingConfig = {
@@ -42,8 +43,12 @@ type MaterialsData = {
     label: string;
     multiplier: number;
     formula: string;
+    recoveryRate?: number;
+    processingDeduction?: number;
     price: number;
   }>;
+  source?: string;
+  status?: string;
 };
 
 export default function AdminDashboardPage() {
@@ -132,12 +137,13 @@ export default function AdminDashboardPage() {
                   placeholder="e.g. 7500"
                 />
                 <small className="text-neutral-400 d-block mt-8">
-                  Dummy formulas currently use multiplier ×1 for all materials.
+                  Pricing formula: Base Copper × (Recovery Rate − Processing
+                  Deduction).
                 </small>
               </div>
               <button
                 type="button"
-                className="btn btn-main rounded-pill px-24"
+                className="btn btn-main rounded-pill px-14 py-10"
                 onClick={saveBasePrice}
                 disabled={savingPrice}
               >
@@ -153,27 +159,28 @@ export default function AdminDashboardPage() {
             )}
 
             {materialsData?.materials?.length ? (
-              // <div className="table-responsive mt-16">
-              //   <table className="table table-sm align-middle mb-0">
-              //     <thead>
-              //       <tr>
-              //         <th>Material</th>
-              //         <th>Formula</th>
-              //         <th>Price</th>
-              //       </tr>
-              //     </thead>
-              //     <tbody>
-              //       {materialsData.materials.map((item) => (
-              //         <tr key={item.key}>
-              //           <td>{item.label}</td>
-              //           <td>{item.formula}</td>
-              //           <td>£{item.price.toLocaleString()}</td>
-              //         </tr>
-              //       ))}
-              //     </tbody>
-              //   </table>
-              // </div>
-              <></>
+              <div className="table-responsive mt-16">
+                <table className="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Material</th>
+                      <th>Formula</th>
+                      <th>Multiplier</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {materialsData.materials.map((item) => (
+                      <tr key={item.key}>
+                        <td>{item.label}</td>
+                        <td>{item.formula}</td>
+                        <td>{item.multiplier.toFixed(4)}</td>
+                        <td>£{item.price.toLocaleString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : null}
           </div>
         </div>
@@ -303,7 +310,10 @@ export default function AdminDashboardPage() {
               </div>
             )}
             <div className="text-orange-600 text-sm fw-bold">
-              Live Market Rate
+              {priceData?.source || "Live Market Rate"}
+            </div>
+            <div className="text-neutral-400 text-xs mt-8">
+              {priceData?.status || "Live"}
             </div>
           </div>
         </div>
