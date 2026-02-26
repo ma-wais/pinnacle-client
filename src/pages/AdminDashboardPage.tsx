@@ -136,14 +136,18 @@ export default function AdminDashboardPage() {
                   className="form-control border-neutral-30"
                   placeholder="e.g. 7500"
                 />
-                <small className="text-neutral-400 d-block mt-8">
+                {/* <small className="text-neutral-400 d-block mt-8">
                   Pricing formula: Base Copper × (Recovery Rate − Processing
                   Deduction).
-                </small>
+                </small> */}
               </div>
               <button
                 type="button"
-                className="btn btn-main rounded-pill px-14 py-10"
+                className="btn rounded px-14 py-10"
+                style={{
+                  background: "var(--main-600)",
+                  color: "#fff",
+                }}
                 onClick={saveBasePrice}
                 disabled={savingPrice}
               >
@@ -159,28 +163,29 @@ export default function AdminDashboardPage() {
             )}
 
             {materialsData?.materials?.length ? (
-              <div className="table-responsive mt-16">
-                <table className="table table-sm align-middle mb-0">
-                  <thead>
-                    <tr>
-                      <th>Material</th>
-                      <th>Formula</th>
-                      <th>Multiplier</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {materialsData.materials.map((item) => (
-                      <tr key={item.key}>
-                        <td>{item.label}</td>
-                        <td>{item.formula}</td>
-                        <td>{item.multiplier.toFixed(4)}</td>
-                        <td>£{item.price.toLocaleString()}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              // <div className="table-responsive mt-16">
+              //   <table className="table table-sm align-middle mb-0">
+              //     <thead>
+              //       <tr>
+              //         <th>Material</th>
+              //         <th>Formula</th>
+              //         <th>Multiplier</th>
+              //         <th>Price</th>
+              //       </tr>
+              //     </thead>
+              //     <tbody>
+              //       {materialsData.materials.map((item) => (
+              //         <tr key={item.key}>
+              //           <td>{item.label}</td>
+              //           <td>{item.formula}</td>
+              //           <td>{item.multiplier.toFixed(4)}</td>
+              //           <td>£{item.price.toLocaleString()}</td>
+              //         </tr>
+              //       ))}
+              //     </tbody>
+              //   </table>
+              // </div>
+              <></>
             ) : null}
           </div>
         </div>

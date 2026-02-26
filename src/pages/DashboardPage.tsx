@@ -35,7 +35,7 @@ export default function DashboardPage() {
     }>;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+  console.log(materialsData?.materials[0]);
   const [docType, setDocType] = useState<DocumentType>("all");
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
@@ -200,7 +200,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="row gy-24 mb-32">
+      {/* <div className="row gy-24 mb-32">
         <div className="col-12">
           <div className="bg-white rounded-24 p-24 border border-neutral-40 shadow-sm">
             <h5 className="mb-16 text-neutral-700 font-bold">
@@ -241,7 +241,7 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="row gy-24">
         <div className="col-lg-5">
