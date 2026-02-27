@@ -3,7 +3,7 @@ import whatsappIcon from "../assets/whatsapp.svg";
 export default function WhatsAppWidget() {
   return (
     <a
-      href="https://wa.me/4473989071934"
+      href="https://wa.me/447398071934 "
       target="_blank"
       rel="noopener noreferrer"
       style={{
