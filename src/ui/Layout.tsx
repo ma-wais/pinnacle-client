@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import "./Layout.css";
+import WhatsAppWidget from "./WhatsAppWidget";
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -310,6 +311,8 @@ export default function Layout() {
           <p>© 2026 Pinnacle Metals. All Rights Reserved.</p>
         </div>
       </footer>
+   <WhatsAppWidget />
+
     </div>
   );
 }
