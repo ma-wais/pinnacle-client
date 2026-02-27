@@ -558,6 +558,19 @@ export default function HomePage() {
                 <i className="bi bi-telephone" />{" "}
                 <a href="tel:+447398071934">+44 7398 071934</a>
               </li>
+              <li>
+                <i className="bi bi-whatsapp" />
+                <span style={{ marginLeft: "5px" }}>
+                  <a href="tel:+447398071934">+44 7398 071934</a>
+                  <a
+                    href="https://wa.me/447398071934"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    style={{ marginLeft: "10px" }}
+                  ></a>
+                </span>
+              </li>
             </ul>
           </article>
 

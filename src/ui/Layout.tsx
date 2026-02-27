@@ -103,8 +103,8 @@ export default function Layout() {
         className={`pm-global-header-wrap ${headerHidden ? "pm-header-hidden" : ""}`}
       >
         <div className="pm-global-header pm-container">
-          <Link
-            to="/"
+          <a
+            href="#home"
             className="pm-logo-wrap"
             aria-label="Pinnacle Metals Home"
           >
@@ -113,7 +113,7 @@ export default function Layout() {
               alt="Pinnacle Metals"
               className="pm-logo"
             />
-          </Link>
+          </a>
 
           <nav className="pm-nav" aria-label="Primary">
             {navItems.map((item) => (
@@ -247,6 +247,19 @@ export default function Layout() {
                 <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
                   <a href="tel:+447398071934">+44 7398 071934</a>
+                  <a
+                    href="https://wa.me/447398071934"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    style={{ marginLeft: "10px" }}
+                  ></a>
+                </span>
+              </li>
+              <li>
+                <i className="bi bi-telephone" />
+                <span style={{ marginLeft: "5px" }}>
+                  <a href="tel:+447398071934">+44 7398 9071934</a>
                   <a
                     href="https://wa.me/447398071934"
                     target="_blank"
