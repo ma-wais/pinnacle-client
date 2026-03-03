@@ -25,17 +25,22 @@ export default function DashboardPage() {
     source?: string;
     status?: string;
   } | null>(null);
-  const [materialsData, setMaterialsData] = useState<{
-    materials: Array<{
-      key: string;
-      label: string;
-      formula: string;
-      multiplier: number;
-      price: number;
-    }>;
+  const [baseMetals, setBaseMetals] = useState<{
+    metals: {
+      copper: {
+        label: string;
+        price: number;
+        source?: string;
+        status?: string;
+      };
+      aluminum: { label: string; price: number };
+      lead: { label: string; price: number };
+      zinc: { label: string; price: number };
+    };
+    lastUpdated: string;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  console.log(materialsData?.materials[0]);
+
   const [docType, setDocType] = useState<DocumentType>("all");
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
@@ -48,20 +53,25 @@ export default function DashboardPage() {
     const price = await apiFetch<{ price: number; lastUpdated: string }>(
       "/api/prices/copper",
     );
-    const materials = await apiFetch<{
-      materials: Array<{
-        key: string;
-        label: string;
-        formula: string;
-        multiplier: number;
-        price: number;
-      }>;
-    }>("/api/prices/materials");
+    const metals = await apiFetch<{
+      metals: {
+        copper: {
+          label: string;
+          price: number;
+          source?: string;
+          status?: string;
+        };
+        aluminum: { label: string; price: number };
+        lead: { label: string; price: number };
+        zinc: { label: string; price: number };
+      };
+      lastUpdated: string;
+    }>("/api/prices/base-metals");
     setUser(data.user);
     setProfile(data.profile);
     setDocuments(docs.documents);
     setPriceData(price);
-    setMaterialsData(materials);
+    setBaseMetals(metals);
   };
 
   useEffect(() => {
@@ -177,10 +187,13 @@ export default function DashboardPage() {
               </div>
             </div>
             <h6 className="text-white text-opacity-80 mb-4 fw-medium font-bold">
-              LME Copper
+              {baseMetals?.metals.copper.label || "LME Copper"}
             </h6>
             <h4 className="mb-0 text-white text-18">
-              £{priceData?.price?.toLocaleString() || "---"}
+              £
+              {(
+                baseMetals?.metals.copper.price ?? priceData?.price
+              )?.toLocaleString() || "---"}
             </h4>
             {priceData?.rawPrice && (
               <div className="text-xs text-white text-opacity-70 mt-4">
@@ -196,6 +209,48 @@ export default function DashboardPage() {
                 ? new Date(priceData.lastUpdated).toLocaleTimeString()
                 : "---"}
             </div>
+          </div>
+        </div>
+        <div className="col-xl-3 col-sm-6 mt-10">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
+            <div className="flex-between mb-16">
+              <span className="w-52 h-52 flex-center bg-main-25 text-main-600 text-24 rounded-circle border border-main-100 shadow-sm">
+                <TrendingUp size={22} />
+              </span>
+              <span className="text-neutral-400 text-sm">Base</span>
+            </div>
+            <h6 className="text-neutral-500 mb-4 fw-medium">LME Aluminum</h6>
+            <h4 className="mb-0 text-18">
+              £{baseMetals?.metals.aluminum.price?.toLocaleString() || "---"}
+            </h4>
+          </div>
+        </div>
+        <div className="col-xl-3 col-sm-6 mt-10">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
+            <div className="flex-between mb-16">
+              <span className="w-52 h-52 flex-center bg-main-two-25 text-main-two-600 text-24 rounded-circle border border-main-two-100 shadow-sm">
+                <TrendingUp size={22} />
+              </span>
+              <span className="text-neutral-400 text-sm">Base</span>
+            </div>
+            <h6 className="text-neutral-500 mb-4 fw-medium">LME Lead</h6>
+            <h4 className="mb-0 text-18">
+              £{baseMetals?.metals.lead.price?.toLocaleString() || "---"}
+            </h4>
+          </div>
+        </div>
+        <div className="col-xl-3 col-sm-6 mt-10">
+          <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm item-hover h-100">
+            <div className="flex-between mb-16">
+              <span className="w-52 h-52 flex-center bg-main-three-25 text-main-three-600 text-24 rounded-circle border border-main-three-100 shadow-sm">
+                <TrendingUp size={22} />
+              </span>
+              <span className="text-neutral-400 text-sm">Base</span>
+            </div>
+            <h6 className="text-neutral-500 mb-4 fw-medium">LME Zinc</h6>
+            <h4 className="mb-0 text-18">
+              £{baseMetals?.metals.zinc.price?.toLocaleString() || "---"}
+            </h4>
           </div>
         </div>
       </div>
