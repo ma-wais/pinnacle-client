@@ -347,11 +347,11 @@ export default function AdminUserManagement() {
                       </div>
                     </div>
 
-                    <div className="p-24 overflow-x-auto">
-                      <table className="table table-borderless table-hover vertical-middle mb-0">
+                    <div className="p-24 overflow-x-auto pm-admin-table-wrap">
+                      <table className="table table-borderless table-hover vertical-middle mb-0 pm-admin-table">
                         <thead className="bg-neutral-10">
                           <tr>
-                            <th className="px-16 py-12 text-neutral-600 fw-bold rounded-start-8">
+                            <th className="py-12 text-neutral-600 fw-bold rounded-start-8">
                               Account ID
                             </th>
                             <th className="px-16 py-12 text-neutral-600 fw-bold">
@@ -808,8 +808,8 @@ export default function AdminUserManagement() {
                       </div>
                     </div>
 
-                    <div className="p-24 overflow-x-auto">
-                      <table className="table table-borderless table-hover vertical-middle mb-0">
+                    <div className="p-24 overflow-x-auto pm-admin-table-wrap">
+                      <table className="table table-borderless table-hover vertical-middle mb-0 pm-admin-table pm-complaints-table">
                         <thead className="bg-neutral-20">
                           <tr>
                             <th className="px-16 py-12 text-neutral-600 fw-bold rounded-start-8">

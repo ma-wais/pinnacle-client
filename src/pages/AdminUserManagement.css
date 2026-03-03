@@ -1,5 +1,24 @@
 .pm-admin-users {
-  --pm-admin-mobile-pad: 14px;
+  --pm-admin-mobile-pad: 10px;
+}
+
+.pm-admin-users .pm-admin-table {
+  table-layout: auto;
+  min-width: 500px;
+}
+
+.pm-admin-users .pm-admin-table th {
+  white-space: nowrap;
+}
+
+.pm-admin-users .pm-admin-table td {
+  white-space: normal;
+  word-break: normal;
+}
+
+.pm-admin-users .pm-complaints-table td,
+.pm-admin-users .pm-complaints-table th {
+  vertical-align: middle;
 }
 
 @media (max-width: 767.98px) {
@@ -54,16 +73,21 @@
     vertical-align: middle;
   }
 
+  .pm-admin-users .pm-admin-table-wrap {
+    -webkit-overflow-scrolling: touch;
+  }
+
+
   .pm-admin-users .pm-admin-users-search {
     width: 150px !important;
-    font-size: 13px !important;
+    font-size: 11px !important;
     padding: 6px 34px !important;
   }
 
   .pm-admin-users .pm-admin-users-export {
     width: 78px !important;
-    font-size: 13px !important;
-    padding: 4px 6px !important;
+    font-size: 11px !important;
+    padding: 4px 4px !important;
   }
 
   .pm-admin-users .w-80,

@@ -34,6 +34,9 @@ type PriceData = {
 
 type PricingConfig = {
   baseCopperPrice: number;
+  baseAluminumPrice: number;
+  baseLeadPrice: number;
+  baseZincPrice: number;
   updatedAt: string;
 };
 
@@ -60,7 +63,12 @@ export default function AdminDashboardPage() {
   const [materialsData, setMaterialsData] = useState<MaterialsData | null>(
     null,
   );
-  const [priceInput, setPriceInput] = useState("");
+  const [priceInputs, setPriceInputs] = useState({
+    copper: "",
+    aluminum: "",
+    lead: "",
+    zinc: "",
+  });
   const [savingPrice, setSavingPrice] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -76,7 +84,12 @@ export default function AdminDashboardPage() {
     setPriceData(pData);
     setPricingConfig(configData);
     setMaterialsData(materials);
-    setPriceInput(String(configData.baseCopperPrice || ""));
+    setPriceInputs({
+      copper: String(configData.baseCopperPrice || ""),
+      aluminum: String(configData.baseAluminumPrice || ""),
+      lead: String(configData.baseLeadPrice || ""),
+      zinc: String(configData.baseZincPrice || ""),
+    });
   };
 
   useEffect(() => {
@@ -91,10 +104,17 @@ export default function AdminDashboardPage() {
 
   const saveBasePrice = async () => {
     setError(null);
-    const parsed = Number(priceInput);
+    const copper = Number(priceInputs.copper);
+    const aluminum = Number(priceInputs.aluminum);
+    const lead = Number(priceInputs.lead);
+    const zinc = Number(priceInputs.zinc);
 
-    if (Number.isNaN(parsed) || parsed < 0) {
-      setError("Please enter a valid base copper price");
+    if (
+      [copper, aluminum, lead, zinc].some(
+        (value) => Number.isNaN(value) || value < 0,
+      )
+    ) {
+      setError("Please enter valid metal prices");
       return;
     }
 
@@ -102,7 +122,12 @@ export default function AdminDashboardPage() {
     try {
       await apiFetch("/api/admin/pricing", {
         method: "PATCH",
-        body: JSON.stringify({ baseCopperPrice: parsed }),
+        body: JSON.stringify({
+          baseCopperPrice: copper,
+          baseAluminumPrice: aluminum,
+          baseLeadPrice: lead,
+          baseZincPrice: zinc,
+        }),
       });
       await loadData();
     } catch (err) {
@@ -124,22 +149,77 @@ export default function AdminDashboardPage() {
         <div className="col-12">
           <div className="bg-white rounded-20 p-24 border border-neutral-40 shadow-sm">
             <div className="d-flex flex-wrap align-items-end gap-16">
-              <div className="flex-grow-1" style={{ minWidth: 240 }}>
+              <div className="flex-grow-1" style={{ minWidth: 220 }}>
                 <label className="text-neutral-500 text-sm fw-bold mb-8 d-block">
                   Base Copper Price (GBP per Tonne)
                 </label>
                 <input
                   type="number"
                   min="0"
-                  value={priceInput}
-                  onChange={(e) => setPriceInput(e.target.value)}
+                  value={priceInputs.copper}
+                  onChange={(e) =>
+                    setPriceInputs((prev) => ({
+                      ...prev,
+                      copper: e.target.value,
+                    }))
+                  }
                   className="form-control border-neutral-30"
                   placeholder="e.g. 7500"
                 />
-                {/* <small className="text-neutral-400 d-block mt-8">
-                  Pricing formula: Base Copper × (Recovery Rate − Processing
-                  Deduction).
-                </small> */}
+              </div>
+              <div className="flex-grow-1" style={{ minWidth: 220 }}>
+                <label className="text-neutral-500 text-sm fw-bold mb-8 d-block">
+                  Base Aluminum Price (GBP per Tonne)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={priceInputs.aluminum}
+                  onChange={(e) =>
+                    setPriceInputs((prev) => ({
+                      ...prev,
+                      aluminum: e.target.value,
+                    }))
+                  }
+                  className="form-control border-neutral-30"
+                  placeholder="e.g. 1800"
+                />
+              </div>
+              <div className="flex-grow-1" style={{ minWidth: 220 }}>
+                <label className="text-neutral-500 text-sm fw-bold mb-8 d-block">
+                  Base Lead Price (GBP per Tonne)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={priceInputs.lead}
+                  onChange={(e) =>
+                    setPriceInputs((prev) => ({
+                      ...prev,
+                      lead: e.target.value,
+                    }))
+                  }
+                  className="form-control border-neutral-30"
+                  placeholder="e.g. 1700"
+                />
+              </div>
+              <div className="flex-grow-1" style={{ minWidth: 220 }}>
+                <label className="text-neutral-500 text-sm fw-bold mb-8 d-block">
+                  Base Zinc Price (GBP per Tonne)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={priceInputs.zinc}
+                  onChange={(e) =>
+                    setPriceInputs((prev) => ({
+                      ...prev,
+                      zinc: e.target.value,
+                    }))
+                  }
+                  className="form-control border-neutral-30"
+                  placeholder="e.g. 2200"
+                />
               </div>
               <button
                 type="button"
