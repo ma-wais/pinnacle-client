@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { companyDetails } from "../lib/company";
 import "./HomePage.css";
 
 const quickStats = [
@@ -527,7 +528,9 @@ export default function HomePage() {
         <div className="pm-map-bg">
           <iframe
             className="pm-map-frame"
-            src="https://www.google.com/maps?q=Acorn+Way,+Grimethorpe,+S72+7PE&output=embed"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              companyDetails.addressShort,
+            )}&output=embed`}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -547,23 +550,30 @@ export default function HomePage() {
             </div>
             <ul>
               <li>
-                <i className="bi bi-geo-alt" /> Acorn Way, Grimethorpe Barnsley,{" "}
+                <i className="bi bi-geo-alt" /> {companyDetails.addressLine1},{" "}
                 <br />
-                S72 7PE
+                {companyDetails.addressLine2}, {companyDetails.addressLine3}
               </li>
               <li>
-                <i className="bi bi-envelope" /> info@pinnaclemetals.co.uk
+                <i className="bi bi-envelope" />{" "}
+                <a href={`mailto:${companyDetails.email}`}>
+                  {companyDetails.email}
+                </a>
               </li>
               <li>
                 <i className="bi bi-telephone" />{" "}
-                <a href="tel:+447398071934">+44 7398 071934</a>
+                <a href={`tel:${companyDetails.phoneHref}`}>
+                  {companyDetails.phoneDisplay}
+                </a>
               </li>
               <li>
                 <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
-                  <a href="tel:+447398071934">+44 7398 071934</a>
+                  <a href={`tel:${companyDetails.phoneHref}`}>
+                    {companyDetails.phoneDisplay}
+                  </a>
                   <a
-                    href="https://wa.me/447398071934"
+                    href={companyDetails.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="WhatsApp"

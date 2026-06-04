@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { companyDetails } from "../lib/company";
 
 export default function PrivacyPage() {
   return (
@@ -92,7 +93,11 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 If you have any questions about this Privacy Policy, please
-                contact us at support@pinnaclemetals.com.
+                contact us at{" "}
+                <a href={`mailto:${companyDetails.email}`}>
+                  {companyDetails.email}
+                </a>
+                .
               </p>
             </section>
           </div>

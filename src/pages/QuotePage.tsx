@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { companyDetails } from "../lib/company";
 
 export default function QuotePage() {
   const [metalType, setMetalType] = useState("");
@@ -52,8 +53,8 @@ export default function QuotePage() {
                   </div>
                   <div className="heading">
                     <h5>Call for Instant Pricing</h5>
-                    <a href="tel:+447398071934" className="text">
-                      +44 7398 071934
+                    <a href={`tel:${companyDetails.phoneHref}`} className="text">
+                      {companyDetails.phoneDisplay}
                     </a>
                   </div>
                 </div>
@@ -67,8 +68,8 @@ export default function QuotePage() {
                   </div>
                   <div className="heading">
                     <h5>Email Your List</h5>
-                    <a href="mailto:info@pinnaclemetals.co.uk" className="text">
-                      info@pinnaclemetals.co.uk
+                    <a href={`mailto:${companyDetails.email}`} className="text">
+                      {companyDetails.email}
                     </a>
                   </div>
                 </div>

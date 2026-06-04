@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { companyDetails } from "../lib/company";
 
 export default function ContactPage() {
   return (
@@ -74,8 +75,8 @@ export default function ContactPage() {
                   </div>
                   <div className="heading">
                     <h5>Call Us</h5>
-                    <a href="tel:+447398071934" className="text">
-                      +44 7398 071934
+                    <a href={`tel:${companyDetails.phoneHref}`} className="text">
+                      {companyDetails.phoneDisplay}
                     </a>
                   </div>
                 </div>
@@ -89,8 +90,8 @@ export default function ContactPage() {
                   </div>
                   <div className="heading">
                     <h5>Email Us</h5>
-                    <a href="mailto:info@pinnaclemetals.co.uk" className="text">
-                      info@pinnaclemetals.co.uk
+                    <a href={`mailto:${companyDetails.email}`} className="text">
+                      {companyDetails.email}
                     </a>
                   </div>
                 </div>
@@ -105,7 +106,7 @@ export default function ContactPage() {
                   <div className="heading">
                     <h5>Yard Location</h5>
                     <span className="text">
-                      Acorn Way, Grimethorpe, Barnsley, S72 7PE
+                      {companyDetails.addressShort}
                     </span>
                   </div>
                 </div>
@@ -173,7 +174,9 @@ export default function ContactPage() {
       <div className="space100"></div>
       <div className="contact-map-page">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2363.344403666016!2d-1.391624!3d53.58661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48796da99846b97d%3A0xe679626359d9c24!2sAcorn%20Way%2C%20Barnsley%2C%20UK!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(
+            companyDetails.addressShort,
+          )}&output=embed`}
           width="600"
           height="450"
           allowFullScreen

@@ -207,6 +207,15 @@
   text-decoration: none;
 }
 
+.pm-footer-company-meta {
+  color: #cbd0d6;
+}
+
+.pm-footer-company-meta span {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .pm-socials {
   display: flex;
   gap: 8px;

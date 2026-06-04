@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { companyDetails } from "../lib/company";
 import "./Layout.css";
 import WhatsAppWidget from "./WhatsAppWidget";
 
@@ -217,10 +218,14 @@ export default function Layout() {
               className="pm-footer-logo"
             />
             <p>
-              Pinnacle Metals is committed to delivering high-quality metal
+              {companyDetails.name} is committed to delivering high-quality metal
               solutions with expertise, reliability and exceptional customer
               service.
             </p>
+            <ul className="pm-footer-company-meta">
+              <li>Company No: {companyDetails.companyNumber}</li>
+              <li>Est: {companyDetails.established}</li>
+            </ul>
           </div>
 
           <div>
@@ -247,9 +252,11 @@ export default function Layout() {
               <li>
                 <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
-                  <a href="tel:+447398071934">+44 7398 071934</a>
+                  <a href={`tel:${companyDetails.phoneHref}`}>
+                    {companyDetails.phoneDisplay}
+                  </a>
                   <a
-                    href="https://wa.me/447398071934"
+                    href={companyDetails.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="WhatsApp"
@@ -260,46 +267,48 @@ export default function Layout() {
               <li>
                 <i className="bi bi-telephone" />
                 <span style={{ marginLeft: "5px" }}>
-                  <a href="tel:+447398071934">+44 7398 9071934</a>
-                  <a
-                    href="https://wa.me/447398071934"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp"
-                    style={{ marginLeft: "10px" }}
-                  ></a>
+                  <a href={`tel:${companyDetails.phoneHref}`}>
+                    {companyDetails.phoneDisplay}
+                  </a>
                 </span>
               </li>
               <li>
                 {" "}
                 <i className="bi bi-envelope" />{" "}
                 <span style={{ marginLeft: "5px" }}>
-                  info@pinnaclemetals.co.uk
+                  <a href={`mailto:${companyDetails.email}`}>
+                    {companyDetails.email}
+                  </a>
                 </span>
               </li>
               <li>
                 {" "}
                 <i className="bi bi-geo-alt" />{" "}
                 <span style={{ marginLeft: "5px" }}>
-                  Acorn Way, Grimethorpe, S72 7PE
+                  {companyDetails.addressShort}
+                </span>
+              </li>
+              <li>
+                {" "}
+                <i className="bi bi-globe2" />{" "}
+                <span style={{ marginLeft: "5px" }}>
+                  <a href={companyDetails.websiteUrl}>
+                    {companyDetails.website}
+                  </a>
                 </span>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4>Follow Us</h4>
-            <div className="pm-socials">
-              <a href="#" aria-label="Facebook">
-                <i className="bi bi-facebook" />
-              </a>
-              <a href="#" aria-label="Instagram">
-                <i className="bi bi-instagram" />
-              </a>
-              <a href="#" aria-label="LinkedIn">
-                <i className="bi bi-linkedin" />
-              </a>
-            </div>
+            <h4>Licensing</h4>
+            <ul className="pm-footer-company-meta">
+              {companyDetails.licenses.map((license) => (
+                <li key={license.label}>
+                  <span>{license.label}:</span> {license.value}
+                </li>
+              ))}
+            </ul>
             <h4>Newsletter</h4>
             <div className="pm-newsletter">
               <input type="email" placeholder="Email" />
@@ -308,7 +317,7 @@ export default function Layout() {
           </div>
         </div>
         <div className="pm-footer-bottom">
-          <p>© 2026 Pinnacle Metals. All Rights Reserved.</p>
+          <p>&copy; 2026 {companyDetails.name}. All Rights Reserved.</p>
         </div>
       </footer>
    <WhatsAppWidget />

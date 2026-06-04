@@ -1,0 +1,15 @@
+{
+  "name": "Pinnacle Metals",
+  "short_name": "Pinnacle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ba932a",
+  "icons": [
+    {
+      "src": "/eduall/assets/images/logo/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { companyDetails } from "../lib/company";
 
 export default function TermsPage() {
   return (
@@ -99,9 +100,9 @@ export default function TermsPage() {
                 <div className="space40"></div>
                 <p>
                   If you have questions about these terms, please contact us at
-                  <a href="mailto:info@pinnaclemetals.co.uk">
+                  <a href={`mailto:${companyDetails.email}`}>
                     {" "}
-                    info@pinnaclemetals.co.uk
+                    {companyDetails.email}
                   </a>
                   .
                 </p>
