@@ -249,7 +249,7 @@ export default function Layout() {
           <div>
             <h4>Contact Us</h4>
             <ul>
-              <li>
+              {/* <li>
                 <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
                   <a href={`tel:${companyDetails.phoneHref}`}>
@@ -263,7 +263,7 @@ export default function Layout() {
                     style={{ marginLeft: "10px" }}
                   ></a>
                 </span>
-              </li>
+              </li> */}
               <li>
                 <i className="bi bi-telephone" />
                 <span style={{ marginLeft: "5px" }}>

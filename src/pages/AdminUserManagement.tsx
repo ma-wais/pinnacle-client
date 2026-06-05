@@ -575,7 +575,7 @@ export default function AdminUserManagement() {
                               >
                                 <div className="flex-between">
                                   <span className="text-10 fw-bold text-uppercase text-main-600 letter-spacing-1">
-                                    {d.type.replace("_", " ")}
+                                    {(d.subtype || d.type).replaceAll("_", " ")}
                                   </span>
                                   <div className="flex-align gap-8">
                                     <a
@@ -718,14 +718,14 @@ export default function AdminUserManagement() {
                           </div>
 
                           <div className="px-4">
-                            {/* <div className="flex-between mb-8">
-                            <span className="text-xs text-neutral-400">
-                              Business:
-                            </span>
-                            <span className="text-xs fw-bold text-neutral-800">
-                              {selected.profile?.businessName || "N/A"}
-                            </span>
-                          </div> */}
+                            <div className="flex-between mb-8">
+                              <span className="text-xs text-neutral-400">
+                                Account type:
+                              </span>
+                              <span className="text-xs fw-bold text-neutral-800 text-capitalize">
+                                {selected.profile?.accountType || "Individual"}
+                              </span>
+                            </div>
                             <div className="flex-between mb-8">
                               <span className="text-xs text-neutral-400">
                                 Phone:
@@ -734,12 +734,44 @@ export default function AdminUserManagement() {
                                 {selected.profile?.phone || "N/A"}
                               </span>
                             </div>
-                            <div className="flex-between">
+                            <div className="flex-between mb-8">
                               <span className="text-xs text-neutral-400">
-                                Location:
+                                Address:
+                              </span>
+                              <span className="text-xs fw-bold text-neutral-800 text-end">
+                                {selected.profile?.addressLine1 || "N/A"}
+                              </span>
+                            </div>
+                            <div className="flex-between mb-8">
+                              <span className="text-xs text-neutral-400">
+                                Postcode:
                               </span>
                               <span className="text-xs fw-bold text-neutral-800">
-                                {selected.profile?.city || "Unknown"}
+                                {selected.profile?.postcode || "N/A"}
+                              </span>
+                            </div>
+                            <div className="flex-between mb-8">
+                              <span className="text-xs text-neutral-400">
+                                Bank:
+                              </span>
+                              <span className="text-xs fw-bold text-neutral-800">
+                                {selected.profile?.bankName || "N/A"}
+                              </span>
+                            </div>
+                            <div className="flex-between mb-8">
+                              <span className="text-xs text-neutral-400">
+                                Sort code:
+                              </span>
+                              <span className="text-xs fw-bold text-neutral-800">
+                                {selected.profile?.sortCode || "N/A"}
+                              </span>
+                            </div>
+                            <div className="flex-between">
+                              <span className="text-xs text-neutral-400">
+                                Account number:
+                              </span>
+                              <span className="text-xs fw-bold text-neutral-800">
+                                {selected.profile?.bankAccountNumber || "N/A"}
                               </span>
                             </div>
                           </div>
@@ -871,7 +903,7 @@ export default function AdminUserManagement() {
                                       className="text-danger-600"
                                     />
                                     <span className="text-sm fw-medium text-neutral-700">
-                                      {d.type.replace("_", " ")}
+                                      {(d.subtype || d.type).replaceAll("_", " ")}
                                     </span>
                                   </div>
                                   <p className="text-10 text-neutral-400 mb-0 ps-26">

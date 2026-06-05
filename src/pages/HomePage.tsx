@@ -556,31 +556,24 @@ export default function HomePage() {
               </li>
               <li>
                 <i className="bi bi-envelope" />{" "}
-                <a href={`mailto:${companyDetails.email}`}>
+                <a href={`mailto:${companyDetails.email}`} style={{ color: "inherit", textDecoration: "none" }}>
                   {companyDetails.email}
                 </a>
               </li>
               <li>
                 <i className="bi bi-telephone" />{" "}
-                <a href={`tel:${companyDetails.phoneHref}`}>
+                <a href={`tel:${companyDetails.phoneHref}`} style={{ color: "inherit", textDecoration: "none" }}>
                   {companyDetails.phoneDisplay}
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <i className="bi bi-whatsapp" />
                 <span style={{ marginLeft: "5px" }}>
-                  <a href={`tel:${companyDetails.phoneHref}`}>
+                  <a href={`tel:${companyDetails.phoneHref}`} style={{ color: "inherit", textDecoration: "none" }}>
                     {companyDetails.phoneDisplay}
                   </a>
-                  <a
-                    href={companyDetails.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp"
-                    style={{ marginLeft: "10px" }}
-                  ></a>
                 </span>
-              </li>
+              </li> */}
             </ul>
           </article>
 

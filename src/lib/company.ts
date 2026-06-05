@@ -1,9 +1,9 @@
 export const companyDetails = {
   name: "Pinnacle Metals Ltd",
   established: "2006",
-  companyNumber: "05667499",
   website: "www.pinnaclemetals.co.uk",
   websiteUrl: "https://www.pinnaclemetals.co.uk",
+  companyNumber: "05667499",
   email: "info@pinnaclemetals.co.uk",
   phoneDisplay: "+44 7398 071934",
   phoneHref: "+447398071934",
@@ -16,5 +16,6 @@ export const companyDetails = {
     { label: "Waste carrier", value: "CBDU632998" },
     { label: "Waste exemption", value: "WEX488017" },
     { label: "Scrap dealer license", value: "099310" },
+    { label: "Company number", value: "05667499" },
   ],
 };

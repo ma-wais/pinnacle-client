@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { apiFetch } from "./api";
+import { apiFetch, apiFetchForm } from "./api";
 import type { User } from "./types";
 
 type AuthState = {
@@ -13,16 +13,7 @@ type AuthState = {
   loading: boolean;
   refresh: () => Promise<User | null>;
   login: (email: string, password: string) => Promise<User | null>;
-  register: (input: {
-    email: string;
-    password: string;
-    fullName: string;
-    phone?: string;
-    addressLine1?: string;
-    city?: string;
-    postcode?: string;
-    businessName?: string;
-  }) => Promise<void>;
+  register: (input: FormData) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -64,10 +55,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const register: AuthState["register"] = async (input) => {
-    const res = await apiFetch<{ token: string }>("/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify(input),
-    });
+    const res = await apiFetchForm<{ token: string }>(
+      "/api/auth/register",
+      input,
+    );
     if (res.token) {
       localStorage.setItem("token", res.token);
     }

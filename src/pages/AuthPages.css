@@ -23,6 +23,11 @@
   padding: 20px;
 }
 
+.pm-auth-form-container-application {
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
 .pm-auth-card {
   width: 100%;
   max-width: 440px;
@@ -33,6 +38,10 @@
     0 20px 25px -5px rgba(0, 0, 0, 0.05),
     0 8px 10px -6px rgba(0, 0, 0, 0.05);
   border: 1px solid #f1f5f9;
+}
+
+.pm-auth-application-card {
+  max-width: 720px;
 }
 
 .pm-auth-card h1 {
@@ -87,6 +96,71 @@
 
 .pm-auth-input:focus {
   border-color: #ba932a;
+}
+
+.pm-auth-account-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 28px;
+  border-radius: 12px;
+  background: #f1f5f9;
+}
+
+.pm-auth-account-toggle button {
+  padding: 11px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #64748b;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pm-auth-account-toggle button.active {
+  background: #fff;
+  color: #9b761b;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.pm-auth-section {
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.pm-auth-section h2 {
+  margin: 0 0 6px;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pm-auth-section > p {
+  margin: 0 0 18px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.pm-auth-document-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pm-auth-document-field {
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.pm-auth-file-input {
+  width: 100%;
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 12px;
 }
 
 .pm-auth-link {
@@ -331,7 +405,13 @@
   .pm-auth-page input {
     font-size: 13px;
     padding: 8px 14px;
-
   }
+}
 
+@media (max-width: 640px) {
+  .pm-auth-flex-row,
+  .pm-auth-document-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
