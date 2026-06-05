@@ -104,6 +104,19 @@ export default function Layout() {
       <header
         className={`pm-global-header-wrap ${headerHidden ? "pm-header-hidden" : ""}`}
       >
+        <div className="pm-partner-strip">
+          <div className="pm-container pm-partner-strip-inner">
+            <span>
+              <i className="bi bi-shield-check" />
+              Open your Pinnacle Metals account online
+            </span>
+            <Link to="/apply">
+              Start your application
+              <i className="bi bi-arrow-right" />
+            </Link>
+          </div>
+        </div>
+
         <div className="pm-global-header pm-container">
           <a
             href="#home"
@@ -147,6 +160,9 @@ export default function Layout() {
                   color: "#ba932a",
                 }}
               />
+            </Link>
+            <Link to="/apply" className="pm-partner-btn">
+              Become a Partner
             </Link>
             <a href="/#quote" className="pm-quote-btn">
               Get A Quote
@@ -202,6 +218,13 @@ export default function Layout() {
                   {item.label}
                 </a>
               ))}
+              <Link
+                to="/apply"
+                className="pm-mobile-partner-link"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Become a Partner
+              </Link>
             </nav>
           </aside>
         </div>
@@ -309,11 +332,6 @@ export default function Layout() {
                 </li>
               ))}
             </ul>
-            <h4>Newsletter</h4>
-            <div className="pm-newsletter">
-              <input type="email" placeholder="Email" />
-              <button type="button">Subscribe</button>
-            </div>
           </div>
         </div>
         <div className="pm-footer-bottom">

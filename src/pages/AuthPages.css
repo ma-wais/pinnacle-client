@@ -25,7 +25,9 @@
 
 .pm-auth-form-container-application {
   align-items: flex-start;
-  padding: 40px 20px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .pm-auth-card {
@@ -42,6 +44,51 @@
 
 .pm-auth-application-card {
   max-width: 720px;
+  padding: 24px 28px;
+}
+
+.pm-auth-application-page {
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pm-auth-application-page .pm-auth-info {
+  height: 100vh;
+  padding: 54px;
+  position: sticky;
+  top: 0;
+}
+
+.pm-auth-application-card .subtitle {
+  margin-bottom: 18px;
+}
+
+.pm-auth-application-card .pm-auth-account-toggle {
+  margin-bottom: 18px;
+}
+
+.pm-auth-application-card .pm-auth-section {
+  margin-bottom: 18px;
+  padding-bottom: 4px;
+}
+
+.pm-auth-application-card .pm-auth-flex-row {
+  margin-bottom: 12px;
+}
+
+.pm-auth-application-card .pm-auth-input-group {
+  margin-bottom: 12px;
+}
+
+.pm-auth-application-card .pm-auth-input {
+  padding: 8px 13px;
+  font-size: 14px;
+}
+
+.pm-auth-application-card .pm-auth-footer {
+  margin-top: 20px;
+  padding-top: 18px;
 }
 
 .pm-auth-card h1 {
@@ -405,6 +452,15 @@
   .pm-auth-page input {
     font-size: 13px;
     padding: 8px 14px;
+  }
+  .pm-auth-application-page {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+  .pm-auth-form-container-application {
+    height: auto;
+    overflow: visible;
   }
 }
 

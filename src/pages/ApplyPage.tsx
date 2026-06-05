@@ -98,7 +98,7 @@ export default function ApplyPage() {
   };
 
   return (
-    <div className="pm-auth-page">
+    <div className="pm-auth-page pm-auth-application-page">
       <div className="pm-auth-info">
         <div className="pm-auth-info-content">
           <img
