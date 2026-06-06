@@ -631,7 +631,7 @@ export default function AdminUserManagement() {
                                   </div>
                                 </div>
 
-                                <div className="flex-between">
+                                <div className="flex-between ">
                                   <div className="flex-align gap-8 overflow-hidden">
                                     <FileText
                                       size={16}
@@ -648,7 +648,7 @@ export default function AdminUserManagement() {
                                     </a>
                                   </div>
                                   <span
-                                    className={`text-10 fw-bold px-8 py-2 rounded-4 ${
+                                    className={`text-10 fw-bold px-8 py-2 rounded-4 m-20 mb-4  ${
                                       d.status === "approved"
                                         ? "bg-success-50 text-success-600"
                                         : d.status === "rejected"
