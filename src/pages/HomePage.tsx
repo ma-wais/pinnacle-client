@@ -27,9 +27,9 @@ const services = [
     image: "/assets/img/work/service-weighing.jpg",
   },
   {
-    title: "Same-Day Payment",
+    title: "Same-Day Bank Transfers",
     description:
-      "Get paid instantly when your scrap is processed. Bank transfer available.",
+      "Same-day bank transfers for processed scrap. We do not take or issue cash payments.",
     image: "/assets/img/work/service-payment.jpg",
   },
   {
@@ -285,8 +285,8 @@ export default function HomePage() {
               loading="lazy"
             />
             <div className="pm-exp-box">
-              <h3>20+</h3>
-              <span>Years Of Experience</span>
+              <h3>2006</h3>
+              <span>Established</span>
             </div>
           </div>
         </div>
@@ -429,9 +429,10 @@ export default function HomePage() {
               </article>
               <article>
                 <img src="/assets/img/work/four.png" alt="" />
-                <h4>Get Paid Instantly</h4>
+                <h4>Get Paid By Bank Transfer</h4>
                 <p>
-                  Receive same-day payment once your materials are processed.
+                  Receive a same-day bank transfer once your materials are
+                  processed.
                 </p>
               </article>
             </div>
